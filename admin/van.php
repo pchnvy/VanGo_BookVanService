@@ -231,7 +231,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" name ="DeleteVan" id="DeleteVan" Value="vanUpdate" class="btn btn-primary">ยืนยัน</button>
-                    <button type="button" class="btn btn-secondary" id="closeModalUpdate" data-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-secondary" id="closeModalDelete" data-dismiss="modal">ยกเลิก</button>
                 </div>
             </form>
         </div>
@@ -246,75 +246,6 @@
 
 <script>
 $(document).ready(() => {
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000
-    });    
-
-    // toast
-    // delete toast
-    function deleteerror(error){
-        $(document).Toasts('create', {
-            class: 'bg-danger', 
-            body: error,
-            title: 'ไม่สามารถลบข้อมูลได้',
-            subtitle: 'ปิด',
-            icon: 'fas fa-envelope fa-lg',
-        })
-    }
-    function deletesuccess(){
-        $(document).Toasts('create', {
-            class: 'bg-success', 
-            body: 'เพิ่มข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว',
-            title: 'เพิ่มข้อมูลสำเร็จ',
-            subtitle: 'ปิด',
-            icon: 'fas fa-envelope fa-lg',
-        })
-    }
-
-    // insert toast
-    function inserterror(error){
-        $(document).Toasts('create', {
-            class: 'bg-danger', 
-            body: error,
-            title: 'ไม่สามารถเพิ่มข้อมูลได้',
-            subtitle: 'ปิด',
-            icon: 'fas fa-envelope fa-lg',
-        })
-    }
-    function insertsuccess(){
-        $(document).Toasts('create', {
-            class: 'bg-success', 
-            body: 'เพิ่มข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว',
-            title: 'เพิ่มข้อมูลสำเร็จ',
-            subtitle: 'ปิด',
-            icon: 'fas fa-envelope fa-lg',
-        })
-    }
-
-    // update toast
-    function updateerror(error){
-        $(document).Toasts('create', {
-            class: 'bg-danger', 
-            body: error,
-            title: 'ไม่สามารถอัพเดทข้อมูลได้',
-            subtitle: 'ปิด',
-            icon: 'fas fa-envelope fa-lg',
-        })
-    }
-    function updatesuccess(){
-        $(document).Toasts('create', {
-            class: 'bg-success', 
-            body: 'อัพเดทข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว',
-            title: 'อัพเดทข้อมูลสำเร็จ',
-            subtitle: 'ปิด',
-            icon: 'fas fa-envelope fa-lg',
-        })
-    }
-
-
     // search
     $("#myInput").on("keyup", function() {
         var value = $(this).val().toLowerCase();
@@ -390,7 +321,7 @@ $(document).ready(() => {
         });
     });
 
-    // DeleteModal
+    // DeleteData
     $(document).on('click','.delete_data',function(){
         var VanID = $(this).attr("id");
         $('#DeleteVanID').val(VanID);
@@ -416,8 +347,6 @@ $(document).ready(() => {
         });
     });
 
-
-    
 });
 </script>
 
