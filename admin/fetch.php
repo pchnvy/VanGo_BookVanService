@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "P@ssw0rd", "vango");
+$conn = new mysqli("localhost", "root", "", "vango");
 if(isset($_POST["VanID"]))
 {
     $sql = "Select v.VanID,v.VanNumber,count(s.SeatID) SeatCount,v.Fueltype,v.CreateDate,v.CreateBy,v.UpdateDate,v.UpdateBy From tbl_m_van v 

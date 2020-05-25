@@ -51,7 +51,7 @@
                         </thead>
                         <tbody id="myTable">
                         <?php
-                            $conn = mysqli_connect('localhost', 'root', 'P@ssw0rd', 'vango') or die("Error Connect to Database");
+                            $conn = mysqli_connect('localhost', 'root', '', 'vango') or die("Error Connect to Database");
                             if ($conn->connect_error) {
                                 die("Connection failed:" . $conn->connect_error);
                             }

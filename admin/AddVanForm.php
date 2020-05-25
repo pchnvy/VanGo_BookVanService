@@ -1,6 +1,6 @@
 <?php
 
-$conn = new mysqli("localhost", "root", "P@ssw0rd", "vango");
+$conn = new mysqli("localhost", "root", "", "vango");
     if(!empty($_POST))
     {
         $output = '';
