@@ -97,8 +97,8 @@ $activePage = "../admin/home.php";
     function deletesuccess(){
         $(document).Toasts('create', {
             class: 'bg-success', 
-            body: 'เพิ่มข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว',
-            title: 'เพิ่มข้อมูลสำเร็จ',
+            body: 'ลบข้อมูลออกจากฐานข้อมูลแล้ว',
+            title: 'ลบข้อมูลสำเร็จแล้ว',
             subtitle: 'ปิด',
             icon: 'fas fa-envelope fa-lg',
         })
@@ -129,7 +129,7 @@ $activePage = "../admin/home.php";
         $(document).Toasts('create', {
             class: 'bg-danger', 
             body: error,
-            title: 'ไม่สามารถอัพเดทข้อมูลได้',
+            title: 'ไม่สามารถแก้ไขข้อมูลได้',
             subtitle: 'ปิด',
             icon: 'fas fa-envelope fa-lg',
         })
@@ -137,8 +137,8 @@ $activePage = "../admin/home.php";
     function updatesuccess(){
         $(document).Toasts('create', {
             class: 'bg-success', 
-            body: 'อัพเดทข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว',
-            title: 'อัพเดทข้อมูลสำเร็จ',
+            body: 'แก้ไขข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว',
+            title: 'แก้ไขข้อมูลสำเร็จ',
             subtitle: 'ปิด',
             icon: 'fas fa-envelope fa-lg',
         })

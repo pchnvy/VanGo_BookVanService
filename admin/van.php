@@ -246,6 +246,8 @@
 
 <script>
 $(document).ready(() => {
+    var PageInfo = "ข้อมูลรถตู้";
+
     // search
     $("#myInput").on("keyup", function() {
         var value = $(this).val().toLowerCase();
@@ -269,15 +271,16 @@ $(document).ready(() => {
             url:"AddVanForm.php",
             method:"POST",
             data:$('#AddVanForm').serialize(),
+            dataType: "json",
             success:function(data)
             {
                 document.getElementById("AddVanForm").reset();                
                 $('#AddVanModal').modal('hide');
-                if(data[0]!=null){error(data[0]);inserterror();}
+                if(data['@ErrorMsg']!=null){inserterror(data['@ErrorMsg']);}
                 else{insertsuccess();}
                 setTimeout(() => {
                     location.reload();
-                }, 2000);
+                }, 3000);
             }
         });
     });
@@ -308,15 +311,16 @@ $(document).ready(() => {
             url:"EditVanForm.php",
             method:"POST",
             data:$('#EditVanForm').serialize(),
+            dataType:"json",
             success:function(data)
             {
                 document.getElementById("EditVanForm").reset();
                 $('#EditVanModal').modal('hide');
-                if(data[0]!=null){error(data[0]);updateerror();}
+                if(data['@ErrorMsg']!=null){updateerror(data['@ErrorMsg']);}
                 else{updatesuccess();}
                 setTimeout(() => {
                     location.reload();
-                }, 2000);             
+                }, 3000);             
             }
         });
     });
@@ -338,11 +342,11 @@ $(document).ready(() => {
             success:function(data)
             {
                 $('#DeleteVanModal').modal('hide');
-                if(data[0]!=null){deleteerror(data[0]);}
+                if(data['@ErrorMsg']!=null){deleteerror(data['@ErrorMsg']);}
                 else{deletesuccess();}
                 setTimeout(() => {
                     location.reload();
-                }, 2000);
+                }, 3000);
             }
         });
     });
