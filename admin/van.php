@@ -25,7 +25,7 @@
                 </div><!-- /.col -->
             </div><!-- /.row -->
             <div class="row mb-2">
-                <div class="container-fluid">
+                <div class="container-fluid" id="vantable">
                     <h2>ตารางแสดงรายละเอียดของรถตู้</h2>
                     <p>ลองพิมพ์เพื่อค้นหาสิ่งที่ท่านต้องการ เช่น ไอดี,ทะเบียนรถ หรือประเภทของพลังงานที่ใช้ เป็นต้น</p>  
                     <div class="col-sm-2 col-md-2">
@@ -71,8 +71,9 @@
                                         "<td>" . $row["UpdateBy"] . "</td>" .
                                         "<td align=\"center\">
                                         <a name=\"Edit\" value=\"Edit\" id=".$row["VanID"]." href=\"#\" class=\"edit_data\" /> 
-                                        <i class=\"far fa-edit\"></i></a></td>" .
-                                        "<td align=\"center\"><a href=\"master_medicine_deleteform.php?MedID=". $row["VanID"]. "\">
+                                        <i class=\"far fa-edit\"></i></a>
+                                        </td>" ."<td align=\"center\">
+                                        <a name=\"Delete\" value=\"Delete\" id=".$row["VanID"]." href=\"#\" class=\"delete_data\" /> 
                                         <i class=\"far fa-trash-alt text-red\"></i></td>" .
                                         "</tr>";
                                 }
@@ -99,7 +100,7 @@
         <div class="modal-content">
             <form autocomplete="off" method="post" id="AddVanForm">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">เพิ่ม/แก้ไขข้อมูลรถตู้</h4>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
@@ -151,6 +152,93 @@
 <!-- Modal Form -->
 
 
+<!-- EditVanModal -->
+<div class="modal fade" id="EditVanModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form autocomplete="off" method="post" id="EditVanForm">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูลรถตู้</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div id="pb-modalreglog-progressbar"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="updateVanID" id="updateVanID"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">ทะเบียนรถตู้</label>
+                        <div class="input-group pb-modalreglog-input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="text" class="form-control" name="updateinputNumber" id="updateinputNumber" placeholder="ทะเบียนรถตู้" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentid">ประเภทน้ำมันที่ใช้</label>
+                        <div class="input-group pb-modalreglog-input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <!-- <input type="text" class="form-control" name="inputFuel" id="inputFuel" placeholder="eg. E20 GASOLINE95" required> -->
+                            <select class="form-control" name="updateinputFuel" id="updateinputFuel" required>
+                                <option>LPG</option>
+                                <option>NGV</option>
+                                <option>แก๊สโซฮอล์ E20</option>
+                                <option>แก๊สโซฮอล์ E85</option></option>
+                                <option>แก๊สโซฮอล์ 95</option>
+                                <option>แก๊สโซฮอล์ 91</option>
+                                <option>ไบโอดีเซล </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">จำนวนที่นั่ง</label>
+                        <div class="input-group pb-modalreglog-input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                            <input type="number" class="form-control" name="updateinputSeat" id="updateinputSeat" placeholder="เช่น 14,20,30" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name ="vanUpdate" id="vanUpdate" Value="vanUpdate" class="btn btn-primary">แก้ไขข้อมูล</button>
+                    <button type="button" class="btn btn-secondary" id="closeModalUpdate" data-dismiss="modal">ยกเลิก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal Form -->
+
+<!-- DeleteVanModal -->
+<div class="modal fade" id="DeleteVanModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form autocomplete="off" method="post" id="DeleteVanForm">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">ลบข้อมูลรถตู้</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div id="pb-modalreglog-progressbar"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="DeleteVanID" id="DeleteVanID"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">คุณต้องการที่จะลบข้อมูลรถตู้หรือไม่?</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name ="DeleteVan" id="DeleteVan" Value="vanUpdate" class="btn btn-primary">ยืนยัน</button>
+                    <button type="button" class="btn btn-secondary" id="closeModalUpdate" data-dismiss="modal">ยกเลิก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <script src="../plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->
 <script src="../plugins/toastr/toastr.min.js"></script>
@@ -163,38 +251,71 @@ $(document).ready(() => {
         position: 'top-end',
         showConfirmButton: false,
         timer: 3000
-    });
+    });    
 
-    $(document).on('click','.edit_data',function(){
-        var VanID = $(this).attr("id");
-        $.ajax({
-            url:"fetch.php",
-            method:"POST",
-            data:{VanID:VanID},
-            dataType:"json",
-            success:function(data){
-                $('#inputNumber').val(data.VanNumber);
-                $('#inputFuel').children("option:selected").val(data.Fueltype);
-                $('#inputSeat').prop('disabled', true);
-                $('#inputSeat').val(data.SeatCount);
-                document.getElementById("myModalLabel").innerHTML = "แก้ไขข้อมูลรถตู้";
-                document.getElementById("vanInsert").innerHTML = "แก้ไขข้อมูล";
-                $('#vanInsert').val("Update");
-                $('#AddVanModal').modal('show');
-            }
+    // toast
+    // delete toast
+    function deleteerror(error){
+        $(document).Toasts('create', {
+            class: 'bg-danger', 
+            body: error,
+            title: 'ไม่สามารถลบข้อมูลได้',
+            subtitle: 'ปิด',
+            icon: 'fas fa-envelope fa-lg',
         })
-    });
-
-    $('#vanInsert').click(function() {
+    }
+    function deletesuccess(){
         $(document).Toasts('create', {
             class: 'bg-success', 
-            title: 'สำเร็จ',
-            autohide: true,
-            delay: 1750,
-            body: 'ข้อมูลของท่านได้ถูกเพิ่มเข้าระบบแล้ว'
+            body: 'เพิ่มข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว',
+            title: 'เพิ่มข้อมูลสำเร็จ',
+            subtitle: 'ปิด',
+            icon: 'fas fa-envelope fa-lg',
         })
-    });
+    }
 
+    // insert toast
+    function inserterror(error){
+        $(document).Toasts('create', {
+            class: 'bg-danger', 
+            body: error,
+            title: 'ไม่สามารถเพิ่มข้อมูลได้',
+            subtitle: 'ปิด',
+            icon: 'fas fa-envelope fa-lg',
+        })
+    }
+    function insertsuccess(){
+        $(document).Toasts('create', {
+            class: 'bg-success', 
+            body: 'เพิ่มข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว',
+            title: 'เพิ่มข้อมูลสำเร็จ',
+            subtitle: 'ปิด',
+            icon: 'fas fa-envelope fa-lg',
+        })
+    }
+
+    // update toast
+    function updateerror(error){
+        $(document).Toasts('create', {
+            class: 'bg-danger', 
+            body: error,
+            title: 'ไม่สามารถอัพเดทข้อมูลได้',
+            subtitle: 'ปิด',
+            icon: 'fas fa-envelope fa-lg',
+        })
+    }
+    function updatesuccess(){
+        $(document).Toasts('create', {
+            class: 'bg-success', 
+            body: 'อัพเดทข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว',
+            title: 'อัพเดทข้อมูลสำเร็จ',
+            subtitle: 'ปิด',
+            icon: 'fas fa-envelope fa-lg',
+        })
+    }
+
+
+    // search
     $("#myInput").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $("#myTable tr").filter(function() {
@@ -202,6 +323,7 @@ $(document).ready(() => {
         });
     });    
 
+    // ClearModal
     $('#OpenModal').click(function() {
         document.getElementById("AddVanForm").reset();
         $('#inputSeat').prop('disabled', false);
@@ -209,6 +331,7 @@ $(document).ready(() => {
         document.getElementById("vanInsert").innerHTML = "เพิ่มข้อมูล";
     });
 
+    // AddModal
     $('#AddVanForm').on('submit',function(event){
         event.preventDefault();
         $.ajax({
@@ -217,11 +340,84 @@ $(document).ready(() => {
             data:$('#AddVanForm').serialize(),
             success:function(data)
             {
-                document.getElementById("AddVanForm").reset();
+                document.getElementById("AddVanForm").reset();                
                 $('#AddVanModal').modal('hide');
+                if(data[0]!=null){error(data[0]);inserterror();}
+                else{insertsuccess();}
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
             }
         });
     });
+
+    // EditData
+    $(document).on('click','.edit_data',function(){
+        var VanID = $(this).attr("id");
+        $.ajax({
+            url:"fetch.php",
+            method:"POST",
+            data:{VanID:VanID},
+            dataType:"json",
+            success:function(data){
+                $('#updateinputNumber').val(data.VanNumber);
+                // $('#updateinputFuel').children("option:selected").val(data.Fueltype);
+                document.getElementById("updateinputFuel").value = data.Fueltype;
+                $('#updateinputSeat').val(data.SeatCount);
+                $('#updateVanID').val(VanID);
+                $('#updateinputSeat').prop('disabled', true);
+                $('#EditVanModal').modal('show');
+            }
+        })
+    });
+
+    $('#EditVanForm').on('submit',function(event){
+        event.preventDefault();
+        $.ajax({
+            url:"EditVanForm.php",
+            method:"POST",
+            data:$('#EditVanForm').serialize(),
+            success:function(data)
+            {
+                document.getElementById("EditVanForm").reset();
+                $('#EditVanModal').modal('hide');
+                if(data[0]!=null){error(data[0]);updateerror();}
+                else{updatesuccess();}
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);             
+            }
+        });
+    });
+
+    // DeleteModal
+    $(document).on('click','.delete_data',function(){
+        var VanID = $(this).attr("id");
+        $('#DeleteVanID').val(VanID);
+        $('#DeleteVanModal').modal('show');
+    });
+
+    $('#DeleteVanForm').on('submit',function(event){
+        event.preventDefault();
+        $.ajax({
+            url:"DeleteVanForm.php",
+            method:"POST",
+            data:$('#DeleteVanForm').serialize(),
+            dataType:"json",
+            success:function(data)
+            {
+                $('#DeleteVanModal').modal('hide');
+                if(data[0]!=null){deleteerror(data[0]);}
+                else{deletesuccess();}
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
+            }
+        });
+    });
+
+
+    
 });
 </script>
 
