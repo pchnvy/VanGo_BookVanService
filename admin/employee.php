@@ -60,16 +60,7 @@
                                         "<td>" . $row["Name"] . "</td>" .
                                         "<td>" . $row["LastName"] . "</td>" .
                                         "<td>" . $row["Email"] . "</td>" .
-                                        "<td>";
-                                        if($row["Sex"]=='M')
-                                        {
-                                            echo "ชาย";
-                                        }
-                                        else if($row["Sex"]=='F')
-                                        {
-                                            echo "หญิง";
-                                        };
-                                    echo "</td>" .
+                                        "<td>" . $row["Sex"] . "</td>" . 
                                         "<td>" . $row["Telephone"]. "</td>" .
                                         "<td>" . $row["Birthdate"] . "</td>" .
                                         "<td>";
@@ -104,13 +95,13 @@
 <!-- ./wrapper -->
 
 
-<!-- AddVanModal -->
-<div class="modal fade" id="AddRouteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- AddEmployeeModal -->
+<div class="modal fade" id="AddEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form autocomplete="off" method="post" id="AddRouteForm">
+            <form autocomplete="off" method="post" id="AddEmployeeForm">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel"></h4>
+                    <h4 class="modal-title" id="myModalLabel">เพิ่มข้อมูลพนักงาน</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
@@ -118,69 +109,66 @@
                         <div id="pb-modalreglog-progressbar"></div>
                     </div>
                     <div class="form-group">
-                        <input type="hidden" name="RouteID" id="RouteID"/>
+                        <input type="hidden" name="EmployeeID" id="EmployeeID"/>
                     </div>
                     <div class="form-group">
-                        <label for="iName">ชื่อเส้นทาง</label>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="iName">ชื่อพนักงาน</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" class="form-control" name="iName" id="iName" placeholder="ชื่อ" required>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <label for="iLastName">นามสกุลพนักงาน</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" class="form-control" name="iLastName" id="iLastName" placeholder="นามสกุล" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="iEmail">อีเมลล์</label>
                         <div class="input-group pb-modalreglog-input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="text" class="form-control" name="iName" id="iName" placeholder="ชื่อเส้นทางการเดินรถ" required>
+                            <input type="email" class="form-control" name="iEmail" id="iEmail" placeholder="อีเมลล์" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm">
-                                <label for="iBegin">จุดเริ่มต้น</label>
-                                <div class="input-group pb-modalreglog-input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                    <!-- <input type="text" class="form-control" name="inputFuel" id="inputFuel" placeholder="eg. E20 GASOLINE95" required> -->
-                                    <select class="form-control" name="iBegin" id="iBegin" required>
-                                        <option>บางแสน</option>
-                                        <option>กรุงเทพฯ</option>
-                                        <option>พัทยา</option>
-                                        <option>ศรีราชา</option></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <label for="iDestination">จุดปลายทาง</label>
-                                <div class="input-group pb-modalreglog-input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                    <!-- <input type="text" class="form-control" name="inputFuel" id="inputFuel" placeholder="eg. E20 GASOLINE95" required> -->
-                                    <select class="form-control" name="iDestination" id="iDestination" required>
-                                        <option>บางแสน</option>
-                                        <option>กรุงเทพฯ</option>
-                                        <option>พัทยา</option>
-                                        <option>ศรีราชา</option></option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="iUsagetime">เวลาที่ใช้ในการเดินทาง</label>
+                        <label for="iPassword">รหัสผ่าน</label>
                         <div class="input-group pb-modalreglog-input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="number" class="form-control" name="iUsagetime" id="iUsagetime" placeholder="หน่วยเป็นนาทีเช่น 60 นาที , 120 ,90" required>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="password" class="form-control" name="iPassword" id="iPassword" placeholder="รหัสผ่านสำหรับเข้าระบบ" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="iPrice">ราคา</label>
+                        <label for="iSex">เพศ</label>
                         <div class="input-group pb-modalreglog-input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="number" class="form-control" name="iPrice" id="iPrice" placeholder="เช่น 140.00,240.00" required>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <select class="form-control" name="iSex" id="iSex" required>
+                                <option>ชาย</option>
+                                <option>หญิง</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="iDescription">รายละเอียดการเดินทาง</label>
+                        <label for="iTelephone">เบอร์โทรศัพท์</label>
                         <div class="input-group pb-modalreglog-input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="text" class="form-control" name="iDescription" id="iDescription" placeholder="เช่น จุดจอดรถระหว่างทาง" required>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="number" class="form-control" name="iTelephone" id="iTelephone" placeholder="เบอร์โทรศัพท์มือถือ" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="iBirthdate">วันเกิด</label>
+                        <div class="input-group pb-modalreglog-input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="date" class="form-control" name="iBirthdate" id="iBirthdate" required>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name ="vanInsert" id="RouteInsert" Value="RouteInsert" class="btn btn-primary">เพิ่มข้อมูล</button>
+                    <button type="submit" name ="RouteInsert" id="RouteInsert" Value="RouteInsert" class="btn btn-primary">เพิ่มข้อมูล</button>
                     <button type="button" class="btn btn-secondary" id="closeInsertModal" data-dismiss="modal">ยกเลิก</button>
                 </div>
             </form>
@@ -321,23 +309,23 @@ $(document).ready(() => {
     });    
 
     // ClearModal
-    $('#OpenModal').click(function() {
-        document.getElementById("AddRouteForm").reset();
-        $('#inputSeat').prop('disabled', false);
-        document.getElementById("myModalLabel").innerHTML = "เพิ่มข้อมูลรถตู้";
-    });
+    // $('#OpenModal').click(function() {
+    //     document.getElementById("AddRouteForm").reset();
+    //     $('#inputSeat').prop('disabled', false);
+    //     document.getElementById("myModalLabel").innerHTML = "เพิ่มข้อมูลรถตู้";
+    // });
 
     // AddModal
-    $('#AddRouteForm').on('submit',function(event){
+    $('#AddEmployeeForm').on('submit',function(event){
         event.preventDefault();
         $.ajax({
-            url:"AddRouteForm.php",
+            url:"AddEmployeeForm.php",
             method:"POST",
-            data:$('#AddRouteForm').serialize(),
+            data:$('#AddEmployeeForm').serialize(),
             success:function(data)
             {
-                document.getElementById("AddRouteForm").reset();                
-                $('#AddRouteModal').modal('hide');
+                document.getElementById("AddEmployeeForm").reset();                
+                $('#AddEmployeeModal').modal('hide');
                 if(data[0]!=null){error(data[0]);inserterror();}
                 else{insertsuccess();}
                 setTimeout(() => {
