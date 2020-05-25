@@ -57,7 +57,7 @@
                             if ($conn->connect_error) {
                                 die("Connection failed:" . $conn->connect_error);
                             }
-                            $sql = "call sp_van_getroute";
+                            $sql = "call sp_route_getroute";
                             $result = $conn->query($sql);
                             
                             if ($result->num_rows > 0) {
@@ -70,15 +70,15 @@
                                         "<td>" . $row["Usagetime"] . "</td>" .
                                         "<td>" . $row["Price"] . "</td>" .
                                         "<td>" . $row["Description"] . "</td>" .
-                                        "<td>" . $row["Create Date"] . "</td>" .
-                                        "<td>" . $row["Create By"] . "</td>" .
-                                        "<td>" . $row["Update Date"] . "</td>" .
-                                        "<td>" . $row["Update Date"] . "</td>" .
+                                        "<td>" . $row["CreateDate"] . "</td>" .
+                                        "<td>" . $row["CreateBy"] . "</td>" .
+                                        "<td>" . $row["UpdateDate"] . "</td>" .
+                                        "<td>" . $row["UpdateBy"] . "</td>" .
                                         "<td align=\"center\">
-                                        <a name=\"Edit\" value=\"Edit\" id=".$row["VanID"]." href=\"#\" class=\"edit_data\" /> 
+                                        <a name=\"Edit\" value=\"Edit\" id=".$row["RouteID"]." href=\"#\" class=\"edit_data\" /> 
                                         <i class=\"far fa-edit\"></i></a>
                                         </td>" ."<td align=\"center\">
-                                        <a name=\"Delete\" value=\"Delete\" id=".$row["VanID"]." href=\"#\" class=\"delete_data\" /> 
+                                        <a name=\"Delete\" value=\"Delete\" id=".$row["RouteID"]." href=\"#\" class=\"delete_data\" /> 
                                         <i class=\"far fa-trash-alt text-red\"></i></td>" .
                                         "</tr>";
                                 }
