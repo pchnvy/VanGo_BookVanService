@@ -26,7 +26,7 @@
             <div class="row mb-2">
                 <div class="container-fluid" id="route">
                     <h2>ตารางแสดงรายละเอียดเส้นทางการเดินรถ</h2>
-                    <p>ลองพิมพ์เพื่อค้นหาสิ่งที่ท่านต้องการ เช่น ไอดี,ทะเบียนรถ หรือประเภทของพลังงานที่ใช้ เป็นต้น</p>  
+                    <p>ลองพิมพ์เพื่อค้นหาสิ่งที่ท่านต้องการ เช่น ชื่อเส้นทาง,จุดเริ่มต้น หรือปลายทาง เป็นต้น</p>  
                     <div class="col-sm-2 col-md-2">
                         <input class="form-control" id="myInput" type="text" placeholder="Search..">
                             </br>
@@ -57,7 +57,7 @@
                             if ($conn->connect_error) {
                                 die("Connection failed:" . $conn->connect_error);
                             }
-                            $sql = "call sp_van_getroute";
+                            $sql = "call sp_Route_Getroute";
                             $result = $conn->query($sql);
                             
                             if ($result->num_rows > 0) {
@@ -67,18 +67,18 @@
                                         "<td>" . $row["Name"] . "</td>" .
                                         "<td>" . $row["Begin"] . "</td>" .
                                         "<td>" . $row["Destination"] . "</td>" .
-                                        "<td>" . $row["Usagetime"] . "</td>" .
-                                        "<td>" . $row["Price"] . "</td>" .
+                                        "<td>" . $row["Usagetime"] . " นาที</td>" .
+                                        "<td>" . $row["Price"]. " บาท</td>" .
                                         "<td>" . $row["Description"] . "</td>" .
-                                        "<td>" . $row["Create Date"] . "</td>" .
-                                        "<td>" . $row["Create By"] . "</td>" .
-                                        "<td>" . $row["Update Date"] . "</td>" .
-                                        "<td>" . $row["Update Date"] . "</td>" .
+                                        "<td>" . $row["CreateDate"] . "</td>" .
+                                        "<td>" . $row["CreateBy"] . "</td>" .
+                                        "<td>" . $row["UpdateDate"] . "</td>" .
+                                        "<td>" . $row["UpdateBy"] . "</td>" .
                                         "<td align=\"center\">
-                                        <a name=\"Edit\" value=\"Edit\" id=".$row["VanID"]." href=\"#\" class=\"edit_data\" /> 
+                                        <a name=\"Edit\" value=\"Edit\" id=".$row["RouteID"]." href=\"#\" class=\"edit_data\" /> 
                                         <i class=\"far fa-edit\"></i></a>
                                         </td>" ."<td align=\"center\">
-                                        <a name=\"Delete\" value=\"Delete\" id=".$row["VanID"]." href=\"#\" class=\"delete_data\" /> 
+                                        <a name=\"Delete\" value=\"Delete\" id=".$row["RouteID"]." href=\"#\" class=\"delete_data\" /> 
                                         <i class=\"far fa-trash-alt text-red\"></i></td>" .
                                         "</tr>";
                                 }
@@ -156,7 +156,7 @@
                         <label for="iUsagetime">เวลาที่ใช้ในการเดินทาง</label>
                         <div class="input-group pb-modalreglog-input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="number" class="form-control" name="iUsagetime" id="iUsagetime" placeholder="เช่น 14,20,30" required>
+                            <input type="number" class="form-control" name="iUsagetime" id="iUsagetime" placeholder="หน่วยเป็นนาทีเช่น 60 นาที , 120 ,90" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -170,13 +170,13 @@
                         <label for="iDescription">รายละเอียดการเดินทาง</label>
                         <div class="input-group pb-modalreglog-input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="number" class="form-control" name="iDescription" id="iDescription" placeholder="เช่น จุดจอดรถระหว่างทาง" required>
+                            <input type="text" class="form-control" name="iDescription" id="iDescription" placeholder="เช่น จุดจอดรถระหว่างทาง" required>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name ="vanInsert" id="vanInsert" Value="vanInsert" class="btn btn-primary">เพิ่มข้อมูล</button>
-                    <button type="button" class="btn btn-secondary" id="closeModal" data-dismiss="modal">ยกเลิก</button>
+                    <button type="submit" name ="vanInsert" id="RouteInsert" Value="RouteInsert" class="btn btn-primary">เพิ่มข้อมูล</button>
+                    <button type="button" class="btn btn-secondary" id="closeInsertModal" data-dismiss="modal">ยกเลิก</button>
                 </div>
             </form>
         </div>
@@ -186,12 +186,12 @@
 
 
 <!-- EditVanModal -->
-<div class="modal fade" id="EditVanModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="EditRouteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form autocomplete="off" method="post" id="EditVanForm">
+            <form autocomplete="off" method="post" id="EditRouteForm">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูลรถตู้</h4>
+                    <h4 class="modal-title" id="myModalLabel">แก้ไขเส้นทาง</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
@@ -199,42 +199,70 @@
                         <div id="pb-modalreglog-progressbar"></div>
                     </div>
                     <div class="form-group">
-                        <input type="hidden" name="updateVanID" id="updateVanID"/>
+                        <input type="hidden" name="uRouteID" id="uRouteID"/>
                     </div>
                     <div class="form-group">
-                        <label for="email">ทะเบียนรถตู้</label>
+                        <label for="uName">ชื่อเส้นทาง</label>
                         <div class="input-group pb-modalreglog-input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="text" class="form-control" name="updateinputNumber" id="updateinputNumber" placeholder="ทะเบียนรถตู้" required>
+                            <input type="text" class="form-control" name="uName" id="uName" placeholder="ชื่อเส้นทางการเดินรถ" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="studentid">ประเภทน้ำมันที่ใช้</label>
-                        <div class="input-group pb-modalreglog-input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                            <!-- <input type="text" class="form-control" name="inputFuel" id="inputFuel" placeholder="eg. E20 GASOLINE95" required> -->
-                            <select class="form-control" name="updateinputFuel" id="updateinputFuel" required>
-                                <option>LPG</option>
-                                <option>NGV</option>
-                                <option>แก๊สโซฮอล์ E20</option>
-                                <option>แก๊สโซฮอล์ E85</option></option>
-                                <option>แก๊สโซฮอล์ 95</option>
-                                <option>แก๊สโซฮอล์ 91</option>
-                                <option>ไบโอดีเซล </option>
-                            </select>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="uBegin">จุดเริ่มต้น</label>
+                                <div class="input-group pb-modalreglog-input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                    <!-- <input type="text" class="form-control" name="inputFuel" id="inputFuel" placeholder="eg. E20 GASOLINE95" required> -->
+                                    <select class="form-control" name="uBegin" id="uBegin" required>
+                                        <option>บางแสน</option>
+                                        <option>กรุงเทพฯ</option>
+                                        <option>พัทยา</option>
+                                        <option>ศรีราชา</option></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <label for="uDestination">จุดปลายทาง</label>
+                                <div class="input-group pb-modalreglog-input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                    <!-- <input type="text" class="form-control" name="inputFuel" id="inputFuel" placeholder="eg. E20 GASOLINE95" required> -->
+                                    <select class="form-control" name="uDestination" id="uDestination" required>
+                                        <option>บางแสน</option>
+                                        <option>กรุงเทพฯ</option>
+                                        <option>พัทยา</option>
+                                        <option>ศรีราชา</option></option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password">จำนวนที่นั่ง</label>
+                        <label for="uUsagetime">เวลาที่ใช้ในการเดินทาง</label>
                         <div class="input-group pb-modalreglog-input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="number" class="form-control" name="updateinputSeat" id="updateinputSeat" placeholder="เช่น 14,20,30" required>
+                            <input type="number" class="form-control" name="uUsagetime" id="uUsagetime" placeholder="หน่วยเป็นนาทีเช่น 60 นาที , 120 ,90" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="uPrice">ราคา</label>
+                        <div class="input-group pb-modalreglog-input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                            <input type="number" class="form-control" name="uPrice" id="uPrice" placeholder="เช่น 140.00,240.00" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="uDescription">รายละเอียดการเดินทาง</label>
+                        <div class="input-group pb-modalreglog-input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                            <input type="text" class="form-control" name="uDescription" id="uDescription" placeholder="เช่น จุดจอดรถระหว่างทาง" required>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name ="vanUpdate" id="vanUpdate" Value="vanUpdate" class="btn btn-primary">แก้ไขข้อมูล</button>
-                    <button type="button" class="btn btn-secondary" id="closeModalUpdate" data-dismiss="modal">ยกเลิก</button>
+                    <button type="submit" name ="vanInsert" id="RouteUpdate" Value="RouteUpdate" class="btn btn-primary">เพิ่มข้อมูล</button>
+                    <button type="button" class="btn btn-secondary" id="closeEditModal" data-dismiss="modal">ยกเลิก</button>
                 </div>
             </form>
         </div>
@@ -243,10 +271,10 @@
 <!-- Modal Form -->
 
 <!-- DeleteVanModal -->
-<div class="modal fade" id="DeleteVanModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="DeleteRouteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form autocomplete="off" method="post" id="DeleteVanForm">
+            <form autocomplete="off" method="post" id="DeleteRouteForm">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel">ลบข้อมูลรถตู้</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -256,15 +284,15 @@
                         <div id="pb-modalreglog-progressbar"></div>
                     </div>
                     <div class="form-group">
-                        <input type="hidden" name="DeleteVanID" id="DeleteVanID"/>
+                        <input type="text" name="DeleteRouteID" id="DeleteRouteID"/>
                     </div>
                     <div class="form-group">
                         <label for="email">คุณต้องการที่จะลบข้อมูลรถตู้หรือไม่?</label>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name ="DeleteVan" id="DeleteVan" Value="vanUpdate" class="btn btn-primary">ยืนยัน</button>
-                    <button type="button" class="btn btn-secondary" id="closeModalUpdate" data-dismiss="modal">ยกเลิก</button>
+                    <button type="submit" name ="DeleteRoute" id="DeleteRoute" class="btn btn-primary">ยืนยัน</button>
+                    <button type="button" class="btn btn-secondary" id="closeModalDelete" data-dismiss="modal">ยกเลิก</button>
                 </div>
             </form>
         </div>
@@ -316,34 +344,37 @@ $(document).ready(() => {
 
     // EditData
     $(document).on('click','.edit_data',function(){
-        var VanID = $(this).attr("id");
+        var RouteID = $(this).attr("id");
         $.ajax({
-            url:"fetch.php",
+            url:"fetchRoute.php",
             method:"POST",
-            data:{VanID:VanID},
+            data:{RouteID:RouteID},
             dataType:"json",
             success:function(data){
-                $('#updateinputNumber').val(data.VanNumber);
+                $('#uRouteID').val(RouteID);
+                $('#uName').val(data.Name);
                 // $('#updateinputFuel').children("option:selected").val(data.Fueltype);
-                document.getElementById("updateinputFuel").value = data.Fueltype;
-                $('#updateinputSeat').val(data.SeatCount);
-                $('#updateVanID').val(VanID);
-                $('#updateinputSeat').prop('disabled', true);
-                $('#EditVanModal').modal('show');
+                document.getElementById("uBegin").value = data.Begin;
+                document.getElementById("uDestination").value = data.Destination;
+                // $('#uName').val(data.Name);
+                $('#uUsagetime').val(data.Usagetime);
+                $('#uPrice').val(data.Price);
+                $('#uDescription').val(data.Description);
+                $('#EditRouteModal').modal('show');
             }
         })
     });
 
-    $('#EditVanForm').on('submit',function(event){
+    $('#EditRouteForm').on('submit',function(event){
         event.preventDefault();
         $.ajax({
-            url:"EditVanForm.php",
+            url:"EditRouteForm.php",
             method:"POST",
-            data:$('#EditVanForm').serialize(),
+            data:$('#EditRouteForm').serialize(),
             success:function(data)
             {
-                document.getElementById("EditVanForm").reset();
-                $('#EditVanModal').modal('hide');
+                document.getElementById("EditRouteForm").reset();
+                $('#EditRouteModal').modal('hide');
                 if(data[0]!=null){error(data[0]);updateerror();}
                 else{updatesuccess();}
                 setTimeout(() => {
@@ -355,21 +386,21 @@ $(document).ready(() => {
 
     // DeleteData
     $(document).on('click','.delete_data',function(){
-        var VanID = $(this).attr("id");
-        $('#DeleteVanID').val(VanID);
-        $('#DeleteVanModal').modal('show');
+        var RouteID = $(this).attr("id");
+        $('#DeleteRouteID').val(RouteID);
+        $('#DeleteRouteModal').modal('show');
     });
 
-    $('#DeleteVanForm').on('submit',function(event){
+    $('#DeleteRouteForm').on('submit',function(event){
         event.preventDefault();
         $.ajax({
-            url:"DeleteVanForm.php",
+            url:"DeleteRouteForm.php",
             method:"POST",
-            data:$('#DeleteVanForm').serialize(),
+            data:$('#DeleteRouteForm').serialize(),
             dataType:"json",
             success:function(data)
             {
-                $('#DeleteVanModal').modal('hide');
+                $('#DeleteRouteModal').modal('hide');
                 if(data[0]!=null){deleteerror(data[0]);}
                 else{deletesuccess();}
                 setTimeout(() => {
