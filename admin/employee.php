@@ -141,28 +141,30 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="iSex">เพศ</label>
-                            <div class="input-group pb-modalreglog-input-group">
-                                <select class="form-control" name="iSex" id="iSex" required>
-                                    <option>ชาย</option>
-                                    <option>หญิง</option>
-                                </select>
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="iSex">เพศ</label>
+                                <div class="input-group pb-modalreglog-input-group">
+                                    <select class="form-control" name="iSex" id="iSex" required>
+                                        <option>ชาย</option>
+                                        <option>หญิง</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <label for="iTelephone">เบอร์โทรศัพท์</label>
+                                <div class="input-group pb-modalreglog-input-group">
+                                    <input type="text" class="form-control" name="iTelephone" id="iTelephone" pattern="[0-9]{10}" placeholder="0987654321" maxlength="30" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="iTelephone">เบอร์โทรศัพท์</label>
-                            <div class="input-group pb-modalreglog-input-group">
-                                <input type="text" class="form-control" name="iTelephone" id="iTelephone" pattern="[0-9]{10}" placeholder="0987654321" maxlength="30" required>
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <div class="row">
+                        <div class="row">
                             <div class="col-sm">
                                 <label for="iBirthdate">วันเกิด</label>
                                 <div class="input-group pb-modalreglog-input-group">
@@ -174,17 +176,19 @@
                             </div>
                             <div class="col-sm">
                                 <label for="iStatus">สถานะการทำงาน</label>
-                                <div class="input-group pb-modalreglog-input-group">
-                                    <input type="text" class="form-control" name="iLastName" id="iLastName" placeholder="นามสกุล" required>
-                                </div>
-                            </div>
-                        </div> -->
-                        <div class="form-group">
-                            <label for="iBirthdate">วันเกิด</label>
-                            <div class="input-group pb-modalreglog-input-group">
-                                <input type="date" class="form-control datetimepicker-input" name="iBirthdate" id="iBirthdate" required>
-                                <div class="input-group-append">
-                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                <div class="row">
+                                    <div class="col-sm icheck-primary d-inline">
+                                        <input type="radio" id="radioPrimary1" name="iStatus" value="0" checked disabled>
+                                        <label for="radioPrimary1">
+                                            ปกติ
+                                        </label>
+                                    </div>
+                                    <div class="col-sm icheck-primary d-inline">
+                                        <input type="radio" id="radioPrimary2" name="iStatus" value="1" disabled>
+                                        <label for="radioPrimary2">
+                                            พ้นสภาพ
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -199,14 +203,13 @@
 </div>
 <!-- Modal Form -->
 
-
-<!-- EditVanModal -->
-<div class="modal fade" id="EditRouteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- EditEmployeeModal -->
+<div class="modal fade" id="EditEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form autocomplete="off" method="post" id="EditRouteForm">
+            <form autocomplete="off" method="post" id="EditEmployeeForm">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">แก้ไขเส้นทาง</h4>
+                    <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูลพนักงาน</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
@@ -214,71 +217,96 @@
                         <div id="pb-modalreglog-progressbar"></div>
                     </div>
                     <div class="form-group">
-                        <input type="hidden" name="uRouteID" id="uRouteID" />
-                    </div>
-                    <div class="form-group">
-                        <label for="uName">ชื่อเส้นทาง</label>
-                        <div class="input-group pb-modalreglog-input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="text" class="form-control" name="uName" id="uName" placeholder="ชื่อเส้นทางการเดินรถ" required>
-                        </div>
+                        <input type="hidden" name="uEmployeeID" id="uEmployeeID" />
                     </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm">
-                                <label for="uBegin">จุดเริ่มต้น</label>
+                                <label for="uName">ชื่อพนักงาน</label>
                                 <div class="input-group pb-modalreglog-input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                    <!-- <input type="text" class="form-control" name="inputFuel" id="inputFuel" placeholder="eg. E20 GASOLINE95" required> -->
-                                    <select class="form-control" name="uBegin" id="uBegin" required>
-                                        <option>บางแสน</option>
-                                        <option>กรุงเทพฯ</option>
-                                        <option>พัทยา</option>
-                                        <option>ศรีราชา</option>
-                                        </option>
-                                    </select>
+                                    <input type="text" class="form-control" name="uName" id="uName" placeholder="ชื่อ" required>
                                 </div>
                             </div>
                             <div class="col-sm">
-                                <label for="uDestination">จุดปลายทาง</label>
+                                <label for="uLastName">นามสกุลพนักงาน</label>
                                 <div class="input-group pb-modalreglog-input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                    <!-- <input type="text" class="form-control" name="inputFuel" id="inputFuel" placeholder="eg. E20 GASOLINE95" required> -->
-                                    <select class="form-control" name="uDestination" id="uDestination" required>
-                                        <option>บางแสน</option>
-                                        <option>กรุงเทพฯ</option>
-                                        <option>พัทยา</option>
-                                        <option>ศรีราชา</option>
-                                        </option>
-                                    </select>
+                                    <input type="text" class="form-control" name="uLastName" id="uLastName" placeholder="นามสกุล" required>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="uUsagetime">เวลาที่ใช้ในการเดินทาง</label>
-                        <div class="input-group pb-modalreglog-input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="number" class="form-control" name="uUsagetime" id="uUsagetime" placeholder="หน่วยเป็นนาทีเช่น 60 นาที , 120 ,90" required>
+                        <div class="form-group">
+                            <label for="uEmail">อีเมลล์</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <input type="email" class="form-control" id="uEmail" name="uEmail" placeholder="อีเมลล์" maxlength="30" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="uPrice">ราคา</label>
-                        <div class="input-group pb-modalreglog-input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="number" class="form-control" name="uPrice" id="uPrice" placeholder="เช่น 140.00,240.00" required>
+                        <!-- <div class="form-group">
+                            <label for="uPassword">รหัสผ่าน</label>
+                            <div class="input-group pb-modalreglog-input-group">
+                                <input type="password" class="form-control" name="uPassword" id="uPassword" placeholder="รหัสผ่านสำหรับเข้าระบบ" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="uSex">เพศ</label>
+                                <div class="input-group pb-modalreglog-input-group">
+                                    <select class="form-control" name="uSex" id="uSex" required>
+                                        <option>ชาย</option>
+                                        <option>หญิง</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <label for="uTelephone">เบอร์โทรศัพท์</label>
+                                <div class="input-group pb-modalreglog-input-group">
+                                    <input type="text" class="form-control" name="uTelephone" id="uTelephone" pattern="[0-9]{10}" placeholder="0987654321" maxlength="30" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="uDescription">รายละเอียดการเดินทาง</label>
-                        <div class="input-group pb-modalreglog-input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="text" class="form-control" name="uDescription" id="uDescription" placeholder="เช่น จุดจอดรถระหว่างทาง" required>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="uBirthdate">วันเกิด</label>
+                                <div class="input-group pb-modalreglog-input-group">
+                                    <input type="date" class="form-control datetimepicker-input" name="uBirthdate" id="uBirthdate" required>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <label for="uStatus">สถานะการทำงาน</label>
+                                <div class="row">
+                                    <div class="col-sm icheck-primary d-inline">
+                                        <input type="radio" id="uradioPrimary1" name="uStatus" value="0" checked>
+                                        <label for="uradioPrimary1">
+                                            ปกติ
+                                        </label>
+                                    </div>
+                                    <div class="col-sm icheck-primary d-inline">
+                                        <input type="radio" id="uradioPrimary2" name="uStatus" value="1">
+                                        <label for="uradioPrimary2">
+                                            พ้นสภาพ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name="vanInsert" id="RouteUpdate" Value="RouteUpdate" class="btn btn-primary">เพิ่มข้อมูล</button>
+                    <button type="submit" name="EmployeeUpdate" id="EmployeeUpdate" Value="EmployeeUpdate" class="btn btn-primary">แก้ไขข้อมูล</button>
                     <button type="button" class="btn btn-secondary" id="closeEditModal" data-dismiss="modal">ยกเลิก</button>
                 </div>
             </form>
@@ -286,35 +314,6 @@
     </div>
 </div>
 <!-- Modal Form -->
-
-<!-- DeleteVanModal -->
-<div class="modal fade" id="DeleteRouteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form autocomplete="off" method="post" id="DeleteRouteForm">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">ลบข้อมูลรถตู้</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <div id="pb-modalreglog-progressbar"></div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="DeleteRouteID" id="DeleteRouteID" />
-                    </div>
-                    <div class="form-group">
-                        <label for="email">คุณต้องการที่จะลบข้อมูลรถตู้หรือไม่?</label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" name="DeleteRoute" id="DeleteRoute" class="btn btn-primary">ยืนยัน</button>
-                    <button type="button" class="btn btn-secondary" id="closeModalDelete" data-dismiss="modal">ยกเลิก</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 
 <script src="../plugins/sweetalert2/sweetalert2.min.js"></script>
@@ -364,7 +363,7 @@
 
         // EditData
         $(document).on('click', '.edit_data', function() {
-            var RouteID = $(this).attr("id");
+            var EmployeeID = $(this).attr("id");
             $.ajax({
                 url: "fetchEmployee.php",
                 method: "POST",
@@ -373,61 +372,30 @@
                 },
                 dataType: "json",
                 success: function(data) {
-                    $('#uRouteID').val(EmployeeID);
+                    $('#uEmployeeID').val(EmployeeID);
                     $('#uName').val(data.Name);
-                    // $('#updateinputFuel').children("option:selected").val(data.Fueltype);
-                    document.getElementById("uBegin").value = data.Begin;
-                    document.getElementById("uDestination").value = data.Destination;
-                    // $('#uName').val(data.Name);
-                    $('#uUsagetime').val(data.Usagetime);
-                    $('#uPrice').val(data.Price);
-                    $('#uDescription').val(data.Description);
-                    $('#EditRouteModal').modal('show');
+                    $('#uLastname').val(data.LastName);
+                    $('#uEmail').val(data.Email);
+                    document.getElementById("uSex").value = data.Sex;
+                    $('#uTelephone').val(data.Telephone);
+                    $('#EditEmployeeModal').modal('show');
                 }
             })
         });
 
-        $('#EditRouteForm').on('submit', function(event) {
+        $('#EditEmployeeForm').on('submit', function(event) {
             event.preventDefault();
             $.ajax({
-                url: "EditRouteForm.php",
+                url: "EditEmployeeForm.php",
                 method: "POST",
-                data: $('#EditRouteForm').serialize(),
+                data: $('#EditEmployeeForm').serialize(),
                 success: function(data) {
-                    document.getElementById("EditRouteForm").reset();
-                    $('#EditRouteModal').modal('hide');
+                    document.getElementById("EditEmployeeForm").reset();
+                    $('#EditEmployeeModal').modal('hide');
                     if (data['@ErrorMsg'] != null) {
                         updateerror(data['@ErrorMsg']);
                     } else {
                         updatesuccess();
-                    }
-                    setTimeout(() => {
-                        location.reload();
-                    }, 3000);
-                }
-            });
-        });
-
-        // DeleteData
-        $(document).on('click', '.delete_data', function() {
-            var RouteID = $(this).attr("id");
-            $('#DeleteRouteID').val(RouteID);
-            $('#DeleteRouteModal').modal('show');
-        });
-
-        $('#DeleteRouteForm').on('submit', function(event) {
-            event.preventDefault();
-            $.ajax({
-                url: "DeleteRouteForm.php",
-                method: "POST",
-                data: $('#DeleteRouteForm').serialize(),
-                dataType: "json",
-                success: function(data) {
-                    $('#DeleteRouteModal').modal('hide');
-                    if (data['@ErrorMsg'] != null) {
-                        deleteerror(data['@ErrorMsg']);
-                    } else {
-                        deletesuccess();
                     }
                     setTimeout(() => {
                         location.reload();
