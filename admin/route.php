@@ -34,21 +34,21 @@
                     </div>
                     <br>
                     <table class="table table-bordered table-striped">
-                        <thead>
+                        <thead style="text-align: center;">
                         <tr>
-                            <th>Route ID</th>
-                            <th>Name</th>
-                            <th>Begin</th>
-                            <th>Destination</th>
-                            <th>Usagetime</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                            <th>Create Date</th>
-                            <th>Create By</th>
-                            <th>Update Date</th>
-                            <th>Update By</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>รหัสเส้นทาง</th>
+                            <th>ชื่อเส้นทาง</th>
+                            <th>จุดเริ่มต้น</th>
+                            <th>จุดปลายทาง</th>
+                            <th>ระยะเวลา</th>
+                            <th>ราคา</th>
+                            <th>รายละเอียดการเดินทาง</th>
+                            <th>สร้างเมื่อ</th>
+                            <th>สร้างโดย</th>
+                            <th>แก้ไขเมื่อ</th>
+                            <th>แก้ไขโดย</th>
+                            <th> </th>
+                            <th> </th>
                         </tr>
                         </thead>
                         <tbody id="myTable">
@@ -75,10 +75,12 @@
                                         "<td>" . $row["UpdateDate"] . "</td>" .
                                         "<td>" . $row["UpdateBy"] . "</td>" .
                                         "<td align=\"center\">
-                                        <a name=\"Edit\" value=\"Edit\" id=".$row["RouteID"]." href=\"#\" class=\"edit_data\" /> 
+                                        <a name=\"Edit\" value=\"Edit\" id=".$row["RouteID"]." href=\"#\" 
+                                        class=\"edit_data\" title=\"Edit\" /> 
                                         <i class=\"far fa-edit\"></i></a>
                                         </td>" ."<td align=\"center\">
-                                        <a name=\"Delete\" value=\"Delete\" id=".$row["RouteID"]." href=\"#\" class=\"delete_data\" /> 
+                                        <a name=\"Delete\" value=\"Delete\" id=".$row["RouteID"]." href=\"#\" 
+                                        class=\"delete_data\" title=\"Delete\" /> 
                                         <i class=\"far fa-trash-alt text-red\"></i></td>" .
                                         "</tr>";
                                 }

@@ -31,17 +31,17 @@
                     </div>
                     <br>
                     <table class="table table-bordered table-striped">
-                        <thead>
+                        <thead style="text-align: center;">
                             <tr>
-                                <th>Employee ID</th>
-                                <th>Name</th>
-                                <th>LastName</th>
-                                <th>Email</th>
-                                <th>Sex</th>
-                                <th>Telephone</th>
-                                <th>Birthdate</th>
-                                <th>Status</th>
-                                <th>Edit</th>
+                                <th>รหัสพนักงาน</th>
+                                <th>ชื่อพนักงาน</th>
+                                <th>นามสกุลพนักงาน</th>
+                                <th>อีเมลล์</th>
+                                <th>เพศ</th>
+                                <th>เบอร์โทรศัพท์</th>
+                                <th>วันเกิด</th>
+                                <th>สถานะ</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody id="myTable">
@@ -71,7 +71,8 @@
                                     };
                                     echo "</td>" .
                                         "<td align=\"center\">
-                                        <a name=\"Edit\" value=\"Edit\" id=" . $row["EmployeeID"] . " href=\"#\" class=\"edit_data\" /> 
+                                        <a name=\"Edit\" value=\"Edit\" id=" . $row["EmployeeID"] . " href=\"#\" 
+                                        class=\"edit_data\" title=\"Edit\" /> 
                                         <i class=\"far fa-edit\"></i></a>
                                         </td></tr>";
                                 }
@@ -193,10 +194,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" name="EmployeeInsert" id="EmployeeInsert" Value="EmployeeInsert" class="btn btn-primary">เพิ่มข้อมูล</button>
-                        <button type="button" class="btn btn-secondary" id="closeInsertModal" data-dismiss="modal">ยกเลิก</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="EmployeeInsert" id="EmployeeInsert" Value="EmployeeInsert" class="btn btn-primary">เพิ่มข้อมูล</button>
+                    <button type="button" class="btn btn-secondary" id="closeInsertModal" data-dismiss="modal">ยกเลิก</button>
+                </div>
             </form>
         </div>
     </div>
@@ -234,7 +236,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                         <div class="form-group">
                             <label for="uEmail">อีเมลล์</label>
                             <div class="input-group pb-modalreglog-input-group">
@@ -244,20 +245,11 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="form-group">
-                            <label for="uPassword">รหัสผ่าน</label>
-                            <div class="input-group pb-modalreglog-input-group">
-                                <input type="password" class="form-control" name="uPassword" id="uPassword" placeholder="รหัสผ่านสำหรับเข้าระบบ" required>
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="row">
                             <div class="col-sm">
                                 <label for="uSex">เพศ</label>
                                 <div class="input-group pb-modalreglog-input-group">
-                                    <select class="form-control" name="uSex" id="uSex" required>
+                                    <select class="form-control" name="uSex" id="uSex" disabled required>
                                         <option>ชาย</option>
                                         <option>หญิง</option>
                                     </select>
@@ -280,7 +272,7 @@
                             <div class="col-sm">
                                 <label for="uBirthdate">วันเกิด</label>
                                 <div class="input-group pb-modalreglog-input-group">
-                                    <input type="date" class="form-control datetimepicker-input" name="uBirthdate" id="uBirthdate" required>
+                                    <input type="text" class="form-control" name="uBirthdate" id="uBirthdate" disabled required>
                                     <div class="input-group-append">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
@@ -290,13 +282,13 @@
                                 <label for="uStatus">สถานะการทำงาน</label>
                                 <div class="row">
                                     <div class="col-sm icheck-primary d-inline">
-                                        <input type="radio" id="uradioPrimary1" name="uStatus" value="0" checked>
+                                        <input type="radio" id="uradioPrimary1" name="uStatus" value="false">
                                         <label for="uradioPrimary1">
                                             ปกติ
                                         </label>
                                     </div>
                                     <div class="col-sm icheck-primary d-inline">
-                                        <input type="radio" id="uradioPrimary2" name="uStatus" value="1">
+                                        <input type="radio" id="uradioPrimary2" name="uStatus" value="true">
                                         <label for="uradioPrimary2">
                                             พ้นสภาพ
                                         </label>
@@ -304,6 +296,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" name="EmployeeUpdate" id="EmployeeUpdate" Value="EmployeeUpdate" class="btn btn-primary">แก้ไขข้อมูล</button>
@@ -331,12 +324,9 @@
             });
         });
 
-        // ClearModal
-        // $('#OpenModal').click(function() {
-        //     document.getElementById("AddRouteForm").reset();
-        //     $('#inputSeat').prop('disabled', false);
-        //     document.getElementById("myModalLabel").innerHTML = "เพิ่มข้อมูลรถตู้";
-        // });
+        $('#OpenModal').click(function() {
+            document.getElementById("AddEmployeeForm").reset();
+        });
 
         // AddModal
         $('#AddEmployeeForm').on('submit', function(event) {
@@ -372,15 +362,26 @@
                 },
                 dataType: "json",
                 success: function(data) {
+                    document.getElementById("EditEmployeeForm").reset();
+
                     $('#uEmployeeID').val(EmployeeID);
                     $('#uName').val(data.Name);
-                    $('#uLastname').val(data.LastName);
+                    $('#uLastName').val(data.LastName);
                     $('#uEmail').val(data.Email);
                     document.getElementById("uSex").value = data.Sex;
                     $('#uTelephone').val(data.Telephone);
+                    document.getElementById("uBirthdate").value = data.Birthdate;
+                    if (data.FlagDelete == 0){
+                        document.getElementById("uradioPrimary1").checked = true;
+                        document.getElementById("uradioPrimary2").checked = false;
+                    }
+                    else{
+                        document.getElementById("uradioPrimary2").checked = true;
+                        document.getElementById("uradioPrimary1").checked = false;
+                    }
                     $('#EditEmployeeModal').modal('show');
                 }
-            })
+            });
         });
 
         $('#EditEmployeeForm').on('submit', function(event) {
@@ -389,6 +390,7 @@
                 url: "EditEmployeeForm.php",
                 method: "POST",
                 data: $('#EditEmployeeForm').serialize(),
+                dataType: "json",
                 success: function(data) {
                     document.getElementById("EditEmployeeForm").reset();
                     $('#EditEmployeeModal').modal('hide');
