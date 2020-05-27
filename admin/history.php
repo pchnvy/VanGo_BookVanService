@@ -27,10 +27,9 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
-
 </div>
 <!-- ./wrapper -->
+
 
 <?php include '../admin/_footer.php' ?>
 

@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="../plugins/style.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Google Font: Kanit -->
+  <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300,400,500,600,700,900" rel="stylesheet">
 </head>
 
 <?php
@@ -83,68 +85,69 @@ $activePage = "../admin/home.php";
 </script> -->
 
 <script>
-    // toast
-    // delete toast
-    function deleteerror(error){
-        $(document).Toasts('create', {
-            class: 'bg-danger', 
-            body: error,
-            title: 'ไม่สามารถลบข้อมูลได้',
-            subtitle: 'ปิด',
-            icon: 'fas fa-envelope fa-lg',
-        })
-    }
-    function deletesuccess(){
-        $(document).Toasts('create', {
-            class: 'bg-success', 
-            body: 'ลบข้อมูลออกจากฐานข้อมูลแล้ว',
-            title: 'ลบข้อมูลสำเร็จแล้ว',
-            subtitle: 'ปิด',
-            icon: 'fas fa-envelope fa-lg',
-        })
-    }
+  // toast
+  // delete toast
+  function deleteerror(error) {
+    $(document).Toasts('create', {
+      class: 'bg-danger',
+      body: error,
+      title: 'ไม่สามารถลบข้อมูลได้',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
 
-    // insert toast
-    function inserterror(error){
-        $(document).Toasts('create', {
-            class: 'bg-danger', 
-            body: error,
-            title: 'ไม่สามารถเพิ่มข้อมูลได้',
-            subtitle: 'ปิด',
-            icon: 'fas fa-envelope fa-lg',
-        })
-    }
-    function insertsuccess(){
-        $(document).Toasts('create', {
-            class: 'bg-success', 
-            body: 'เพิ่มข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว',
-            title: 'เพิ่มข้อมูลสำเร็จ',
-            subtitle: 'ปิด',
-            icon: 'fas fa-envelope fa-lg',
-        })
-    }
+  function deletesuccess() {
+    $(document).Toasts('create', {
+      class: 'bg-success',
+      body: 'ลบข้อมูลออกจากฐานข้อมูลแล้ว',
+      title: 'ลบข้อมูลสำเร็จแล้ว',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
 
-    // update toast
-    function updateerror(error){
-        $(document).Toasts('create', {
-            class: 'bg-danger', 
-            body: error,
-            title: 'ไม่สามารถแก้ไขข้อมูลได้',
-            subtitle: 'ปิด',
-            icon: 'fas fa-envelope fa-lg',
-        })
-    }
-    function updatesuccess(){
-        $(document).Toasts('create', {
-            class: 'bg-success', 
-            body: 'แก้ไขข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว',
-            title: 'แก้ไขข้อมูลสำเร็จ',
-            subtitle: 'ปิด',
-            icon: 'fas fa-envelope fa-lg',
-        })
-    }
+  // insert toast
+  function inserterror(error) {
+    $(document).Toasts('create', {
+      class: 'bg-danger',
+      body: error,
+      title: 'ไม่สามารถเพิ่มข้อมูลได้',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
 
+  function insertsuccess() {
+    $(document).Toasts('create', {
+      class: 'bg-success',
+      body: 'เพิ่มข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว',
+      title: 'เพิ่มข้อมูลสำเร็จ',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
 
+  // update toast
+  function updateerror(error) {
+    $(document).Toasts('create', {
+      class: 'bg-danger',
+      body: error,
+      title: 'ไม่สามารถแก้ไขข้อมูลได้',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
+
+  function updatesuccess() {
+    $(document).Toasts('create', {
+      class: 'bg-success',
+      body: 'แก้ไขข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว',
+      title: 'แก้ไขข้อมูลสำเร็จ',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
 </script>
 
 <body class="hold-transition sidebar-mini sidebar-collapse" style="font-family: 'Kanit'">
@@ -247,3 +250,9 @@ $activePage = "../admin/home.php";
       </div>
       <!-- /.sidebar -->
     </aside>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->

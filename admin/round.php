@@ -365,7 +365,6 @@
         // ClearModal
         $('#OpenModal').click(function() {
             document.getElementById("AddRoundForm").reset();
-            $('#iRoundDate').val(new Date().toISOString());
         });
 
         // AddModal
