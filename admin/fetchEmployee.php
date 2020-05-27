@@ -8,7 +8,7 @@ if(isset($_POST["EmployeeID"]))
 			,Email
 			,Sex
 			,Telephone
-			,Birthdate
+			,DATE_FORMAT(Birthdate, \"%d-%b-%Y\") AS Birthdate
 			,FlagDelete
 		FROM tbl_m_employee WHERE EmployeeID ='".$_POST["EmployeeID"]."'";
     $result = mysqli_query($conn,$sql);

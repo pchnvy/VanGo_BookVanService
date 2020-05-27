@@ -26,7 +26,7 @@
             <div class="row mb-2">
                 <div class="container-fluid" id="route">
                     <h2>ตารางแสดงรายละเอียดเส้นทางการเดินรถ</h2>
-                    <p>ลองพิมพ์เพื่อค้นหาสิ่งที่ท่านต้องการ เช่น ชื่อเส้นทาง,จุดเริ่มต้น หรือปลายทาง เป็นต้น</p>  
+                    <p>ลองพิมพ์เพื่อค้นหาสิ่งที่ท่านต้องการ เช่น ชื่อเส้นทาง, จุดเริ่มต้น หรือปลายทาง เป็นต้น</p>  
                     <div class="col-sm-2 col-md-2">
                         <input class="form-control" id="myInput" type="text" placeholder="Search..">
                             </br>
@@ -414,11 +414,6 @@ $(document).ready(() => {
 
 });
 </script>
-    
-
-
-</div>
-<!-- ./wrapper -->
 
 <?php include '../admin/_footer.php' ?>
 

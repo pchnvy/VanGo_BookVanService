@@ -27,7 +27,7 @@
             <div class="row mb-2">
                 <div class="container-fluid" id="vantable">
                     <h2>ตารางแสดงรายละเอียดของรถตู้</h2>
-                    <p>ลองพิมพ์เพื่อค้นหาสิ่งที่ท่านต้องการ เช่น ไอดี,ทะเบียนรถ หรือประเภทของพลังงานที่ใช้ เป็นต้น</p>  
+                    <p>ลองพิมพ์เพื่อค้นหาสิ่งที่ท่านต้องการ เช่น รหัส, ทะเบียนรถ หรือประเภทของน้ำมันที่ใช้ เป็นต้น</p>  
                     <div class="col-sm-2 col-md-2">
                         <input class="form-control" id="myInput" type="text" placeholder="Search..">
                             </br>

@@ -147,7 +147,7 @@ $activePage = "../admin/home.php";
 
 </script>
 
-<body class="hold-transition sidebar-mini layout-fixed" style="font-family: 'Kanit'">
+<body class="hold-transition sidebar-mini sidebar-collapse" style="font-family: 'Kanit'">
   <div class="wrapper">
 
     <!-- Navbar -->
@@ -195,14 +195,6 @@ $activePage = "../admin/home.php";
           <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-flat" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item">
-              <a href="../admin/home.php" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  หน้าหลัก
-                </p>
-              </a>
-            </li>
             <li class="nav-item">
               <a href="../admin/round.php" class="nav-link">
                 <i class="nav-icon far fa-calendar-alt"></i>

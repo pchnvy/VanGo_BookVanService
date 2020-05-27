@@ -23,7 +23,7 @@
             <div class="row mb-2">
                 <div class="container-fluid" id="employee">
                     <h2>ตารางแสดงรายละเอียดของพนักงาน</h2>
-                    <p>ลองพิมพ์เพื่อค้นหาสิ่งที่ท่านต้องการ เช่น ชื่อ,นามสกุล หรืออายุ เป็นต้น</p>
+                    <p>ลองพิมพ์เพื่อค้นหาสิ่งที่ท่านต้องการ เช่น รหัส, ชื่อ, นามสกุล หรือเบอร์โทรศัพท์ เป็นต้น</p>
                     <div class="col-sm-2 col-md-2">
                         <input class="form-control" id="myInput" type="text" placeholder="Search..">
                         </br>
@@ -408,11 +408,6 @@
 
     });
 </script>
-
-
-
-</div>
-<!-- ./wrapper -->
 
 <?php include '../admin/_footer.php' ?>
 

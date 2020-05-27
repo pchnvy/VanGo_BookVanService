@@ -18,12 +18,6 @@ $conn = new mysqli("localhost", "root", "", "vango");
         
         $result = $conn->query( 'SELECT @ErrorMsg');
         $row = mysqli_fetch_array($result);
-        echo json_encode($row);
-        // if(mysqli_query($conn,$query))
-        if($objQuery)
-        {
-            
-        }
-        
+        echo json_encode($row);        
     }
 ?>
