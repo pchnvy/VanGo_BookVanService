@@ -13,12 +13,6 @@
                         </strong>
                     </h1>
                 </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="../admin/home.php">หน้าหลัก</a></li>
-                        <li class="breadcrumb-item active">พนักงาน</li>
-                    </ol>
-                </div><!-- /.col -->
             </div><!-- /.row -->
             <div class="row mb-2">
                 <div class="container-fluid" id="employee">

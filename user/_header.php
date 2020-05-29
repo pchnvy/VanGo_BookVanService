@@ -28,34 +28,19 @@
   <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Google Font: Kanit -->
+  <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300,400,500,600,700,900" rel="stylesheet">
 </head>
 
 <?php
-session_start();
-
-global $userID;
-$userID = null;
-
-if ($userID != null) {
-  $_SESSION['userID'] = $userID;
-} else {
-  $_SESSION['userID'] = null;
-}
-
-// if ( ! session_id() ) @ session_start();
-// if ( ! isset($_SESSION['userID']) $_SESSION['userID'] = array();
-?>
-
-<?php
 $pages = array();
-$pages["../admin/home.php"] = "หน้าหลัก";
 $pages["../admin/round.php"] = "ตารางการเดินรถ";
 $pages["../admin/history.php"] = "ประวัติการเดินรถ";
 $pages["../admin/van.php"] = "รถตู้/ที่นั่ง";
 $pages["../admin/route.php"] = "เส้นทางการเดินรถ";
 $pages["../admin/employee.php"] = "พนักงาน";
 
-$activePage = "../admin/home.php";
+$activePage = "../admin/round.php";
 
 ?>
 
@@ -94,7 +79,38 @@ $activePage = "../admin/home.php";
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 
-<body class="hold-transition sidebar-mini sidebar-collapse">
+<script>
+    $(document).ready(function() {
+      $("#loginModal").on("show", function() {
+        $("body").addClass("modal-open");
+      }).on("hidden", function() {
+        $("body").removeClass("modal-open")
+      });
+    });
+
+    $(function() {
+      $('#menuBar a[href^="/' + location.pathname.substring(location.pathname.lastIndexOf("/") + 1) + '"]').addClass('active');
+    });
+
+    $("#LoginModal").click(function() {
+      document.getElementById("loginForm").reset();
+    });
+
+    $('#loginForm').on('submit', function(event) {
+      event.preventDefault();
+      $.ajax({
+        url: "_login.php",
+        method: "POST",
+        data: $('#loginForm').serialize(),
+        success: function(data) {
+          document.getElementById("loginForm").reset();
+          $('#LoginModal').modal('hide');
+        }
+      });
+    });
+  </script>
+
+<body class="hold-transition sidebar-mini sidebar-collapse" style="font-family: 'Kanit'">
   <div class="wrapper">
 
     <!-- Navbar -->
@@ -126,7 +142,7 @@ $activePage = "../admin/home.php";
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="../admin/home.php" class="brand-link">
+      <a href="../user/home.php" class="brand-link">
         <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-bold">Van GO!</span>
       </a>
@@ -149,58 +165,20 @@ $activePage = "../admin/home.php";
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
-              <a href="../admin/home.php" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  หน้าหลัก
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../admin/round.php" class="nav-link">
+              <a href="../user/home.php" class="nav-link">
                 <i class="nav-icon far fa-calendar-alt"></i>
                 <p>
                   ตารางการเดินรถ
-                  <span class="right badge badge-danger">สำคัญ</span>
                 </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="../admin/history.php" class="nav-link">
+              <a href="../user/history.php" class="nav-link">
                 <i class="nav-icon fas fa-history"></i>
                 <p>
                   ประวัติการเดินรถ
                 </p>
               </a>
-            </li>
-            <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                  ข้อมูลระบบ
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../admin/van.php" class="nav-link">
-                    <i class="fas fa-shuttle-van nav-icon"></i>
-                    <p>รถตู้/ที่นั่ง</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../admin/route.php" class="nav-link">
-                    <i class="fas fa-route nav-icon"></i>
-                    <p>เส้นทางการเดินรถ</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../admin/employee.php" class="nav-link">
-                    <i class="fas fa-user-friends nav-icon"></i>
-                    <p>พนักงาน</p>
-                  </a>
-                </li>
-              </ul>
             </li>
           </ul>
         </nav>
@@ -209,94 +187,59 @@ $activePage = "../admin/home.php";
       <!-- /.sidebar -->
     </aside>
 
-    <!-- Modal Form -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <form method="post" id="loginForm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="loginModalLabel"><strong>ลงชื่อเข้าใช้งาน</strong></h4>
-              <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <div class="form-group clearfix">
-                  <div class="row mb-2">
-                    <div class="col-sm-4 col-md-4 icheck-primary d-inline">
-                      <input type="radio" id="radioPrimary1" name="Role" value="U" checked>
-                      <label for="radioPrimary1">
-                        User
-                      </label>
-                    </div>
-                    <div class="col-sm-4 col-md-4 icheck-primary d-inline">
-                      <input type="radio" id="radioPrimary2" name="Role" value="A">
-                      <label for="radioPrimary2">
-                        Admin
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="UserID">เบอร์โทรศัพท์</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                  </div>
-                  <input type="text" class="form-control" id="UserID" name="UserID" pattern="[0-9]{10}" placeholder="0987654321" maxlength="30" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="Password">รหัสผ่าน</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-key"></i></span>
-                  </div>
-                  <input type="password" class="form-control" id="Password" name="Password" placeholder="รหัสผ่าน" maxlength="30" required>
-                </div>
-              </div>
-
-            </div>
-            <div class="modal-footer">
-              <button type="submit" name="login" id="login" Value="login" class="btn btn-primary">เข้าสู่ระบบ</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-            </div>
+  <!-- Modal Form -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <form method="post" id="loginForm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="loginModalLabel"><strong>ลงชื่อเข้าใช้งาน</strong></h4>
+            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
           </div>
-        </form>
-      </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <div class="form-group clearfix">
+                <div class="row mb-2">
+                  <div class="col-sm-4 col-md-4 icheck-primary d-inline">
+                    <input type="radio" id="radioPrimary1" name="Role" value="U" checked>
+                    <label for="radioPrimary1">
+                      User
+                    </label>
+                  </div>
+                  <div class="col-sm-4 col-md-4 icheck-primary d-inline">
+                    <input type="radio" id="radioPrimary2" name="Role" value="A">
+                    <label for="radioPrimary2">
+                      Admin
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="UserID">เบอร์โทรศัพท์</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                </div>
+                <input type="text" class="form-control" id="UserID" name="UserID" pattern="[0-9]{10}" placeholder="0987654321" maxlength="30" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="Password">รหัสผ่าน</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input type="password" class="form-control" id="Password" name="Password" placeholder="รหัสผ่าน" maxlength="30" required>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="submit" name="login" id="login" Value="login" class="btn btn-primary">เข้าสู่ระบบ</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          </div>
+        </div>
+      </form>
     </div>
-
-    <script>
-      $(document).ready(function() {
-        alert("<?php echo session_id() ?>");
-        $("#loginModal").on("show", function() {
-          $("body").addClass("modal-open");
-        }).on("hidden", function() {
-          $("body").removeClass("modal-open")
-        });
-      });
-
-      $(function() {
-        $('#menuBar a[href^="/' + location.pathname.substring(location.pathname.lastIndexOf("/") + 1) + '"]').addClass('active');
-      });
-
-      $("#LoginModal").click(function() {
-        document.getElementById("loginForm").reset();
-      });
-
-      $('#loginForm').on('submit',function(event){
-        event.preventDefault();
-        $.ajax({
-            url:"_login.php",
-            method:"POST",
-            data:$('#loginForm').serialize(),
-            success:function(data)
-            {
-                document.getElementById("loginForm").reset();
-                $('#LoginModal').modal('hide');
-            }
-        });
-    });
-
-      
-    </script>
+  </div>

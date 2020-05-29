@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<?php include '../admin/_header.php' ?>
+<?php include '../user/_header.php' ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -95,6 +95,6 @@
 <!-- ./wrapper -->
 
 
-<?php include '../admin/_footer.php' ?>
+<?php include '../user/_footer.php' ?>
 
 </html>
