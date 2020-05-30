@@ -2,7 +2,7 @@
 session_start();
 unset($_SESSION['UserID']);
 unset($_SESSION['UserInfo']);
-pre_r($_SESSION['UserID']);
+// pre_r($_SESSION['UserID']);
 
 // if(!isset($_SESSION['user']))
 // {
@@ -13,11 +13,11 @@ pre_r($_SESSION['UserID']);
 // {
 //     echo "<p style=\"color:red\">mai dai set ka</p>";
 // }
-function pre_r($array){
-    echo '<pre>';
-    print_r($array);
-    echo '</pre>';
-}
+// function pre_r($array){
+//     echo '<pre>';
+//     print_r($array);
+//     echo '</pre>';
+// }
 
 header( "location: home.php" );
 
