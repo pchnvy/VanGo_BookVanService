@@ -19,13 +19,16 @@
         $password = mysqli_real_escape_string($conn, $_POST['Password']);
         $role = mysqli_real_escape_string($conn, $_POST['Role']);
 
-        $query = "call sp_LoginUser('$userID','$password','$role',@error)";
-        if(mysqli_query($conn,$query))
-        {
-            
+        $query = "call sp_Common_LoginUser('$userID','$password','$role',@error)";
+        $result = $conn->query($query);
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        if ($row != null) {
+            session_start();
+            $_SESSION['UserID'] = $row["UserID"];
+            $_SESSION['UserInfo'] = $row["UserInfo"];
         }
-        echo $output;
     }
+    echo json_encode($row);
 
     mysqli_close($conn);
 ?>
