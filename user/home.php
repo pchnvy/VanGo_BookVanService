@@ -27,8 +27,6 @@
                     <p>ลองพิมพ์เพื่อค้นหาสิ่งที่ท่านต้องการ เช่น วันที่, เวลา หรือเส้นทาง เป็นต้น</p>
                     <div class="col-sm-2 col-md-2">
                         <input class="form-control" id="myInput" type="text" placeholder="Search..">
-                        </br>
-                        <button type="button" class="btn btn-primary" href="" id="OpenModal" data-toggle="modal" data-target="#AddRoundModal" style="background-color:dodgerblue;">เพิ่มข้อมูลรอบการเดินรถ</button>
                     </div>
                     <br>
                     <table class="table table-bordered table-striped">

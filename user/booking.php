@@ -118,7 +118,8 @@
                             echo "<div class=\"col-sm-4\">";
                             echo "<div class=\"card\" name=\"Seat\" id=\"DIV".$row["SeatID"]."\">" .
                                 // "<input type=\"hidden\" name=\"RoundID\" id=\"R".$row["RoundID"]."\" value=\"".$row["RoundID"]."\" />".
-                                "<input name=\"Seat".$row["SeatID"]."\" id=\"".$row["SeatID"]."\" value=\"".$row["SeatID"]."\" type=\"checkbox\" disabled/><br>" .
+                                // "<input name=\"Seat".$row["SeatID"]."\" id=\"".$row["SeatID"]."\" value=\"".$row["SeatID"]."\" type=\"hidden\" /><br>" .
+                                "<input style=\"display:none\" name=\"Seat".$row["SeatID"]."\" id=\"".$row["SeatID"]."\" value=\"".$row["SeatID"]."\" type=\"checkbox\" /><br>" .
                                 "<p class=\"text-center\">".$row["SeatName"]."</p>".
                                 "</div>".
                                 "</div>";
@@ -127,7 +128,7 @@
                             {
                             echo "<div class=\"col-sm-4\">";
                             echo "<div class=\"card active\">" .
-                                "<input value=\"".$row["SeatID"]."\" type=\"checkbox\" disabled/><br>" .
+                                "<input style=\"display:none\" value=\"".$row["SeatID"]."\" type=\"checkbox\" /><br>" .
                                 "<p class=\"text-center\">".$row["SeatName"]."</p>".
                                 "</div>".
                                 "</div>";
@@ -182,7 +183,6 @@
                 SeatCount++;
                 document.getElementById('SeatCount').innerHTML = SeatCount;
                 document.getElementById('Total').innerHTML = SeatCount*Price;
-                // summary();
             }
         });
     });
