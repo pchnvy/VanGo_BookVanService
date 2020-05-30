@@ -37,9 +37,9 @@
                         if ($conn->connect_error) {
                             die("Connection failed:" . $conn->connect_error);
                         }
-                        $sql = "call sp_HistoryAdmin";
+                        $sql = "call sp_HistoryUser('admin')";
                         $result = $conn->query($sql);
-                            
+
                         $round = "";
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
@@ -53,23 +53,23 @@
                                 if ($round == $row["RoundDate"]) {
                                     echo    "<div>";
                                     if ($row["RoundStatus"] == 0) {
-                                        echo "<i class=\"fas fa-cash-register bg-grey\"></i>";
+                                        echo "<i class=\"fas fa-qrcode bg-grey\"></i>";
                                     } else if ($row["RoundStatus"] == 1) {
                                         echo "<i class=\"fas fa-road bg-blue\"></i>";
                                     } else if ($row["RoundStatus"] == 2) {
                                         echo "<i class=\"fas fa-calendar-check bg-green\"></i>";
                                     }
 
-                                         echo   "<div class=\"timeline-item\">
+                                    echo   "<div class=\"timeline-item\">
                                                 <h3 class=\"timeline-header\">รอบรถ <a href=\"#\">" . $row["RoundID"] . "</a>
                                                 " . $row["RoundStatusName"] . "</h3>
     
                                                     <div class=\"timeline-body\">
-                                                        <h4>[" . $row["DepartingTime"] . " - " . $row["ArrivingTime"] ."] " . $row["RouteName"] . "</h4>
-                                                        ยอดขายตั๋วทั้งหมด: " . $row["TotalSales"] . " บาท (ตั๋วใบละ " . $row["PricePerSeat"] . " บาท)<br />
-                                                        จำนวนผู้โดยสาร: " . $row["SoldSeat"] . " <br />
+                                                        <h4>[" . $row["DepartingTime"] . " - " . $row["ArrivingTime"] . "] " . $row["RouteName"] . "</h4>
+                                                        จำนวนที่นั่ง: " . $row["TotalSeat"] . " ที่นั่ง (" . $row["SeatName"] . ")<br />
+                                                        ราคา: " . $row["TotalPrice"] . " บาท<br />
                                                         รถตู้ที่ใช้เดินทาง: " . $row["VanNumber"] . "<br />
-                                                        ขับโดย: " . $row["EmployeeName"] . "<br />
+                                                        ขับโดย: " . $row["EmployeeName"] . " (" . $row["EmployeePhone"] . ")<br />
                                                     </div>
                                                 </div>
                                             </div>";
@@ -96,5 +96,16 @@
 
 
 <?php include '../user/_footer.php' ?>
+
+<script>
+    $(document).ready(() => {
+
+
+        if(<?php echo !isset($_SESSION['UserID']) ?>){
+            window.location.href = "../pages/examples/404.html";
+        }
+            // header("location: ");
+    });
+</script>
 
 </html>

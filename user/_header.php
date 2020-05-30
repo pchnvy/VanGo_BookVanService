@@ -79,6 +79,14 @@ $activePage = "../admin/round.php";
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 
+<<<<<<< HEAD
+<body class="hold-transition sidebar-mini sidebar-collapse" style="font-family: 'Kanit'">
+
+  <?php
+  session_start();
+  ?>
+
+=======
 <script>
   $(document).ready(function () {
   // Card Multi Select
@@ -121,6 +129,7 @@ $activePage = "../admin/round.php";
 </script>
 
 <body class="hold-transition sidebar-mini sidebar-collapse" style="font-family: 'Kanit'">
+>>>>>>> 7ba062f3570d2052978ca5bfb839fa24cc56f753
   <div class="wrapper">
 
     <!-- Navbar -->
@@ -134,17 +143,25 @@ $activePage = "../admin/round.php";
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item" href="" data-toggle="modal" data-target="#loginModal">
-          <i class="fas fa-star">
-            <span>สมัครสมาชิก</span>
+        <?php
+        if (isset($_SESSION['UserID'])) {
+          echo "<li><a class=\"nav-link\" href=\"_login.php\">ยินดีต้อนรับ, คุณ " . $_SESSION['UserInfo'] . "</a></li>";
+          echo "<li><a class=\"nav-link active\" href=\"\" data-toggle=\"modal\" data-target=\"#logoutModal\" style=\"background:#80ff00;color:#000;\">ออกจากระบบ</a></li>";
+        } else {
+          echo
+            "<li class=\nav-item\" href=\"#\" style=\"background:#80ff00;color:#000;\" data-toggle=\"modal\" data-target=\"#loginModal\">
+          <i class=\"fas fa-star\" style=\"margin: 10px;\">
+            <span style=\"font-family: 'Kanit'\">สมัครสมาชิก</span>
           </i>
-        </li>
-        <span style="padding-left: 10px; padding-right: 10px;"> / </span>
-        <li class="nav-item" href="" id="LoginModal" data-toggle="modal" data-target="#loginModal">
-          <i class="fas fa-sign-in-alt">
-            <span>เข้าสู่ระบบ</span>
+        </li>" .
+              "<span style=\"padding-left: 10px; padding-right: 10px;\"> / </span>" .
+              "<li class=\"nav-item\" href=\"#\" style=\"background:#80ff00;color:#000;\" id=\"LoginModal\" data-toggle=\"modal\" data-target=\"#loginModal\">
+          <i class=\"fas fa-sign-in-alt\" style=\"margin: 10px;\">
+            <span style=\"font-family: 'Kanit'\">เข้าสู่ระบบ</span>
           </i>
-        </li>
+        </li>";
+        }
+        ?>
       </ul>
     </nav>
     <!-- /.navbar -->
@@ -160,43 +177,75 @@ $activePage = "../admin/round.php";
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
-            <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-          </div>
-          <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
-          </div>
-        </div>
+        <?php
+        if (isset($_SESSION['UserID'])) {
+          echo "
+            <div class=\"user-panel mt-3 pb-3 mb-3 d-flex\">
+            <div class=\"image\">
+              <img src=\"../dist/img/user2-160x160.jpg\" class=\"img-circle elevation-2\" alt=\"User Image\">
+            </div>
+            <div class=\"info\">
+              <a href=\"#\" class=\"d-block\">" . $_SESSION['UserInfo'] . "</a>
+            </div>
+            </div>
+            ";
+        }
+        ?>
 
-        <!-- Sidebar Menu -->
-        <nav id="menuBar" class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-flat" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
+      <!-- Sidebar Menu -->
+      <nav id="menuBar" class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-flat" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item">
-              <a href="../user/home.php" class="nav-link">
-                <i class="nav-icon far fa-calendar-alt"></i>
-                <p>
-                  ตารางการเดินรถ
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../user/history.php" class="nav-link">
-                <i class="nav-icon fas fa-history"></i>
-                <p>
-                  ประวัติการเดินรถ
-                </p>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-    </aside>
+          <li class="nav-item">
+            <a href="../user/home.php" class="nav-link">
+              <i class="nav-icon far fa-calendar-alt"></i>
+              <p>
+                ตารางการเดินรถ
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../user/history.php" class="nav-link">
+              <i class="nav-icon fas fa-history"></i>
+              <p>
+                ประวัติการเดินรถ
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+  </aside>
 
+<<<<<<< HEAD
+  <!-- Login Modal Form -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <form method="post" id="loginForm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="loginModalLabel"><strong>ลงชื่อเข้าใช้งาน</strong></h4>
+            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <div class="form-group clearfix">
+                <div class="row mb-2">
+                  <div class="col-sm-4 col-md-4 icheck-primary d-inline">
+                    <input type="radio" id="radioPrimary1" name="Role" value="U" checked>
+                    <label for="radioPrimary1">
+                      User
+                    </label>
+                  </div>
+                  <div class="col-sm-4 col-md-4 icheck-primary d-inline">
+                    <input type="radio" id="radioPrimary2" name="Role" value="A">
+                    <label for="radioPrimary2">
+                      Admin
+                    </label>
+=======
     <!-- Modal Form -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -222,6 +271,7 @@ $activePage = "../admin/round.php";
                         Admin
                       </label>
                     </div>
+>>>>>>> 7ba062f3570d2052978ca5bfb839fa24cc56f753
                   </div>
                 </div>
               </div>
@@ -250,6 +300,80 @@ $activePage = "../admin/round.php";
               <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
             </div>
           </div>
+<<<<<<< HEAD
+          <div class="modal-footer">
+            <button type="submit" name="login" id="login" Value="login" class="btn btn-primary">เข้าสู่ระบบ</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Logout Modal -->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form autocomplete="off" method="post" id="logout">
+          <div class="modal-header">
+            <span class="modal-title" id="myModalLabel">ออกจากระบบ</span>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <span>ท่านต้องการที่จะออกจากระบบหรือไม่?</span>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" name="btnlogout" id="btnlogout" Value="btnlogout" class="btn btn-primary">ตกลง</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          </div>
         </form>
       </div>
     </div>
+  </div>
+
+
+  <script>
+    $(document).ready(function() {
+      $("#loginModal").on("show", function() {
+        $("body").addClass("modal-open");
+      }).on("hidden", function() {
+        $("body").removeClass("modal-open")
+      });
+    });
+
+    $(function() {
+      $('#menuBar a[href^="/' + location.pathname.substring(location.pathname.lastIndexOf("/") + 1) + '"]').addClass('active');
+    });
+
+    $("#LoginModal").click(function() {
+      document.getElementById("loginForm").reset();
+    });
+
+    $('#loginForm').on('submit', function(event) {
+      event.preventDefault();
+      $.ajax({
+        url: "_login.php",
+        method: "POST",
+        data: $('#loginForm').serialize(),
+        success: function(data) {
+          document.getElementById("loginForm").reset();
+          $('#LoginModal').modal('hide');
+          if (data != null) {
+            setTimeout(() => {
+              location.reload();
+            }, 500);
+          }
+        }
+      });
+    });
+
+    $('#logout').on('submit', function(event) {
+      event.preventDefault();
+      window.location.href = "_logout.php";
+    });
+  </script>
+=======
+        </form>
+      </div>
+    </div>
+>>>>>>> 7ba062f3570d2052978ca5bfb839fa24cc56f753
