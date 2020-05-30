@@ -101,7 +101,7 @@
     $(document).ready(() => {
 
 
-        if(<?php echo !isset($_SESSION['UserID']) ?>){
+        if(<?php echo !isset($_SESSION['UserID']); ?>){
             window.location.href = "../pages/examples/404.html";
         }
     });

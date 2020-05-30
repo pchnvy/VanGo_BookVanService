@@ -19,7 +19,6 @@ unset($_SESSION['Role']);
 //     print_r($array);
 //     echo '</pre>';
 // }
-
 header( "location: home.php" );
 
 ?>

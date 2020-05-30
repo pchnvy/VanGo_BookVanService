@@ -260,7 +260,7 @@ $activePage = "../admin/round.php";
     </div>
 
 
-    <script>
+    <script>      
       $(document).ready(function() {
         $("#loginModal").on("show", function() {
           $("body").addClass("modal-open");
@@ -288,9 +288,12 @@ $activePage = "../admin/round.php";
             $('#LoginModal').modal('hide');
             if (data != null) {
               setTimeout(() => {
-
+                if ($('#raioPrimary1').is(":checked")){
                   location.reload();
-
+                }
+                else {
+                  window.location.href = "../admin/round.php";
+                }
               }, 500);
             }
           }
