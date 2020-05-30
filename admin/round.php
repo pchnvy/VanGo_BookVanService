@@ -17,7 +17,7 @@
                         </strong>
                     </h1>
                 </div><!-- /.col -->
-            </div><!-- /.row -->
+            </div><!-- /.row --> 
             <div class="row mb-2">
                 <div class="container-fluid" id="vantable">
                     <h2>ตารางแสดงรายละเอียดของรอบการเดินรถ</h2>
