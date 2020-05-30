@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<?php include '../user/_header.php' ?>
+<?php include '_header.php' ?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                         <li class="breadcrumb-item active">Payment</li>
                     </ol>
                 </div>
@@ -65,10 +65,10 @@
                             <!-- accepted payments column -->
                             <div class="col-6">
                                 <p class="lead">วิธีการชำระเงิน : </p>
-                                <img src="../dist/img/credit/visa.png" alt="Visa">
-                                <img src="../dist/img/credit/mastercard.png" alt="Mastercard">
-                                <img src="../dist/img/credit/american-express.png" alt="American Express">
-                                <img src="../dist/img/credit/paypal2.png" alt="Paypal">
+                                <img src="dist/img/credit/visa.png" alt="Visa">
+                                <img src="dist/img/credit/mastercard.png" alt="Mastercard">
+                                <img src="dist/img/credit/american-express.png" alt="American Express">
+                                <img src="dist/img/credit/paypal2.png" alt="Paypal">
 
                                 <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
                                     ระบบจะทำการตัดเงินจากหมายเลขบัญชีที่ท่านได้ทำการลงทะเบียน จากการผูกบัญชีผู้ใช้งานกับวิธีการชำระเงิน
@@ -113,7 +113,7 @@
                         <!-- /.row -->
 
                         <!-- this row will not appear when printing -->
-                        <?php echo "<form autocomplete=\"off\" method=\"post\" id=\"AddPaymentForm\" action=\"AddPaymentForm.php?RoundID=".$_GET["RoundID"]."\">"; ?>
+                        <?php echo "<form autocomplete=\"off\" method=\"post\" id=\"AddPaymentForm\" action=\"user_AddPaymentForm.php?RoundID=".$_GET["RoundID"]."\">"; ?>
                             <?php
                             foreach ($_POST as $key => $seatID) {
                                 if (substr(htmlspecialchars($key), 0, 4) == 'Seat') {
@@ -144,6 +144,6 @@
 <!-- /.content-header -->
 </div>
 
-<?php include '../user/_footer.php' ?>
+<?php include '_footer.php' ?>
 
 </html>

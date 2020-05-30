@@ -58,7 +58,7 @@
                                         "<td>" . $row["VanNumber"] . "</td>" .
                                         "<td>" . $row["EmployeeName"] . "</td>" .
                                         "<td align=\"center\">
-                                        <a name=\"Edit\" value=\"Edit\" href=\"booking.php?RoundID=" . $row["RoundID"] . "\" title=\"Booking\" /> 
+                                        <a name=\"Edit\" value=\"Edit\" href=\"user_booking.php?RoundID=" . $row["RoundID"] . "\" title=\"Booking\" /> 
                                         <i class=\"fas fa-cart-plus fa-2x\"></i></a>
                                         </td>" .
                                         "</tr>";

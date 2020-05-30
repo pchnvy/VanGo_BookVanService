@@ -164,7 +164,7 @@ $activePage = "../admin/round.php";
                         if (isset($_SESSION['UserID'])) {
                             echo "
               <li class=\"nav-item\">
-                <a href=\"user/history.php\" class=\"nav-link\">
+                <a href=\"user_history.php\" class=\"nav-link\">
                   <i class=\"nav-icon fas fa-history\"></i>
                   <p>
                     ประวัติการเดินรถ

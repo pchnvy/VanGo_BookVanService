@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<?php include '../user/_header.php' ?>
+<?php include '_header.php' ?>
 
 <style>
     /* Cosmetics styles */
@@ -17,7 +17,7 @@
         padding: 2em;
         min-height: 4em;
         /* background: greenyellow; */
-        background-image: url("../img/c-green.png");
+        background-image: url("img/c-green.png");
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
@@ -25,7 +25,7 @@
     }
 
     .active {
-        background-image: url("../img/c-red.png");
+        background-image: url("img/c-red.png");
         background-position: center;
         border-color: greenyellow;
         background-repeat: no-repeat;
@@ -108,7 +108,7 @@
                     }
                     $sql = "call sp_Booking_GetSeatDetail('".$_GET["RoundID"]."')";
                     $result = $conn->query($sql);
-                    echo "<form autocomplete=\"off\" method=\"post\" id=\"AddBookVanForm\" action=\"Payment.php?RoundID=".$_GET["RoundID"]."\">";
+                    echo "<form autocomplete=\"off\" method=\"post\" id=\"AddBookVanForm\" action=\"user_payment.php?RoundID=".$_GET["RoundID"]."\">";
                     echo "<div class=\"container\">";
                     echo "<div class=\"row\">";
                     echo "<div class=\"cards\">";
@@ -189,6 +189,6 @@
 </script>
 
 
-<?php include '../user/_footer.php' ?>
+<?php include '_footer.php' ?>
 
 </html>

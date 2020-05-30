@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<?php include '../user/_header.php' ?>
+<?php include '_header.php' ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -95,15 +95,19 @@
 <!-- ./wrapper -->
 
 
-<?php include '../user/_footer.php' ?>
+<?php include '_footer.php' ?>
 
 <script>
     $(document).ready(() => {
 
-
         if(<?php echo !isset($_SESSION['UserID']) ?>){
-            window.location.href = "../pages/examples/404.html";
+            window.location.href = "pages/examples/404.html";
         }
+
+        if(<?php echo $_SESSION['Role'] != 'U' ?>){
+            window.location.href = "pages/examples/404.html";
+        }
+        
     });
 </script>
 
