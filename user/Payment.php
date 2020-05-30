@@ -31,7 +31,7 @@
                             <div class="col-12">
                                 <h4>
                                     <i class="fas fa-shuttle-van"></i> รายละเอียดการจอง
-                                    <small class="float-right"><?php echo "<p>Round ID : ".$_GET["RoundID"]."</p>"?></small>
+                                    <small class="float-right"><?php echo "<p>Round ID : " . $_GET["RoundID"] . "</p>" ?></small>
                                 </h4>
                             </div>
                             <!-- /.col -->
@@ -39,9 +39,24 @@
                         <!-- info row -->
                         <div class="row invoice-info">
                             <div class="col-sm-4 invoice-col">
-                                
-                                <p>จุดเริ่มต้นและจุดปลายทางที่ท่านต้องการจะไป</p>
-                                <p>เวลารถออกและคาดว่าจะไปถึง</p>
+                                <?php
+                                $conn = mysqli_connect('localhost', 'root', '', 'vango') or die("Error Connect to Database");
+                                if ($conn->connect_error) {
+                                    die("Connection failed:" . $conn->connect_error);
+                                }
+                                $price;
+                                $sql = "call sp_Booking_GetHeader('" . $_GET["RoundID"] . "')";
+                                $result = $conn->query($sql);
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<h5>จุดเริ่มต้นและจุดปลายทางที่ท่านต้องการจะไป : " . $row["RouteName"] . "</h5>" .
+                                            "<h5>เวลารถออกและคาดว่าจะไปถึง : " . $row["DepartingTime"] . " - " . $row["ArrivingTime"] . "</h5>";
+                                        $price = $row["Price"];
+                                    }
+                                }
+                                $count = count($_POST) - 1;
+                                $total = $count * $price;
+                                ?>
                             </div>
                             <!-- /.col -->
                         </div>
@@ -49,39 +64,46 @@
                         <div class="row">
                             <!-- accepted payments column -->
                             <div class="col-6">
-                                <p class="lead">Payment Methods:</p>
+                                <p class="lead">วิธีการชำระเงิน : </p>
                                 <img src="../dist/img/credit/visa.png" alt="Visa">
                                 <img src="../dist/img/credit/mastercard.png" alt="Mastercard">
                                 <img src="../dist/img/credit/american-express.png" alt="American Express">
                                 <img src="../dist/img/credit/paypal2.png" alt="Paypal">
 
                                 <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
-                                    plugg
-                                    dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-                                </p>
+                                    ระบบจะทำการตัดเงินจากหมายเลขบัญชีที่ท่านได้ทำการลงทะเบียน จากการผูกบัญชีผู้ใช้งานกับวิธีการชำระเงิน
+                                    </?php>
                             </div>
                             <!-- /.col -->
+
                             <div class="col-6">
-                                <p class="lead">Amount Due 2/22/2014</p>
+                                <p class="lead">สรุปการชำระเงิน</p>
 
                                 <div class="table-responsive">
                                     <table class="table">
                                         <tr>
-                                            <th style="width:50%">Subtotal:</th>
-                                            <td>$250.30</td>
+                                            <th>หมายเลขนั่งที่จอง</th>
+                                            <td>
+                                                <?php
+                                                foreach ($_POST as $key => $value) {
+                                                    if (substr(htmlspecialchars($key), 0, 4) == 'Seat') {
+                                                        echo htmlspecialchars($key) . ",";
+                                                    }
+                                                }
+                                                ?>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <th>Tax (9.3%)</th>
-                                            <td>$10.34</td>
+                                            <th style="width:50%">จำนวนที่นั่ง:</th>
+                                            <?php echo "<td>" . $count . "</td>" ?>
                                         </tr>
                                         <tr>
-                                            <th>Shipping:</th>
-                                            <td>$5.80</td>
+                                            <th>ราคาต่อที่นั่ง :</th>
+                                            <?php echo "<td>" . $price . "</td>" ?>
                                         </tr>
                                         <tr>
-                                            <th>Total:</th>
-                                            <td>$265.24</td>
+                                            <th>ยอดชำระทั้งหมด:</th>
+                                            <?php echo "<td>" . $total . "</td>" ?>
                                         </tr>
                                     </table>
                                 </div>
@@ -91,14 +113,21 @@
                         <!-- /.row -->
 
                         <!-- this row will not appear when printing -->
-                        <div class="row no-print">
-                            <div class="col-12">
-                                <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                                <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
-                                    Payment
-                                </button>
+                        <?php echo "<form autocomplete=\"off\" method=\"post\" id=\"AddPaymentForm\" action=\"AddPaymentForm.php?RoundID=".$_GET["RoundID"]."\">"; ?>
+                            <?php
+                            foreach ($_POST as $key => $seatID) {
+                                if (substr(htmlspecialchars($key), 0, 4) == 'Seat') {
+                                    echo htmlspecialchars($seatID) . ",";
+                                    echo "<input style=\"display:none\" name=\"".$seatID."\" id=\"".$seatID."\" value=\"".$seatID."\" type=\"text\" /><br>";
+                                }
+                            }
+                            ?>
+                            <div class="row no-print">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-success float-right"><i class="far fa-credit-card"></i> ชำระเงิน</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <!-- /.invoice -->
                 </div><!-- /.col -->
