@@ -2,6 +2,7 @@
 session_start();
 unset($_SESSION['UserID']);
 unset($_SESSION['UserInfo']);
+unset($_SESSION['Role']);
 // pre_r($_SESSION['UserID']);
 
 // if(!isset($_SESSION['user']))

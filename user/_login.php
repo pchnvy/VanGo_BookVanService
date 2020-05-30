@@ -26,6 +26,7 @@
             session_start();
             $_SESSION['UserID'] = $row["UserID"];
             $_SESSION['UserInfo'] = $row["UserInfo"];
+            $_SESSION['Role'] = $row["Role"];
         }
     }
     echo json_encode($row);

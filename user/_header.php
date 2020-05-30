@@ -79,57 +79,12 @@ $activePage = "../admin/round.php";
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 
-<<<<<<< HEAD
 <body class="hold-transition sidebar-mini sidebar-collapse" style="font-family: 'Kanit'">
 
   <?php
   session_start();
   ?>
 
-=======
-<script>
-  $(document).ready(function () {
-  // Card Multi Select
-  $('input[type=checkbox]').click(function () {
-    if ($(this).parent().hasClass('active')) {
-      $(this).parent().removeClass('active');
-    }
-    else
-    { $(this).parent().addClass('active'); }
-  });
-});
-  $(document).ready(function() {
-    $("#loginModal").on("show", function() {
-      $("body").addClass("modal-open");
-    }).on("hidden", function() {
-      $("body").removeClass("modal-open")
-    });
-  });
-
-  $(function() {
-    $('#menuBar a[href^="/' + location.pathname.substring(location.pathname.lastIndexOf("/") + 1) + '"]').addClass('active');
-  });
-
-  $("#LoginModal").click(function() {
-    document.getElementById("loginForm").reset();
-  });
-
-  $('#loginForm').on('submit', function(event) {
-    event.preventDefault();
-    $.ajax({
-      url: "_login.php",
-      method: "POST",
-      data: $('#loginForm').serialize(),
-      success: function(data) {
-        document.getElementById("loginForm").reset();
-        $('#LoginModal').modal('hide');
-      }
-    });
-  });
-</script>
-
-<body class="hold-transition sidebar-mini sidebar-collapse" style="font-family: 'Kanit'">
->>>>>>> 7ba062f3570d2052978ca5bfb839fa24cc56f753
   <div class="wrapper">
 
     <!-- Navbar -->
@@ -192,61 +147,42 @@ $activePage = "../admin/round.php";
         }
         ?>
 
-      <!-- Sidebar Menu -->
-      <nav id="menuBar" class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-flat" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
+        <!-- Sidebar Menu -->
+        <nav id="menuBar" class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-flat" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="../user/home.php" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                ตารางการเดินรถ
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="../user/history.php" class="nav-link">
-              <i class="nav-icon fas fa-history"></i>
-              <p>
-                ประวัติการเดินรถ
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-  </div>
-  <!-- /.sidebar -->
-  </aside>
+            <li class="nav-item">
+              <a href="../user/home.php" class="nav-link">
+                <i class="nav-icon far fa-calendar-alt"></i>
+                <p>
+                  ตารางการเดินรถ
+                </p>
+              </a>
+            </li>
+            <?php
+            if (isset($_SESSION['UserID'])) {
+              echo "
+              <li class=\"nav-item\">
+                <a href=\"../user/history.php\" class=\"nav-link\">
+                  <i class=\"nav-icon fas fa-history\"></i>
+                  <p>
+                    ประวัติการเดินรถ
+                  </p>
+                </a>
+              </li>
+            ";
+            }
+            ?>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
 
-<<<<<<< HEAD
-  <!-- Login Modal Form -->
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <form method="post" id="loginForm">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="loginModalLabel"><strong>ลงชื่อเข้าใช้งาน</strong></h4>
-            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-              <div class="form-group clearfix">
-                <div class="row mb-2">
-                  <div class="col-sm-4 col-md-4 icheck-primary d-inline">
-                    <input type="radio" id="radioPrimary1" name="Role" value="U" checked>
-                    <label for="radioPrimary1">
-                      User
-                    </label>
-                  </div>
-                  <div class="col-sm-4 col-md-4 icheck-primary d-inline">
-                    <input type="radio" id="radioPrimary2" name="Role" value="A">
-                    <label for="radioPrimary2">
-                      Admin
-                    </label>
-=======
-    <!-- Modal Form -->
+
+    <!-- Login Modal Form -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <form method="post" id="loginForm">
@@ -271,109 +207,98 @@ $activePage = "../admin/round.php";
                         Admin
                       </label>
                     </div>
->>>>>>> 7ba062f3570d2052978ca5bfb839fa24cc56f753
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="UserID">เบอร์โทรศัพท์</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="UserID" name="UserID" pattern="[0-9]{10}" placeholder="0987654321" maxlength="30" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="Password">รหัสผ่าน</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="password" class="form-control" id="Password" name="Password" placeholder="รหัสผ่าน" maxlength="30" required>
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="UserID">เบอร์โทรศัพท์</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                  </div>
-                  <input type="text" class="form-control" id="UserID" name="UserID" pattern="[0-9]{10}" placeholder="0987654321" maxlength="30" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="Password">รหัสผ่าน</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-key"></i></span>
-                  </div>
-                  <input type="password" class="form-control" id="Password" name="Password" placeholder="รหัสผ่าน" maxlength="30" required>
-                </div>
-              </div>
-
             </div>
             <div class="modal-footer">
               <button type="submit" name="login" id="login" Value="login" class="btn btn-primary">เข้าสู่ระบบ</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
             </div>
           </div>
-<<<<<<< HEAD
-          <div class="modal-footer">
-            <button type="submit" name="login" id="login" Value="login" class="btn btn-primary">เข้าสู่ระบบ</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Logout Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form autocomplete="off" method="post" id="logout">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">ออกจากระบบ</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+              <span>ท่านต้องการที่จะออกจากระบบหรือไม่?</span>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" name="btnlogout" id="btnlogout" Value="btnlogout" class="btn btn-primary">ตกลง</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Logout Modal -->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <form autocomplete="off" method="post" id="logout">
-          <div class="modal-header">
-            <span class="modal-title" id="myModalLabel">ออกจากระบบ</span>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          </div>
-          <div class="modal-body">
-            <span>ท่านต้องการที่จะออกจากระบบหรือไม่?</span>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" name="btnlogout" id="btnlogout" Value="btnlogout" class="btn btn-primary">ตกลง</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          </div>
-        </form>
       </div>
     </div>
-  </div>
 
 
-  <script>
-    $(document).ready(function() {
-      $("#loginModal").on("show", function() {
-        $("body").addClass("modal-open");
-      }).on("hidden", function() {
-        $("body").removeClass("modal-open")
+    <script>
+      $(document).ready(function() {
+        $("#loginModal").on("show", function() {
+          $("body").addClass("modal-open");
+        }).on("hidden", function() {
+          $("body").removeClass("modal-open")
+        });
       });
-    });
 
-    $(function() {
-      $('#menuBar a[href^="/' + location.pathname.substring(location.pathname.lastIndexOf("/") + 1) + '"]').addClass('active');
-    });
+      $(function() {
+        $('#menuBar a[href^="/' + location.pathname.substring(location.pathname.lastIndexOf("/") + 1) + '"]').addClass('active');
+      });
 
-    $("#LoginModal").click(function() {
-      document.getElementById("loginForm").reset();
-    });
+      $("#LoginModal").click(function() {
+        document.getElementById("loginForm").reset();
+      });
 
-    $('#loginForm').on('submit', function(event) {
-      event.preventDefault();
-      $.ajax({
-        url: "_login.php",
-        method: "POST",
-        data: $('#loginForm').serialize(),
-        success: function(data) {
-          document.getElementById("loginForm").reset();
-          $('#LoginModal').modal('hide');
-          if (data != null) {
-            setTimeout(() => {
-              location.reload();
-            }, 500);
+      $('#loginForm').on('submit', function(event) {
+        event.preventDefault();
+        $.ajax({
+          url: "_login.php",
+          method: "POST",
+          data: $('#loginForm').serialize(),
+          success: function(data) {
+            document.getElementById("loginForm").reset();
+            $('#LoginModal').modal('hide');
+            if (data != null) {
+              setTimeout(() => {
+
+                  location.reload();
+
+              }, 500);
+            }
           }
-        }
+        });
       });
-    });
 
-    $('#logout').on('submit', function(event) {
-      event.preventDefault();
-      window.location.href = "_logout.php";
-    });
-  </script>
-=======
-        </form>
-      </div>
-    </div>
->>>>>>> 7ba062f3570d2052978ca5bfb839fa24cc56f753
+      $('#logout').on('submit', function(event) {
+        event.preventDefault();
+        window.location.href = "_logout.php";
+      });
+    </script>
