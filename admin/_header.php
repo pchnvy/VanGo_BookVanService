@@ -151,7 +151,7 @@ session_start();
   <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-light navbar-warning">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -163,31 +163,22 @@ session_start();
       <ul class="navbar-nav ml-auto">
         <?php
         if (isset($_SESSION['UserID'])) {
-          echo "<li><a class=\"nav-link\" href=\"\">ยินดีต้อนรับ, คุณ " . $_SESSION['UserInfo'] . "</a></li>";
-          echo "<li><a class=\"nav-link active\" href=\"\" data-toggle=\"modal\" data-target=\"#logoutModal\" style=\"background:#80ff00;color:#000;\">ออกจากระบบ</a></li>";
-        } else {
-          echo
-            "<li class=\nav-item\" href=\"#\" style=\"background:#80ff00;color:#000;\" data-toggle=\"modal\" data-target=\"#loginModal\">
-          <i class=\"fas fa-star\" style=\"margin: 10px;\">
-            <span style=\"font-family: 'Kanit'\">สมัครสมาชิก</span>
-          </i>
-        </li>" .
-              "<span style=\"padding-left: 10px; padding-right: 10px;\"> / </span>" .
-              "<li class=\"nav-item\" href=\"#\" style=\"background:#80ff00;color:#000;\" id=\"LoginModal\" data-toggle=\"modal\" data-target=\"#loginModal\">
-          <i class=\"fas fa-sign-in-alt\" style=\"margin: 10px;\">
-            <span style=\"font-family: 'Kanit'\">เข้าสู่ระบบ</span>
-          </i>
-        </li>";
-        }
+          echo "<li><a class=\"nav-link\" href=\"\" style=\"color:#000;\">ยินดีต้อนรับ, คุณ " . $_SESSION['UserInfo'] . "</a></li>";
+          echo "<li><a class=\"nav-link active\" href=\"\" data-toggle=\"modal\" data-target=\"#logoutModal\" style=\"background:#000;color:#fff;\">ออกจากระบบ</a></li>";
+      } else {
+          echo "<li><a class=\"nav-link active\" href=\"\" data-toggle=\"modal\" data-target=\"#loginModal\" style=\"background:#fff;color:#000;\">สมัครสมาชิก</a></li>";
+          echo "<span style=\"padding: 5px;\"></span>";
+          echo "<li><a class=\"nav-link active\" href=\"\" id=\"LoginModal\" data-toggle=\"modal\" data-target=\"#loginModal\" style=\"background:#000;color:#fff;\">เข้าสู่ระบบ</a></li>";
+      }
         ?>
       </ul>
     </nav>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <aside class="main-sidebar elevation-4 sidebar-dark-warning">
       <!-- Brand Logo -->
-      <a href="../admin/round.php" class="brand-link">
+      <a href="../admin/round.php" class="brand-link navbar-warning">
         <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-bold">Van GO!</span>
       </a>
@@ -277,7 +268,7 @@ session_start();
     <!-- Login Modal Form -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <form method="post" id="loginForm">
+        <form method="post" id="loginForm" autocomplete="off">
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title" id="loginModalLabel"><strong>ลงชื่อเข้าใช้งาน</strong></h4>
@@ -352,14 +343,6 @@ session_start();
     </div>
 
     <script>
-      $(document).ready(function() {
-        $("#loginModal").on("show", function() {
-          $("body").addClass("modal-open");
-        }).on("hidden", function() {
-          $("body").removeClass("modal-open")
-        });
-      });
-
       $(function() {
         $('#menuBar a[href^="/' + location.pathname.substring(location.pathname.lastIndexOf("/") + 1) + '"]').addClass('active');
       });
