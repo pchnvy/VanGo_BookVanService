@@ -79,6 +79,7 @@ $activePage = "../admin/round.php";
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
+
 <body class="hold-transition sidebar-mini sidebar-collapse" style="font-family: 'Kanit'">
 
     <?php
@@ -100,7 +101,7 @@ $activePage = "../admin/round.php";
             <ul class="navbar-nav ml-auto">
                 <?php
                 if (isset($_SESSION['UserID'])) {
-                    echo "<li><a class=\"nav-link\" href=\"_login.php\">ยินดีต้อนรับ, คุณ " . $_SESSION['UserInfo'] . "</a></li>";
+                    echo "<li><a class=\"nav-link\" href=\"\">ยินดีต้อนรับ, คุณ " . $_SESSION['UserInfo'] . "</a></li>";
                     echo "<li><a class=\"nav-link active\" href=\"\" data-toggle=\"modal\" data-target=\"#logoutModal\" style=\"background:#80ff00;color:#000;\">ออกจากระบบ</a></li>";
                 } else {
                     echo
@@ -161,7 +162,7 @@ $activePage = "../admin/round.php";
                             </a>
                         </li>
                         <?php
-                        if (isset($_SESSION['UserID'])) {
+                        if (isset($_SESSION['UserID']) && $_SESSION['Role'] != 'A') {
                             echo "
               <li class=\"nav-item\">
                 <a href=\"user_history.php\" class=\"nav-link\">
@@ -261,6 +262,91 @@ $activePage = "../admin/round.php";
 
 
         <script>
+  // toast
+  // common toast
+  function showerror(error) {
+    $(document).Toasts('create', {
+      class: 'bg-danger',
+      body: error,
+      title: 'มีข้อผิดพลาด!',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
+
+  function showsuccess(successbody) {
+    $(document).Toasts('create', {
+      class: 'bg-success',
+      body: successbody,
+      title: 'สำเร็จ!',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
+
+
+  // delete toast
+  function deleteerror(error) {
+    $(document).Toasts('create', {
+      class: 'bg-danger',
+      body: error,
+      title: 'ไม่สามารถลบข้อมูลได้',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
+
+  function deletesuccess() {
+    $(document).Toasts('create', {
+      class: 'bg-success',
+      body: 'ลบข้อมูลออกจากฐานข้อมูลแล้ว',
+      title: 'ลบข้อมูลสำเร็จแล้ว',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
+
+  // insert toast
+  function inserterror(error) {
+    $(document).Toasts('create', {
+      class: 'bg-danger',
+      body: error,
+      title: 'ไม่สามารถเพิ่มข้อมูลได้',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
+
+  function insertsuccess() {
+    $(document).Toasts('create', {
+      class: 'bg-success',
+      body: 'เพิ่มข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว',
+      title: 'เพิ่มข้อมูลสำเร็จ',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
+
+  // update toast
+  function updateerror(error) {
+    $(document).Toasts('create', {
+      class: 'bg-danger',
+      body: error,
+      title: 'ไม่สามารถแก้ไขข้อมูลได้',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
+
+  function updatesuccess() {
+    $(document).Toasts('create', {
+      class: 'bg-success',
+      body: 'แก้ไขข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว',
+      title: 'แก้ไขข้อมูลสำเร็จ',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
             $(document).ready(function() {
                 $("#loginModal").on("show", function() {
                     $("body").addClass("modal-open");
@@ -302,4 +388,5 @@ $activePage = "../admin/round.php";
                 event.preventDefault();
                 window.location.href = "_logout.php";
             });
+
         </script>

@@ -58,7 +58,8 @@
                                         "<td>" . $row["VanNumber"] . "</td>" .
                                         "<td>" . $row["EmployeeName"] . "</td>" .
                                         "<td align=\"center\">
-                                        <a name=\"Edit\" value=\"Edit\" href=\"user_booking.php?RoundID=" . $row["RoundID"] . "\" title=\"Booking\" /> 
+                                        <a name=\"Booking\" value=\"Booking\" href=\"user_booking.php?RoundID=" . $row["RoundID"] . "\" 
+                                        class=\"booking_data\" title=\"Booking\" /> 
                                         <i class=\"fas fa-cart-plus fa-2x\"></i></a>
                                         </td>" .
                                         "</tr>";
@@ -84,5 +85,21 @@
 </div>
 
 <?php include '_footer.php' ?>
+
+<script>
+    $(document).ready(() => {
+
+        <?php
+
+        if ($_SESSION['Role'] == 'A') {
+            echo "window.location.href = \"admin/round.php\";";
+        } else if ($_SESSION['Role'] != 'U') {
+            echo "window.location.href = \"_error404.php\";";
+        }
+
+        ?>
+
+    });
+</script>
 
 </html>

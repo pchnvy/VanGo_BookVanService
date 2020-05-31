@@ -191,4 +191,20 @@
 
 <?php include '_footer.php' ?>
 
+<script>
+    $(document).ready(() => {
+
+        <?php 
+            if (!isset($_SESSION['UserID'])){
+                echo "window.location.href = \"_error404.php\";";
+            }
+            else if ($_SESSION['Role'] != 'U'){
+                echo "window.location.href = \"_error404.php\";";
+            }
+
+        ?>
+        
+    });
+</script>
+
 </html>

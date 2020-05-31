@@ -100,13 +100,15 @@
 <script>
     $(document).ready(() => {
 
-        if(<?php echo !isset($_SESSION['UserID']) ?>){
-            window.location.href = "pages/examples/404.html";
-        }
+        <?php 
+            if (!isset($_SESSION['UserID'])){
+                echo "window.location.href = \"_error404.php\";";
+            }
+            else if ($_SESSION['Role'] != 'U'){
+                echo "window.location.href = \"_error404.php\";";
+            }
 
-        if(<?php echo $_SESSION['Role'] != 'U' ?>){
-            window.location.href = "pages/examples/404.html";
-        }
+        ?>
         
     });
 </script>
