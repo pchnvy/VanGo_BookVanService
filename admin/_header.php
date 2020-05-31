@@ -165,11 +165,11 @@ session_start();
         if (isset($_SESSION['UserID'])) {
           echo "<li><a class=\"nav-link\" href=\"\" style=\"color:#000;\">ยินดีต้อนรับ, คุณ " . $_SESSION['UserInfo'] . "</a></li>";
           echo "<li><a class=\"nav-link active\" href=\"\" data-toggle=\"modal\" data-target=\"#logoutModal\" style=\"background:#000;color:#fff;\">ออกจากระบบ</a></li>";
-      } else {
+        } else {
           echo "<li><a class=\"nav-link active\" href=\"\" data-toggle=\"modal\" data-target=\"#loginModal\" style=\"background:#fff;color:#000;\">สมัครสมาชิก</a></li>";
           echo "<span style=\"padding: 5px;\"></span>";
           echo "<li><a class=\"nav-link active\" href=\"\" id=\"LoginModal\" data-toggle=\"modal\" data-target=\"#loginModal\" style=\"background:#000;color:#fff;\">เข้าสู่ระบบ</a></li>";
-      }
+        }
         ?>
       </ul>
     </nav>
@@ -265,6 +265,110 @@ session_start();
     </aside>
     <!-- /.control-sidebar -->
 
+    <!-- Register Modal Form -->
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <form method="post" id="registerForm" autocomplete="off">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="registerModalLabel"><strong>สมัครสมาชิก</strong></h4>
+              <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <div class="form-group clearfix">
+                  <div class="row mb-2">
+                    <div class="col-sm col-md">
+                      <label for="iName">ชื่อ</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="iName" name="iName" maxlength="60" required>
+                      </div>
+                    </div>
+                    <div class="col-sm col-md">
+                      <label for="iLastname">นามสกุล</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="iLastname" name="iLastname" maxlength="60" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="iEmail">อีเมลล์</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    </div>
+                    <input type="email" class="form-control" id="iEmail" name="iEmail" placeholder="example@vango.com" maxlength="30" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="iPassword">รหัสผ่าน</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="password" class="form-control" id="iPassword" name="iPassword" placeholder="รหัสผ่าน" maxlength="30" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row mb-2">
+                    <div class="col-sm col-md">
+                      <label for="iTelephone">เบอร์โทรศัพท์</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="iTelephone" name="iTelephone" pattern="[0-9]{10}" placeholder="0987654321" maxlength="30" required>
+                      </div>
+                    </div>
+                    <div class="col-sm col-md">
+                      <label for="iSex">เพศ</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                        </div>
+                        <select class="form-control" name="iSex" id="iSex" required>
+                          <option value="ชาย">ชาย</option>
+                          <option value="หญิง">หญิง</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="iPaymentNumber">เลขที่บัญชี/หมายเลขบัตร</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="far fa-credit-card"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="iPaymentNumber" name="iPaymentNumber" placeholder="ผูกบัญชีธนาคาร หมายเลขบัตรเครดิต หรือเดบิต" maxlength="30" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="iPaymentMethod">วิธีการชำระเงิน</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-university"></i></span>
+                    </div>
+                    <select class="form-control" name="iPaymentMethod" id="iPaymentMethod" required>
+                      <option>ผูกกับบัญชีธนาคาร</option>
+                      <option>Visa</option>
+                      <option>Master Card</option>
+                      <option>PayPal</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" name="login" id="login" Value="login" class="btn btn-primary">สมัครสมาชิก</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <!-- Login Modal Form -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -347,6 +451,28 @@ session_start();
         $('#menuBar a[href^="/' + location.pathname.substring(location.pathname.lastIndexOf("/") + 1) + '"]').addClass('active');
       });
 
+      $("#RegisterModal").click(function() {
+        document.getElementById("registerForm").reset();
+      });
+
+      $('#registerForm').on('submit', function(event) {
+        event.preventDefault();
+        $.ajax({
+          url: "../_register.php",
+          method: "POST",
+          data: $('#registerForm').serialize(),
+          dataType: "json",
+          success: function(data) {
+            $('#registerModal').modal('hide');
+            if (data['@ErrorMsg'] != null) {
+              showerror(data['@ErrorMsg']);
+            } else {
+              showsuccess("สมัครสมาชิกเรียบร้อยแล้ว");
+            }
+          }
+        });
+      });
+
       $("#LoginModal").click(function() {
         document.getElementById("loginForm").reset();
       });
@@ -357,16 +483,21 @@ session_start();
           url: "../_login.php",
           method: "POST",
           data: $('#loginForm').serialize(),
+          dataType: "json",
           success: function(data) {
-            $('#LoginModal').modal('hide');
-            if (data != null) {
+            $('#loginModal').modal('hide');
+            if (data['@ErrorMsg'] != null) {
+              showerror(data['@ErrorMsg']);
+            } else {
+              showsuccess("กำลังเข้าสู่ระบบ กรุณารอสักครู่");
+
               setTimeout(() => {
                 if ($('#radioPrimary1').is(":checked")) {
                   window.location.href = "../index.php";
                 } else {
                   window.location.href = "round.php";
                 }
-              }, 500);
+              }, 3000);
             }
           }
         });
