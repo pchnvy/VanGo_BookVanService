@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $conn = new mysqli("localhost", "root", "", "vango");
     if(!empty($_POST))
@@ -10,7 +11,7 @@ $conn = new mysqli("localhost", "root", "", "vango");
         $iUsagetime = mysqli_real_escape_string($conn,$_POST["iUsagetime"]);
         $iPrice = mysqli_real_escape_string($conn,$_POST["iPrice"]);
         $iDescription = mysqli_real_escape_string($conn,$_POST["iDescription"]);
-        $iUser = 'Admin';
+        $iUser = $_SESSION['UserID'];
 
         $query = "call sp_Route_AddRoute('$iName','$iBegin','$iDestination','$iUsagetime','$iPrice','$iDescription','$iUser',@ErrorMsg)";    
         $objQuery = $conn->query($query);

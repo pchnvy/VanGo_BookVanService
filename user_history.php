@@ -33,11 +33,12 @@
                     <div class="timeline">
                         <!-- timeline group -->
                         <?php
+                        $inputUser = $_SESSION['UserID'];
                         $conn = mysqli_connect('localhost', 'root', '', 'vango') or die("Error Connect to Database");
                         if ($conn->connect_error) {
                             die("Connection failed:" . $conn->connect_error);
                         }
-                        $sql = "call sp_HistoryUser('admin')";
+                        $sql = "call sp_HistoryUser('$inputUser')";
                         $result = $conn->query($sql);
 
                         $round = "";

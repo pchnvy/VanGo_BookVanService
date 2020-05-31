@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $conn = new mysqli("localhost", "root", "", "vango");
     if(!empty($_POST))
@@ -6,7 +7,7 @@ $conn = new mysqli("localhost", "root", "", "vango");
         $output = '';
         $updateVanID = mysqli_real_escape_string($conn,$_POST["updateVanID"]);
         $updateinputNumber = mysqli_real_escape_string($conn,$_POST["updateinputNumber"]);
-        $updateinputUser = 'Admin';
+        $updateinputUser = $_SESSION['UserID'];
         $updateinputFuel = mysqli_real_escape_string($conn,$_POST["updateinputFuel"]);
 
         $query = "call sp_Van_EditVanSeat('$updateVanID','$updateinputNumber','$updateinputFuel','$updateinputUser',@ErrorMsg)";

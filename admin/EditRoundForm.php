@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $conn = new mysqli("localhost", "root", "", "vango");
     if(!empty($_POST))
@@ -8,7 +9,7 @@ $conn = new mysqli("localhost", "root", "", "vango");
         $uRouteID = mysqli_real_escape_string($conn, $_POST["uRouteID"]);
         $uVanID = mysqli_real_escape_string($conn, $_POST["uVanID"]);
         $uEmployeeID = mysqli_real_escape_string($conn, $_POST["uEmployeeID"]);
-        $uUser = 'Admin';
+        $uUser = $_SESSION['UserID'];
 
         $query = "call sp_Round_EditRound('$uRoundID','$uRouteID','$uVanID','$uEmployeeID','$uUser',@ErrorMsg)";    
         $objQuery = $conn->query($query);
