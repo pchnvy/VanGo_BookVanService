@@ -482,9 +482,7 @@ $activePage = "../admin/round.php";
                     dataType: "json",
                     success: function(data) {
                         $('#loginModal').modal('hide');
-                        if (data['@ErrorMsg'] != null) {
-                            showerror(data['@ErrorMsg']);
-                        } else {
+                        if (data != null) {
                             showsuccess("กำลังเข้าสู่ระบบ กรุณารอสักครู่");
 
                             setTimeout(() => {
@@ -494,6 +492,8 @@ $activePage = "../admin/round.php";
                                     window.location.href = "admin/round.php";
                                 }
                             }, 3000);
+                        } else {
+                            showerror("Username หรือ Password ไม่ถูกต้อง");
                         }
                     }                    
                 });

@@ -310,6 +310,15 @@
 
 <script>
     $(document).ready(() => {
+        <?php
+        if (!isset($_SESSION['UserID'])) {
+            echo "window.location.href = \"../_error404.php\";";
+        } else if ($_SESSION['Role'] != 'A') {
+            echo "window.location.href = \"../_error404.php\";";
+        }
+
+        ?>
+
         // search
         $("#myInput").on("keyup", function() {
             var value = $(this).val().toLowerCase();

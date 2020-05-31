@@ -21,37 +21,37 @@
             <div class="row mb-2">
                 <div class="container-fluid" id="vantable">
                     <h2>ตารางแสดงรายละเอียดของรถตู้</h2>
-                    <p>ลองพิมพ์เพื่อค้นหาสิ่งที่ท่านต้องการ เช่น รหัส, ทะเบียนรถ หรือประเภทของน้ำมันที่ใช้ เป็นต้น</p>  
+                    <p>ลองพิมพ์เพื่อค้นหาสิ่งที่ท่านต้องการ เช่น รหัส, ทะเบียนรถ หรือประเภทของน้ำมันที่ใช้ เป็นต้น</p>
                     <div class="col-sm-2 col-md-2">
                         <input class="form-control" id="myInput" type="text" placeholder="Search..">
-                            </br>
-                        <button type="button" class="btn btn-primary" href="" id="OpenModal" data-toggle="modal" data-target="#AddVanModal" style="background-color:dodgerblue;" >เพิ่มข้อมูลรถตู้</button>
+                        </br>
+                        <button type="button" class="btn btn-primary" href="" id="OpenModal" data-toggle="modal" data-target="#AddVanModal" style="background-color:dodgerblue;">เพิ่มข้อมูลรถตู้</button>
                     </div>
                     <br>
                     <table class="table table-bordered table-striped">
                         <thead style="text-align: center;">
-                        <tr>
-                            <th>รหัสรถตู้</th>
-                            <th>ทะเบียนรถ</th>
-                            <th>จำนวนที่นั่ง</th>
-                            <th>ประเภทน้ำมัน</th>
-                            <th>สร้างเมื่อ</th>
-                            <th>สร้างโดย</th>
-                            <th>แก้ไขเมื่อ</th>
-                            <th>แก้ไขโดย</th>
-                            <th> </th>
-                            <th> </th>
-                        </tr>
+                            <tr>
+                                <th>รหัสรถตู้</th>
+                                <th>ทะเบียนรถ</th>
+                                <th>จำนวนที่นั่ง</th>
+                                <th>ประเภทน้ำมัน</th>
+                                <th>สร้างเมื่อ</th>
+                                <th>สร้างโดย</th>
+                                <th>แก้ไขเมื่อ</th>
+                                <th>แก้ไขโดย</th>
+                                <th> </th>
+                                <th> </th>
+                            </tr>
                         </thead>
                         <tbody id="myTable">
-                        <?php
+                            <?php
                             $conn = mysqli_connect('localhost', 'root', '', 'vango') or die("Error Connect to Database");
                             if ($conn->connect_error) {
                                 die("Connection failed:" . $conn->connect_error);
                             }
                             $sql = "call sp_van_getvan";
                             $result = $conn->query($sql);
-                            
+
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<tr>" .
@@ -64,11 +64,11 @@
                                         "<td>" . $row["UpdateDate"] . "</td>" .
                                         "<td>" . $row["UpdateBy"] . "</td>" .
                                         "<td align=\"center\">
-                                        <a name=\"Edit\" value=\"Edit\" id=".$row["VanID"]." href=\"#\" 
+                                        <a name=\"Edit\" value=\"Edit\" id=" . $row["VanID"] . " href=\"#\" 
                                         class=\"edit_data\" title=\"Edit\" /> 
                                         <i class=\"far fa-edit\"></i></a>
-                                        </td>" ."<td align=\"center\">
-                                        <a name=\"Delete\" value=\"Delete\" id=".$row["VanID"]." href=\"#\" 
+                                        </td>" . "<td align=\"center\">
+                                        <a name=\"Delete\" value=\"Delete\" id=" . $row["VanID"] . " href=\"#\" 
                                         class=\"delete_data\" title=\"Delete\" /> 
                                         <i class=\"far fa-trash-alt text-red\"></i></td>" .
                                         "</tr>";
@@ -78,7 +78,7 @@
                                 echo "0 result.";
                             }
                             mysqli_close($conn);
-                        ?>
+                            ?>
                         </tbody>
                     </table>
                     <p>Note : .</p>
@@ -104,7 +104,7 @@
                         <div id="pb-modalreglog-progressbar"></div>
                     </div>
                     <div class="form-group">
-                        <input type="hidden" name="VanID" id="VanID"/>
+                        <input type="hidden" name="VanID" id="VanID" />
                     </div>
                     <div class="form-group">
                         <label for="email">ทะเบียนรถตู้</label>
@@ -122,7 +122,8 @@
                                 <option>LPG</option>
                                 <option>NGV</option>
                                 <option>แก๊สโซฮอล์ E20</option>
-                                <option>แก๊สโซฮอล์ E85</option></option>
+                                <option>แก๊สโซฮอล์ E85</option>
+                                </option>
                                 <option>แก๊สโซฮอล์ 95</option>
                                 <option>แก๊สโซฮอล์ 91</option>
                                 <option>ไบโอดีเซล </option>
@@ -138,7 +139,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name ="vanInsert" id="vanInsert" Value="vanInsert" class="btn btn-primary">เพิ่มข้อมูล</button>
+                    <button type="submit" name="vanInsert" id="vanInsert" Value="vanInsert" class="btn btn-primary">เพิ่มข้อมูล</button>
                     <button type="button" class="btn btn-secondary" id="closeModal" data-dismiss="modal">ยกเลิก</button>
                 </div>
             </form>
@@ -162,7 +163,7 @@
                         <div id="pb-modalreglog-progressbar"></div>
                     </div>
                     <div class="form-group">
-                        <input type="hidden" name="updateVanID" id="updateVanID"/>
+                        <input type="hidden" name="updateVanID" id="updateVanID" />
                     </div>
                     <div class="form-group">
                         <label for="email">ทะเบียนรถตู้</label>
@@ -180,7 +181,8 @@
                                 <option>LPG</option>
                                 <option>NGV</option>
                                 <option>แก๊สโซฮอล์ E20</option>
-                                <option>แก๊สโซฮอล์ E85</option></option>
+                                <option>แก๊สโซฮอล์ E85</option>
+                                </option>
                                 <option>แก๊สโซฮอล์ 95</option>
                                 <option>แก๊สโซฮอล์ 91</option>
                                 <option>ไบโอดีเซล </option>
@@ -196,7 +198,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name ="vanUpdate" id="vanUpdate" Value="vanUpdate" class="btn btn-primary">แก้ไขข้อมูล</button>
+                    <button type="submit" name="vanUpdate" id="vanUpdate" Value="vanUpdate" class="btn btn-primary">แก้ไขข้อมูล</button>
                     <button type="button" class="btn btn-secondary" id="closeModalUpdate" data-dismiss="modal">ยกเลิก</button>
                 </div>
             </form>
@@ -219,14 +221,14 @@
                         <div id="pb-modalreglog-progressbar"></div>
                     </div>
                     <div class="form-group">
-                        <input type="hidden" name="DeleteVanID" id="DeleteVanID"/>
+                        <input type="hidden" name="DeleteVanID" id="DeleteVanID" />
                     </div>
                     <div class="form-group">
                         <label for="email">คุณต้องการที่จะลบข้อมูลรถตู้หรือไม่?</label>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name ="DeleteVan" id="DeleteVan" Value="vanUpdate" class="btn btn-primary">ยืนยัน</button>
+                    <button type="submit" name="DeleteVan" id="DeleteVan" Value="vanUpdate" class="btn btn-primary">ยืนยัน</button>
                     <button type="button" class="btn btn-secondary" id="closeModalDelete" data-dismiss="modal">ยกเลิก</button>
                 </div>
             </form>
@@ -241,113 +243,128 @@
 
 
 <script>
-$(document).ready(() => {
-    var PageInfo = "ข้อมูลรถตู้";
+    $(document).ready(() => {
+        <?php
+        if (!isset($_SESSION['UserID'])) {
+            echo "window.location.href = \"../_error404.php\";";
+        } else if ($_SESSION['Role'] != 'A') {
+            echo "window.location.href = \"../_error404.php\";";
+        }
 
-    // search
-    $("#myInput").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        ?>
+
+        // search
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
         });
-    });    
 
-    // ClearModal
-    $('#OpenModal').click(function() {
-        document.getElementById("AddVanForm").reset();
-        $('#inputSeat').prop('disabled', false);
-        document.getElementById("myModalLabel").innerHTML = "เพิ่มข้อมูลรถตู้";
-        document.getElementById("vanInsert").innerHTML = "เพิ่มข้อมูล";
-    });
-
-    // AddModal
-    $('#AddVanForm').on('submit',function(event){
-        event.preventDefault();
-        $.ajax({
-            url:"AddVanForm.php",
-            method:"POST",
-            data:$('#AddVanForm').serialize(),
-            dataType: "json",
-            success:function(data)
-            {
-                document.getElementById("AddVanForm").reset();                
-                $('#AddVanModal').modal('hide');
-                if(data['@ErrorMsg']!=null){inserterror(data['@ErrorMsg']);}
-                else{insertsuccess();}
-                setTimeout(() => {
-                    location.reload();
-                }, 3000);
-            }
+        // ClearModal
+        $('#OpenModal').click(function() {
+            document.getElementById("AddVanForm").reset();
+            $('#inputSeat').prop('disabled', false);
+            document.getElementById("myModalLabel").innerHTML = "เพิ่มข้อมูลรถตู้";
+            document.getElementById("vanInsert").innerHTML = "เพิ่มข้อมูล";
         });
-    });
 
-    // EditData
-    $(document).on('click','.edit_data',function(){
-        var VanID = $(this).attr("id");
-        $.ajax({
-            url:"fetch.php",
-            method:"POST",
-            data:{VanID:VanID},
-            dataType:"json",
-            success:function(data){
-                $('#updateinputNumber').val(data.VanNumber);
-                // $('#updateinputFuel').children("option:selected").val(data.Fueltype);
-                document.getElementById("updateinputFuel").value = data.Fueltype;
-                $('#updateinputSeat').val(data.SeatCount);
-                $('#updateVanID').val(VanID);
-                $('#updateinputSeat').prop('disabled', true);
-                $('#EditVanModal').modal('show');
-            }
-        })
-    });
-
-    $('#EditVanForm').on('submit',function(event){
-        event.preventDefault();
-        $.ajax({
-            url:"EditVanForm.php",
-            method:"POST",
-            data:$('#EditVanForm').serialize(),
-            dataType:"json",
-            success:function(data)
-            {
-                document.getElementById("EditVanForm").reset();
-                $('#EditVanModal').modal('hide');
-                if(data['@ErrorMsg']!=null){updateerror(data['@ErrorMsg']);}
-                else{updatesuccess();}
-                setTimeout(() => {
-                    location.reload();
-                }, 3000);             
-            }
+        // AddModal
+        $('#AddVanForm').on('submit', function(event) {
+            event.preventDefault();
+            $.ajax({
+                url: "AddVanForm.php",
+                method: "POST",
+                data: $('#AddVanForm').serialize(),
+                dataType: "json",
+                success: function(data) {
+                    document.getElementById("AddVanForm").reset();
+                    $('#AddVanModal').modal('hide');
+                    if (data['@ErrorMsg'] != null) {
+                        inserterror(data['@ErrorMsg']);
+                    } else {
+                        insertsuccess();
+                    }
+                    setTimeout(() => {
+                        location.reload();
+                    }, 3000);
+                }
+            });
         });
-    });
 
-    // DeleteData
-    $(document).on('click','.delete_data',function(){
-        var VanID = $(this).attr("id");
-        $('#DeleteVanID').val(VanID);
-        $('#DeleteVanModal').modal('show');
-    });
-
-    $('#DeleteVanForm').on('submit',function(event){
-        event.preventDefault();
-        $.ajax({
-            url:"DeleteVanForm.php",
-            method:"POST",
-            data:$('#DeleteVanForm').serialize(),
-            dataType:"json",
-            success:function(data)
-            {
-                $('#DeleteVanModal').modal('hide');
-                if(data['@ErrorMsg']!=null){deleteerror(data['@ErrorMsg']);}
-                else{deletesuccess();}
-                setTimeout(() => {
-                    location.reload();
-                }, 3000);
-            }
+        // EditData
+        $(document).on('click', '.edit_data', function() {
+            var VanID = $(this).attr("id");
+            $.ajax({
+                url: "fetch.php",
+                method: "POST",
+                data: {
+                    VanID: VanID
+                },
+                dataType: "json",
+                success: function(data) {
+                    $('#updateinputNumber').val(data.VanNumber);
+                    // $('#updateinputFuel').children("option:selected").val(data.Fueltype);
+                    document.getElementById("updateinputFuel").value = data.Fueltype;
+                    $('#updateinputSeat').val(data.SeatCount);
+                    $('#updateVanID').val(VanID);
+                    $('#updateinputSeat').prop('disabled', true);
+                    $('#EditVanModal').modal('show');
+                }
+            })
         });
-    });
 
-});
+        $('#EditVanForm').on('submit', function(event) {
+            event.preventDefault();
+            $.ajax({
+                url: "EditVanForm.php",
+                method: "POST",
+                data: $('#EditVanForm').serialize(),
+                dataType: "json",
+                success: function(data) {
+                    document.getElementById("EditVanForm").reset();
+                    $('#EditVanModal').modal('hide');
+                    if (data['@ErrorMsg'] != null) {
+                        updateerror(data['@ErrorMsg']);
+                    } else {
+                        updatesuccess();
+                    }
+                    setTimeout(() => {
+                        location.reload();
+                    }, 3000);
+                }
+            });
+        });
+
+        // DeleteData
+        $(document).on('click', '.delete_data', function() {
+            var VanID = $(this).attr("id");
+            $('#DeleteVanID').val(VanID);
+            $('#DeleteVanModal').modal('show');
+        });
+
+        $('#DeleteVanForm').on('submit', function(event) {
+            event.preventDefault();
+            $.ajax({
+                url: "DeleteVanForm.php",
+                method: "POST",
+                data: $('#DeleteVanForm').serialize(),
+                dataType: "json",
+                success: function(data) {
+                    $('#DeleteVanModal').modal('hide');
+                    if (data['@ErrorMsg'] != null) {
+                        deleteerror(data['@ErrorMsg']);
+                    } else {
+                        deletesuccess();
+                    }
+                    setTimeout(() => {
+                        location.reload();
+                    }, 3000);
+                }
+            });
+        });
+
+    });
 </script>
 
 <?php include '../admin/_footer.php' ?>

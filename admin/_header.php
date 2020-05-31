@@ -83,6 +83,27 @@ session_start();
 
 <script>
   // toast
+  // common toast
+  function showerror(error) {
+    $(document).Toasts('create', {
+      class: 'bg-danger',
+      body: error,
+      title: 'มีข้อผิดพลาด!',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
+
+  function showsuccess(successbody) {
+    $(document).Toasts('create', {
+      class: 'bg-success',
+      body: successbody,
+      title: 'สำเร็จ!',
+      subtitle: 'ปิด',
+      icon: 'fas fa-envelope fa-lg',
+    })
+  }
+
   // delete toast
   function deleteerror(error) {
     $(document).Toasts('create', {
@@ -166,7 +187,7 @@ session_start();
           echo "<li><a class=\"nav-link\" href=\"\" style=\"color:#000;\">ยินดีต้อนรับ, คุณ " . $_SESSION['UserInfo'] . "</a></li>";
           echo "<li><a class=\"nav-link active\" href=\"\" data-toggle=\"modal\" data-target=\"#logoutModal\" style=\"background:#000;color:#fff;\">ออกจากระบบ</a></li>";
         } else {
-          echo "<li><a class=\"nav-link active\" href=\"\" data-toggle=\"modal\" data-target=\"#loginModal\" style=\"background:#fff;color:#000;\">สมัครสมาชิก</a></li>";
+          echo "<li><a class=\"nav-link active\" href=\"\" id=\"RegisterModal\" data-toggle=\"modal\" data-target=\"#registerModal\" style=\"background:#fff;color:#000;\">สมัครสมาชิก</a></li>";
           echo "<span style=\"padding: 5px;\"></span>";
           echo "<li><a class=\"nav-link active\" href=\"\" id=\"LoginModal\" data-toggle=\"modal\" data-target=\"#loginModal\" style=\"background:#000;color:#fff;\">เข้าสู่ระบบ</a></li>";
         }
@@ -486,9 +507,7 @@ session_start();
           dataType: "json",
           success: function(data) {
             $('#loginModal').modal('hide');
-            if (data['@ErrorMsg'] != null) {
-              showerror(data['@ErrorMsg']);
-            } else {
+            if (data != null) {
               showsuccess("กำลังเข้าสู่ระบบ กรุณารอสักครู่");
 
               setTimeout(() => {
@@ -498,6 +517,8 @@ session_start();
                   window.location.href = "round.php";
                 }
               }, 3000);
+            } else {
+              showerror("Username หรือ Password ไม่ถูกต้อง");
             }
           }
         });

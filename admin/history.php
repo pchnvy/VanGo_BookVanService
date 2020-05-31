@@ -39,7 +39,7 @@
                         }
                         $sql = "call sp_HistoryAdmin";
                         $result = $conn->query($sql);
-                            
+
                         $round = "";
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
@@ -60,12 +60,12 @@
                                         echo "<i class=\"fas fa-calendar-check bg-green\"></i>";
                                     }
 
-                                         echo   "<div class=\"timeline-item\">
+                                    echo   "<div class=\"timeline-item\">
                                                 <h3 class=\"timeline-header\">รอบรถ <a href=\"#\">" . $row["RoundID"] . "</a>
                                                 " . $row["RoundStatusName"] . "</h3>
     
                                                     <div class=\"timeline-body\">
-                                                        <h4>[" . $row["DepartingTime"] . " - " . $row["ArrivingTime"] ."] " . $row["RouteName"] . "</h4>
+                                                        <h4>[" . $row["DepartingTime"] . " - " . $row["ArrivingTime"] . "] " . $row["RouteName"] . "</h4>
                                                         ยอดขายตั๋วทั้งหมด: " . $row["TotalSales"] . " บาท (ตั๋วใบละ " . $row["PricePerSeat"] . " บาท)<br />
                                                         จำนวนผู้โดยสาร: " . $row["SoldSeat"] . " <br />
                                                         รถตู้ที่ใช้เดินทาง: " . $row["VanNumber"] . "<br />
@@ -96,5 +96,20 @@
 
 
 <?php include '../admin/_footer.php' ?>
+
+<script>
+    $(document).ready(() => {
+
+        <?php
+        if (!isset($_SESSION['UserID'])) {
+            echo "window.location.href = \"../_error404.php\";";
+        }
+        else if ($_SESSION['Role'] != 'A') {
+            echo "window.location.href = \"../_error404.php\";";
+        }
+
+        ?>
+    });
+</script>
 
 </html>
