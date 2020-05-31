@@ -117,7 +117,7 @@
                             <?php
                             foreach ($_POST as $key => $seatID) {
                                 if (substr(htmlspecialchars($key), 0, 4) == 'Seat') {
-                                    echo htmlspecialchars($seatID) . ",";
+                                    // echo htmlspecialchars($seatID) . ",";
                                     echo "<input style=\"display:none\" name=\"".$seatID."\" id=\"".$seatID."\" value=\"".$seatID."\" type=\"text\" /><br>";
                                 }
                             }
@@ -135,13 +135,6 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-</div>
-
-
-
-</div>
-</div>
-<!-- /.content-header -->
 </div>
 
 <?php include '_footer.php' ?>
