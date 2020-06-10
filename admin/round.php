@@ -53,30 +53,34 @@
                             $sql = "call sp_Round_GetRound()";
                             $result = $conn->query($sql);
 
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>" .
-                                        "<td>" . $row["DepartingTime"] . "</td>" .
-                                        "<td>" . $row["ArrivingTime"] . "</td>" .
-                                        "<td>" . $row["RouteName"] . "</td>" .
-                                        "<td>" . $row["VanNumber"] . "</td>" .
-                                        "<td>" . $row["EmployeeName"] . "</td>" .
-                                        "<td>" . $row["CreateDate"] . "</td>" .
-                                        "<td>" . $row["CreateBy"] . "</td>" .
-                                        "<td>" . $row["UpdateDate"] . "</td>" .
-                                        "<td>" . $row["UpdateBy"] . "</td>" .
-                                        "<td align=\"center\">
-                                        <a name=\"Edit\" value=\"Edit\" id=" . $row["RoundID"] . " href=\"#\" 
-                                        class=\"edit_data\" title=\"Edit\" /> 
-                                        <i class=\"far fa-edit\"></i></a>
-                                        </td>" . "<td align=\"center\">
-                                        <a name=\"Delete\" value=\"Delete\" id=" . $row["RoundID"] . " href=\"#\" 
-                                        class=\"delete_data\" title=\"Delete\" /> 
-                                        <i class=\"far fa-trash-alt text-red\"></i></td>" .
-                                        "</tr>";
+                            if ($result != null){
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<tr>" .
+                                            "<td>" . $row["RoundDate"] . "</td>" .
+                                            "<td>" . $row["DepartingTime"] . "</td>" .
+                                            "<td>" . $row["ArrivingTime"] . "</td>" .
+                                            "<td>" . $row["RouteName"] . "</td>" .
+                                            "<td>" . $row["VanNumber"] . "</td>" .
+                                            "<td>" . $row["EmployeeName"] . "</td>" .
+                                            "<td>" . $row["CreateDate"] . "</td>" .
+                                            "<td>" . $row["CreateBy"] . "</td>" .
+                                            "<td>" . $row["UpdateDate"] . "</td>" .
+                                            "<td>" . $row["UpdateBy"] . "</td>" .
+                                            "<td align=\"center\">
+                                            <a name=\"Edit\" value=\"Edit\" id=" . $row["RoundID"] . " href=\"#\" 
+                                            class=\"edit_data\" title=\"Edit\" /> 
+                                            <i class=\"far fa-edit\"></i></a>
+                                            </td>" . "<td align=\"center\">
+                                            <a name=\"Delete\" value=\"Delete\" id=" . $row["RoundID"] . " href=\"#\" 
+                                            class=\"delete_data\" title=\"Delete\" /> 
+                                            <i class=\"far fa-trash-alt text-red\"></i></td>" .
+                                            "</tr>";
+                                    }
+                                    echo "</table>";
                                 }
-                                echo "</table>";
-                            } else {
+                            }
+                            else {
                                 echo "0 result.";
                             }
                             mysqli_close($conn);
