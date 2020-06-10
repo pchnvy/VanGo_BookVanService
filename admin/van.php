@@ -99,7 +99,7 @@
         <div class="modal-content">
             <form autocomplete="off" method="post" id="AddVanForm">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel"></h4>
+                    <h4 class="modal-title" id="myModalLabel">เพิ่มข้อมูลรถตู้</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">

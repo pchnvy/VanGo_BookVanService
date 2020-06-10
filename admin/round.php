@@ -31,7 +31,6 @@
                     <table class="table table-bordered table-striped">
                         <thead style="text-align: center;">
                             <tr>
-                                <th>วันที่</th>
                                 <th>เวลาออก</th>
                                 <th>เวลาถึง</th>
                                 <th>เส้นทาง</th>
@@ -114,9 +113,9 @@
                         <input type="hidden" name="RoundID" id="RoundID" />
                     </div>
                     <div class="form-group">
-                        <label for="iRoundDate">วันและเวลาที่ออกเดินทาง</label>
+                        <label for="iRoundDate">เวลาที่ออกเดินทาง</label>
                         <div class="input-group pb-modalreglog-input-group">
-                            <input type="datetime-local" class="form-control datetimepicker-input" name="iRoundDate" id="iRoundDate" required>
+                            <input type="time" class="form-control datetimepicker-input" name="iRoundDate" id="iRoundDate" required>
                             <div class="input-group-append">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
@@ -226,7 +225,7 @@
                         <input type="hidden" name="uRoundID" id="uRoundID" />
                     </div>
                     <div class="form-group">
-                        <label for="uRoundDate">วันและเวลาที่ออกเดินทาง</label>
+                        <label for="uRoundDate">เวลาที่ออกเดินทาง</label>
                         <div class="input-group pb-modalreglog-input-group">
                             <input type="text" class="form-control datetimepicker-input" name="uRoundDate" id="uRoundDate" disabled>
                             <div class="input-group-append">
@@ -409,7 +408,7 @@
                 dataType: "json",
                 success: function(data) {
                     $('#uRoundID').val(RoundID);
-                    $('#uRoundDate').val(data.RoundDate);
+                    $('#uRoundDate').val(data.RoundTime);
                     $('#uRouteID').val(data.RouteID);
                     $('#uVanID').val(data.VanID);
                     $('#uEmployeeID').val(data.EmployeeID);
