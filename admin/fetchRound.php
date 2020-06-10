@@ -3,7 +3,7 @@ $conn = new mysqli("localhost", "root", "", "vango");
 if(isset($_POST["RoundID"]))
 {
     $sql = "SELECT RoundID
-			,DATE_FORMAT(RoundDate, \"%d-%b-%Y %H:%i\") AS RoundDate
+			,DATE_FORMAT(RoundTime, \"%H:%i\") AS RoundTime
 			,RouteID
 			,VanID
 			,EmployeeID

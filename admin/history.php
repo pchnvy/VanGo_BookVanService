@@ -49,7 +49,6 @@
                                             </div>";
                                     $round = $row["RoundDate"];
                                 }
-
                                 if ($round == $row["RoundDate"]) {
                                     echo    "<div>";
                                     if ($row["RoundStatus"] == 0) {
