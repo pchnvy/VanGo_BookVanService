@@ -41,38 +41,40 @@
                         $result = $conn->query($sql);
 
                         $round = "";
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                if ($round != $row["RoundDate"]) {
-                                    echo    "<div class=\"time-label\">
-                                                <span class=\"bg-yellow\">" . $row["RoundDate"] . "</span>
-                                            </div>";
-                                    $round = $row["RoundDate"];
-                                }
-
-                                if ($round == $row["RoundDate"]) {
-                                    echo    "<div>";
-                                    if ($row["RoundStatus"] == 0) {
-                                        echo "<i class=\"fas fa-cash-register bg-grey\"></i>";
-                                    } else if ($row["RoundStatus"] == 1) {
-                                        echo "<i class=\"fas fa-road bg-blue\"></i>";
-                                    } else if ($row["RoundStatus"] == 2) {
-                                        echo "<i class=\"fas fa-calendar-check bg-green\"></i>";
+                        if ($result != null) {
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    if ($round != $row["RoundDate"]) {
+                                        echo    "<div class=\"time-label\">
+                                                    <span class=\"bg-yellow\">" . $row["RoundDate"] . "</span>
+                                                </div>";
+                                        $round = $row["RoundDate"];
                                     }
-
-                                    echo   "<div class=\"timeline-item\">
-                                                <h3 class=\"timeline-header\">รอบรถ <a href=\"#\">" . $row["RoundID"] . "</a>
-                                                " . $row["RoundStatusName"] . "</h3>
     
-                                                    <div class=\"timeline-body\">
-                                                        <h4>[" . $row["DepartingTime"] . " - " . $row["ArrivingTime"] . "] " . $row["RouteName"] . "</h4>
-                                                        ยอดขายตั๋วทั้งหมด: " . $row["TotalSales"] . " บาท (ตั๋วใบละ " . $row["PricePerSeat"] . " บาท)<br />
-                                                        จำนวนผู้โดยสาร: " . $row["SoldSeat"] . " <br />
-                                                        รถตู้ที่ใช้เดินทาง: " . $row["VanNumber"] . "<br />
-                                                        ขับโดย: " . $row["EmployeeName"] . "<br />
+                                    if ($round == $row["RoundDate"]) {
+                                        echo    "<div>";
+                                        if ($row["RoundStatus"] == 0) {
+                                            echo "<i class=\"fas fa-cash-register bg-grey\"></i>";
+                                        } else if ($row["RoundStatus"] == 1) {
+                                            echo "<i class=\"fas fa-road bg-blue\"></i>";
+                                        } else if ($row["RoundStatus"] == 2) {
+                                            echo "<i class=\"fas fa-calendar-check bg-green\"></i>";
+                                        }
+    
+                                        echo   "<div class=\"timeline-item\">
+                                                    <h3 class=\"timeline-header\">รอบรถ <a href=\"#\">" . $row["RoundID"] . "</a>
+                                                    " . $row["RoundStatusName"] . "</h3>
+        
+                                                        <div class=\"timeline-body\">
+                                                            <h4>[" . $row["DepartingTime"] . " - " . $row["ArrivingTime"] . "] " . $row["RouteName"] . "</h4>
+                                                            ยอดขายตั๋วทั้งหมด: " . $row["TotalSales"] . " บาท (ตั๋วใบละ " . $row["PricePerSeat"] . " บาท)<br />
+                                                            จำนวนผู้โดยสาร: " . $row["SoldSeat"] . " <br />
+                                                            รถตู้ที่ใช้เดินทาง: " . $row["VanNumber"] . "<br />
+                                                            ขับโดย: " . $row["EmployeeName"] . "<br />
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>";
+                                                </div>";
+                                    }
                                 }
                             }
                         }

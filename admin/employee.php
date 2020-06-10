@@ -47,31 +47,34 @@
                             $sql = "call sp_Employee_GetEmployee";
                             $result = $conn->query($sql);
 
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>" .
-                                        "<td>" . $row["EmployeeID"] . "</td>" .
-                                        "<td>" . $row["Name"] . "</td>" .
-                                        "<td>" . $row["LastName"] . "</td>" .
-                                        "<td>" . $row["Email"] . "</td>" .
-                                        "<td>" . $row["Sex"] . "</td>" .
-                                        "<td>" . $row["Telephone"] . "</td>" .
-                                        "<td>" . $row["Birthdate"] . "</td>" .
-                                        "<td align=\"center\">";
-                                    if ($row["FlagDelete"] == 0) {
-                                        echo "<i class=\"fas fa-circle\" style=\"color:Green\"></i>";
-                                    } else {
-                                        echo "<i class=\"fas fa-circle\" style=\"color:Red\"></i>";
-                                    };
-                                    echo "</td>" .
-                                        "<td align=\"center\">
-                                        <a name=\"Edit\" value=\"Edit\" id=" . $row["EmployeeID"] . " href=\"#\" 
-                                        class=\"edit_data\" title=\"Edit\" /> 
-                                        <i class=\"far fa-edit\"></i></a>
-                                        </td></tr>";
+                            if ($result != null) {
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<tr>" .
+                                            "<td>" . $row["EmployeeID"] . "</td>" .
+                                            "<td>" . $row["Name"] . "</td>" .
+                                            "<td>" . $row["LastName"] . "</td>" .
+                                            "<td>" . $row["Email"] . "</td>" .
+                                            "<td>" . $row["Sex"] . "</td>" .
+                                            "<td>" . $row["Telephone"] . "</td>" .
+                                            "<td>" . $row["Birthdate"] . "</td>" .
+                                            "<td align=\"center\">";
+                                        if ($row["FlagDelete"] == 0) {
+                                            echo "<i class=\"fas fa-circle\" style=\"color:Green\"></i>";
+                                        } else {
+                                            echo "<i class=\"fas fa-circle\" style=\"color:Red\"></i>";
+                                        };
+                                        echo "</td>" .
+                                            "<td align=\"center\">
+                                            <a name=\"Edit\" value=\"Edit\" id=" . $row["EmployeeID"] . " href=\"#\" 
+                                            class=\"edit_data\" title=\"Edit\" /> 
+                                            <i class=\"far fa-edit\"></i></a>
+                                            </td></tr>";
+                                    }
+                                    echo "</table>";
                                 }
-                                echo "</table>";
-                            } else {
+                            }
+                            else {
                                 echo "0 result.";
                             }
                             mysqli_close($conn);
