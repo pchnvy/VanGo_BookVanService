@@ -2,7 +2,6 @@
 <html>
 
 <?php include '_header.php' ?>
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -75,10 +74,6 @@
                     <p>Note : .</p>
                 </div>
             </div><!-- /.container-fluid -->
-
-
-
-
         </div>
     </div>
     <!-- /.content-header -->

@@ -127,15 +127,15 @@ $activePage = "../admin/round.php";
                 <?php
                 if (isset($_SESSION['UserID'])) {
                     echo "
-            <div class=\"user-panel mt-3 pb-3 mb-3 d-flex\">
-            <div class=\"image\">
-              <img src=\"dist/img/user2-160x160.jpg\" class=\"img-circle elevation-2\" alt=\"User Image\">
-            </div>
-            <div class=\"info\">
-              <a href=\"#\" class=\"d-block\">" . $_SESSION['UserInfo'] . "</a>
-            </div>
-            </div>
-            ";
+                        <div class=\"user-panel mt-3 pb-3 mb-3 d-flex\">
+                        <div class=\"image\">
+                        <img src=\"dist/img/user2-160x160.jpg\" class=\"img-circle elevation-2\" alt=\"User Image\">
+                        </div>
+                        <div class=\"info\">
+                        <a href=\"#\" class=\"d-block\">" . $_SESSION['UserInfo'] . "</a>
+                        </div>
+                        </div>
+                        ";
                 }
                 ?>
 
@@ -143,7 +143,7 @@ $activePage = "../admin/round.php";
                 <nav id="menuBar" class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-flat" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+                            with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="index.php" class="nav-link">
                                 <i class="nav-icon far fa-calendar-alt"></i>
@@ -155,17 +155,25 @@ $activePage = "../admin/round.php";
                         <?php
                         if (isset($_SESSION['UserID']) && $_SESSION['Role'] != 'A') {
                             echo "
-              <li class=\"nav-item\">
-                <a href=\"user_history.php\" class=\"nav-link\">
-                  <i class=\"nav-icon fas fa-history\"></i>
-                  <p>
-                    ประวัติการเดินรถ
-                  </p>
-                </a>
-              </li>
-            ";
+                                <li class=\"nav-item\">
+                                    <a href=\"user_history.php\" class=\"nav-link\">
+                                    <i class=\"nav-icon fas fa-history\"></i>
+                                    <p>
+                                        ประวัติการเดินรถ
+                                    </p>
+                                    </a>
+                                </li>
+                                ";
                         }
                         ?>
+                        <li class="nav-item">
+                            <a href="upload.php" class="nav-link">
+                                <i class="nav-icon far fa-calendar-alt"></i>
+                                <p>
+                                    อัพโหลดภาพ
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -495,7 +503,7 @@ $activePage = "../admin/round.php";
                         } else {
                             showerror("Username หรือ Password ไม่ถูกต้อง");
                         }
-                    }                    
+                    }
                 });
             });
 
