@@ -78,6 +78,7 @@ $activePage = "../admin/round.php";
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
 
 <body class="hold-transition sidebar-mini sidebar-collapse" style="font-family: 'Kanit'">
@@ -278,7 +279,7 @@ $activePage = "../admin/round.php";
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" name="login" id="login" Value="login" class="btn btn-primary">สมัครสมาชิก</button>
+                            <button type="submit" name="register" id="register" Value="register" class="btn btn-primary">สมัครสมาชิก</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
                         </div>
                     </div>

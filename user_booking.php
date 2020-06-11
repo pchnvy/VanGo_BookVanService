@@ -154,6 +154,62 @@
     <!-- /.content-header -->
 </div>
 
+ <!-- Login Modal Form -->
+ <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form method="post" id="loginForm" autocomplete="off">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="loginModalLabel"><strong>ลงชื่อเข้าใช้งาน</strong></h4>
+                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="form-group clearfix">
+                                    <div class="row mb-2">
+                                        <div class="col-sm-4 col-md-4 icheck-primary d-inline">
+                                            <input type="radio" id="radioPrimary1" name="Role" value="U" checked>
+                                            <label for="radioPrimary1">
+                                                User
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4 col-md-4 icheck-primary d-inline">
+                                            <input type="radio" id="radioPrimary2" name="Role" value="A">
+                                            <label for="radioPrimary2">
+                                                Admin
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="UserID">เบอร์โทรศัพท์</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control" id="UserID" name="UserID" pattern="[0-9]{10}" placeholder="0987654321" maxlength="30" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Password">รหัสผ่าน</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                        </div>
+                                        <input type="password" class="form-control" id="Password" name="Password" placeholder="รหัสผ่าน" maxlength="30" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" name="login" id="login" Value="login" class="btn btn-primary">เข้าสู่ระบบ</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
 
 <script>
     var sum = 1;
@@ -205,6 +261,7 @@
 
         ?>
         
+
     });
 </script>
 

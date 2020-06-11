@@ -382,7 +382,7 @@ session_start();
               </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" name="login" id="login" Value="login" class="btn btn-primary">สมัครสมาชิก</button>
+              <button type="submit" name="register" id="register" Value="register" class="btn btn-primary">สมัครสมาชิก</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
             </div>
           </div>
