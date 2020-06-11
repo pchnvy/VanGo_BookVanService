@@ -31,9 +31,9 @@
                     <table class="table table-bordered table-striped">
                         <thead style="text-align: center;">
                             <tr>
-                                <th>เวลาออก</th>
-                                <th>เวลาถึง</th>
                                 <th>เส้นทาง</th>
+                                <th>เวลาออก</th>
+                                <th>เวลาถึง</th>                                
                                 <th>ทะเบียนรถ</th>
                                 <th>พนักงานขับรถ</th>
                                 <th>สร้างเมื่อ</th>
@@ -57,10 +57,9 @@
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>" .
-                                            "<td>" . $row["RoundDate"] . "</td>" .
+                                            "<td>" . $row["RouteName"] . "</td>" .
                                             "<td>" . $row["DepartingTime"] . "</td>" .
                                             "<td>" . $row["ArrivingTime"] . "</td>" .
-                                            "<td>" . $row["RouteName"] . "</td>" .
                                             "<td>" . $row["VanNumber"] . "</td>" .
                                             "<td>" . $row["EmployeeName"] . "</td>" .
                                             "<td>" . $row["CreateDate"] . "</td>" .

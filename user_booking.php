@@ -78,6 +78,7 @@
             </div><!-- /.row -->
             <div class="row mb-2">
                 <div class="container-fluid" id="vantable">
+                    <h5 style="margin:1%;">วันที่ออกเดินทาง : <span style="color:#c28f02"></span></h5>
                     <?php
                     $conn = mysqli_connect('localhost', 'root', '', 'vango') or die("Error Connect to Database");
                     if ($conn->connect_error) {

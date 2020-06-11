@@ -71,7 +71,7 @@
                                                             ยอดขายตั๋วทั้งหมด: " . $row["TotalSales"] . " บาท (ตั๋วใบละ " . $row["PricePerSeat"] . " บาท)<br />
                                                             จำนวนผู้โดยสาร: " . $row["SoldSeat"] . " <br />
                                                             รถตู้ที่ใช้เดินทาง: " . $row["VanNumber"] . "<br />
-                                                            ขับโดย: " . $row["EmployeeName"] . "<br />
+                                                            ขับโดย: " . $row["EmployeeName"] . " (" . $row["EmployeePhone"] . ")<br />
                                                         </div>
                                                     </div>
                                                 </div>";

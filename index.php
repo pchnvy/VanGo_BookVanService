@@ -19,14 +19,17 @@
             <div class="row mb-2">
                 <div class="container-fluid" id="vantable">
                     <h2>ตารางแสดงรายละเอียดของรอบการเดินรถ</h2>
-                    <p>กรุณาเลือกเส้นทางและวันเวลาที่ท่านต้องการจองที่นั่งให้ครบถ้วน</p>
-
-
+                    <p>ลองพิมพ์เพื่อค้นหาสิ่งที่ท่านต้องการ เช่น เส้นทาง เวลาในการเดินทาง เป็นต้น</p>
+                    <div class="col-sm-2 col-md-2">
+                        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                        </br>
+                    </div>
+<!-- 
                     <div class="containter-fluid">
                         <form autocomplete="off" method="post" id="SearchRound">
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-sm col-md">
+                                    <div class="col-sm-4 col-md-4">
                                         <label for="sDate">วันที่ออกเดินทาง</label>
                                         <div class="input-group pb-modalreglog-input-group">
                                             <input type="date" class="form-control datetimepicker-input" name="sDate" id="sDate" required>
@@ -36,11 +39,11 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm col-md">
+                                    <div class="col-sm-4 col-md-4">
                                         <label for="sRouteID">เส้นทาง</label>
                                         <div class="input-group pb-modalreglog-input-group">
                                             <select class="form-control" name="sRouteID" id="sRouteID" required>
-                                                <?php
+                                               <?php
                                                 $conn = mysqli_connect('localhost', 'root', '', 'vango') or die("Error Connect to Database");
                                                 if ($conn->connect_error) {
                                                     die("Connection failed:" . $conn->connect_error);
@@ -62,48 +65,23 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm col-md">
-                                    <label for="sTime">รอบเวลา</label>
-                                        <div class="input-group pb-modalreglog-input-group">
-                                            <select class="form-control" name="sTime" id="sTime" required>
-                                                <?php
-                                                $conn = mysqli_connect('localhost', 'root', '', 'vango') or die("Error Connect to Database");
-                                                if ($conn->connect_error) {
-                                                    die("Connection failed:" . $conn->connect_error);
-                                                }
-                                                $sql = "call sp_Common_GetRouteCombo";
-                                                $result = $conn->query($sql);
-
-                                                if ($result->num_rows > 0) {
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        echo "<option value=\"" . $row["RouteID"] . "\">" . $row["RouteFromTo"] . "</option>";
-                                                    }
-                                                }
-                                                mysqli_close($conn);
-                                                ?>
-                                            </select>
-                                            <div class="input-group-append">
-                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
-                                            </div>
+                                    <div class="col-sm-4 col-md-4">
+                                        <div class="float-right d-none d-sm-inline-block" style="position: absolute; bottom: 0;">
+                                            <button type="submit" class="btn bg-maroon" style="padding-left: 50px; padding-right: 50px;">ค้นหา</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="float-right d-none d-sm-inline-block">
-                                <button type="submit" class="btn bg-maroon" style="padding-left: 50px; padding-right: 50px;">ค้นหา</button>
-                            </div>
                         </form>
-                    </div>
+                    </div> -->
 
                     <br/>
                     <table class="table table-bordered table-striped">
                         <thead style="text-align: center;">
                             <tr>
-                                <th>วันที่</th>
+                                <th>เส้นทาง</th>
                                 <th>เวลาออก</th>
                                 <th>เวลาถึง</th>
-                                <th>เส้นทาง</th>
                                 <th>ราคา</th>
                                 <th>ทะเบียนรถ</th>
                                 <th>พนักงานขับรถ</th>
@@ -123,10 +101,9 @@
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>" .
-                                            "<td>" . $row["RoundDate"] . "</td>" .
+                                            "<td>" . $row["RouteName"] . "</td>" .
                                             "<td>" . $row["DepartingTime"] . "</td>" .
                                             "<td>" . $row["ArrivingTime"] . "</td>" .
-                                            "<td>" . $row["RouteName"] . "</td>" .
                                             "<td>" . $row["Price"] . "</td>" .
                                             "<td>" . $row["VanNumber"] . "</td>" .
                                             "<td>" . $row["EmployeeName"] . "</td>" .
@@ -170,6 +147,13 @@
 
         ?>
 
+        // search
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
     });
 </script>
 
