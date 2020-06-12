@@ -61,7 +61,7 @@
                                             echo "<i class=\"fas fa-file-upload bg-black\"></i>";
                                         }
                                         else if ($row["RoundStatus"] == 2) {
-                                            echo "<i class=\"fas fa-qrcode bg-grey\"></i>";
+                                            echo "<i class=\"fas fa-qrcode bg-green\"></i>";
                                         }
                                         else if ($row["RoundStatus"] == 3) {
                                             echo "<i class=\"fas fa-road bg-blue\"></i>";
@@ -79,6 +79,7 @@
                                                     style=\"\"><u>คลิกที่นี่เพื่อแนบหลักฐาน</u>
                                                     </a>
                                                     )
+                                                    <span style='color:red'> * กรุณาอัพโหลดภายใน 2 ชั่วโมง *</span>
                                                     </h3>";
                                         }
                                         else {

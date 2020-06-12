@@ -132,7 +132,7 @@
                         while ($row = $result->fetch_assoc()) {
                             if($row["Available"]==1){
                             echo "<div class=\"col-sm-4\">";
-                            echo "<div class=\"card\" name=\"Seat\" id=\"DIV".$row["SeatID"]."\">" .
+                            echo "<div style='pointer-events: auto;' class=\"card\" name=\"Seat\" id=\"DIV".$row["SeatID"]."\">" .
                                 // "<input type=\"hidden\" name=\"RoundID\" id=\"R".$row["RoundID"]."\" value=\"".$row["RoundID"]."\" />".
                                 // "<input name=\"Seat".$row["SeatID"]."\" id=\"".$row["SeatID"]."\" value=\"".$row["SeatID"]."\" type=\"hidden\" /><br>" .
                                 "<input style=\"display:none\" name=\"".$row["SeatID"]."\" id=\"".$row["SeatID"]."\" value=\"".$row["SeatID"]."\" type=\"checkbox\" /><br>" .

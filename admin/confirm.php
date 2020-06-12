@@ -24,20 +24,20 @@
                     <p>ลองพิมพ์เพื่อค้นหาสิ่งที่ท่านต้องการ เช่น วันที่, เวลา หรือเส้นทาง เป็นต้น</p>
                     <div class="col-sm-2 col-md-2">
                         <input class="form-control" id="myInput" type="text" placeholder="Search..">
-                        </br>
-                        <button type="button" class="btn btn-primary" href="" id="OpenModal" data-toggle="modal" data-target="#AddRoundModal" style="background-color:dodgerblue;">เพิ่มข้อมูลรอบการเดินรถ</button>
                     </div>
                     <br>
                     <table class="table table-bordered table-striped">
                         <thead style="text-align: center;">
                             <tr>
                                 <th>วันที่ออกเดินทาง</th>
+                                <th>รอบเวลา</th>
                                 <th>เส้นทาง</th>
                                 <th>ราคาทั้งหมด</th>
                                 <th>ชื่อผู้จอง</th>
                                 <th>สถานะ</th>
                                 <th>หลักฐานการชำระเงิน</th>
                                 <th>ยืนยันหลักฐาน</th>
+                                <th> </th>
                             </tr>
                         </thead>
                         <tbody id="myTable">
@@ -54,14 +54,16 @@
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>" .
                                             "<td>" . $row["RoundDate"] . "</td>" .
+                                            "<td>" . $row["DepartingTime"] . " - " . $row["ArrivingTime"] . "</td>" .
                                             "<td>" . $row["RouteName"] . "</td>" .
                                             "<td>" . $row["TotalPrice"] . " </td>" .
                                             "<td>" . $row["BookingByName"] . "</td>" .
                                             "<td>" . $row["StatusName"] . "</td>";
 
+                                        // show preview Bill's picture
                                         if (($row["FlagUpload"] == 1 && $row["FlagConfirm"] == 1) || ($row["FlagUpload"] == 1 && $row["FlagConfirm"] != 1)){
                                             echo "<td align='center'>
-                                            <a target='_blank' href='../".$row["FilePath"]."'>
+                                            <a style='pointer-events: auto;' target='_blank' href='../".$row["FilePath"]."'>
                                             <button class='btn bg-yellow' style='width: 100px;'>พรีวิว</button>
                                             </a>
                                             </td>";
@@ -74,38 +76,58 @@
                                             </td>";
                                         }
 
+                                        // button Approve & Reject
                                         if ($row["FlagUpload"] == 1 && $row["FlagConfirm"] != 1){
                                             echo  "<td align='center'>" .
-                                            "<a name=\"Approve\" value=\"Approve\" id=" . $row["RoundID"] . " 
+                                            "<a style='pointer-events: auto;' 
+                                            name=\"Approve\" value=\"Approve\" id=" . $row["RoundID"] . " 
                                             href='ConfirmBillForm.php?RoundDate=" . $row["RoundDate"] . "&RoundID=" . $row["RoundID"] . "&BookingBy=" . $row["BookingBy"] . "&IsConfirm=1'
-                                            class=\"edit_data\" title=\"Approve\" /> 
+                                           title=\"Approve\" /> 
                                             <i class=\"fas fa-check-circle fa-2x text-green\"></i></a>
 
                                             <span style=\"margin: 5px\"></span>
 
-                                            <a name=\"Reject\" value=\"Reject\" id=" . $row["RoundID"] . "
+                                            <a style='pointer-events: auto;' 
+                                            name=\"Reject\" value=\"Reject\" id=" . $row["RoundID"] . "
                                             href='ConfirmBillForm.php?RoundDate=" . $row["RoundDate"] . "&RoundID=" . $row["RoundID"] . "&BookingBy=" . $row["BookingBy"] . "&IsConfirm=0'
-                                            class=\"delete_data\" title=\"Reject\" /> 
+                                            title=\"Reject\" /> 
                                             <i class=\"fas fa-times-circle fa-2x text-red\"></i>
-                                            </td>" .
-                                            "</tr>";
+                                            </td>";
                                         }
                                         else {
                                             echo  "<td align=\"center\">" .
-                                            "<a style=\"pointer-events: none;\" 
+                                            "<a style='pointer-events: none;'  
                                             name=\"Approve\" value=\"Approve\" id=" . $row["RoundID"] . " href=\"#\" 
-                                            class=\"edit_data\" title=\"Approve\" /> 
+                                            title=\"Approve\" /> 
                                             <i class=\"fas fa-check-circle fa-2x text-gray\"></i></a>
 
                                             <span style=\"margin: 5px\"></span>
 
-                                            <a style=\"pointer-events: none;\" 
+                                            <a style='pointer-events: none;'   
                                             name=\"Reject\" value=\"Reject\" id=" . $row["RoundID"] . " href=\"#\" 
-                                            class=\"delete_data\" title=\"Reject\" /> 
+                                            title=\"Reject\" /> 
                                             <i class=\"fas fa-times-circle fa-2x text-gray\"></i>
-                                            </td>" .
-                                            "</tr>";
+                                            </td>";
                                         }
+
+                                        // Delete booking
+                                        if ($row["FlagUpload"] == 1 && $row["FlagConfirm"] == 1){
+                                            echo "<td align='center'>
+                                            <a style='pointer-events: none;' 
+                                            name=\"Delete\" value=\"Delete\" id=" . $row["RoundID"] ."
+                                            class=\"delete_data\" title=\"Delete\"  /> 
+                                            <i class=\"far fa-trash-alt text-gray fa-2x\"></i></td>";
+                                        }
+                                        else {
+                                            echo "<td align='center'>
+                                            <a style='pointer-events: auto;' 
+                                            name=\"Delete\" value=\"Delete\" id=" . $row["RoundID"] . " 
+                                            href='DeleteBookingForm.php?RoundDate=" . $row["RoundDate"] . "&RoundID=" . $row["RoundID"] . "&BookingBy=" . $row["BookingBy"] . "' 
+                                            class=\"delete_data\" title=\"Delete\" /> 
+                                            <i class=\"far fa-trash-alt text-red fa-2x\"></i></td>";
+                                        }
+
+                                        echo "</tr>";
                                     }
                                     echo "</table>";
                                 }
@@ -125,35 +147,6 @@
     <!-- /.content-header -->
 </div>
 <!-- ./wrapper -->
-
-<!-- DeleteRoundModal -->
-<div class="modal fade" id="DeleteRoundModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form autocomplete="off" method="post" id="DeleteRoundForm">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">ลบข้อมูลรอบการเดินรถ</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <div id="pb-modalreglog-progressbar"></div>
-                    </div>
-                    <div class="form-group">
-                        <input type="hidden" name="dRoundID" id="dRoundID" />
-                    </div>
-                    <div class="form-group">
-                        <label for="email">คุณต้องการที่จะลบข้อมูลรอบการเดินรถหรือไม่?</label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" name="roundDelete" id="roundDelete" Value="roundDelete" class="btn btn-primary">ยืนยัน</button>
-                    <button type="button" class="btn btn-secondary" id="closeModalDelete" data-dismiss="modal">ยกเลิก</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <script>
     $(document).ready(() => {
