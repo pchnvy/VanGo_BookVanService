@@ -354,29 +354,6 @@ session_start();
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="iPaymentNumber">เลขที่บัญชี/หมายเลขบัตร</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="far fa-credit-card"></i></span>
-                    </div>
-                    <input type="text" class="form-control" id="iPaymentNumber" name="iPaymentNumber" placeholder="ผูกบัญชีธนาคาร หมายเลขบัตรเครดิต หรือเดบิต" maxlength="30" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="iPaymentMethod">วิธีการชำระเงิน</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fas fa-university"></i></span>
-                    </div>
-                    <select class="form-control" name="iPaymentMethod" id="iPaymentMethod" required>
-                      <option>ผูกกับบัญชีธนาคาร</option>
-                      <option>Visa</option>
-                      <option>Master Card</option>
-                      <option>PayPal</option>
-                    </select>
-                  </div>
-                </div>
               </div>
             </div>
             <div class="modal-footer">
@@ -419,9 +396,9 @@ session_start();
                   <label for="UserID">เบอร์โทรศัพท์</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="UserID" name="UserID" pattern="[0-9]{10}" placeholder="0987654321" maxlength="30" required>
+                    <input type="email" class="form-control" id="UserID" name="UserID" placeholder="example@vango.com" maxlength="30" required>
                   </div>
                 </div>
                 <div class="form-group">

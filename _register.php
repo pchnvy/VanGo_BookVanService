@@ -8,13 +8,11 @@ $conn = new mysqli("localhost", "root", "", "vango");
         $iLastname = mysqli_real_escape_string($conn,$_POST["iLastname"]);
         $iEmail = mysqli_real_escape_string($conn,$_POST["iEmail"]);
         $iPassword = mysqli_real_escape_string($conn,$_POST["iPassword"]);
-        $iPaymentNumber = mysqli_real_escape_string($conn,$_POST["iPaymentNumber"]);
-        $iPaymentMethod = mysqli_real_escape_string($conn,$_POST["iPaymentMethod"]);
         $iSex = mysqli_real_escape_string($conn,$_POST["iSex"]);
         $iTelephone = mysqli_real_escape_string($conn,$_POST["iTelephone"]);
 
 
-        $query = "call sp_Common_RegisterUser('$iName','$iLastname','$iEmail','$iPassword','$iPaymentNumber','$iPaymentMethod','$iSex','$iTelephone',@ErrorMsg)";
+        $query = "call sp_Common_RegisterUser('$iName','$iLastname','$iEmail','$iPassword',null,null,'$iSex','$iTelephone',@ErrorMsg)";
         $objQuery = $conn->query($query);
         
         $result = $conn->query( 'SELECT @ErrorMsg');

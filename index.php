@@ -96,6 +96,7 @@
                             }
 
                             if (!empty($_POST)) {
+                                echo "<alert>" . $_POST["sRouteID"] . "</alert>";
                                 $routeID = null;
                                 $sql = "";
                                 if (isset($_POST['sRouteID'])) {
@@ -174,7 +175,11 @@
         $("#searchTable").load("index.php #searchTable");
         if ($('#sDate').val() == "" || $('#sDate').val() == null) {
             $('#searchTable').hide();
-        } else {
+        } 
+        else if ( new Date($('#sDate').val()) < new Date() ) {
+            $('#searchTable').hide();
+        } 
+        else {
             $('#searchTable').show();
         }
     });
