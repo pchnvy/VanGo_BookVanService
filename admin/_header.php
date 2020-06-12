@@ -393,7 +393,7 @@ session_start();
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="UserID">เบอร์โทรศัพท์</label>
+                  <label for="UserID">อีเมลล์</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-envelope"></i></span>
