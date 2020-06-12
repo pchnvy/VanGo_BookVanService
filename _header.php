@@ -32,18 +32,6 @@
     <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300,400,500,600,700,900" rel="stylesheet">
 </head>
 
-<?php
-$pages = array();
-$pages["../admin/round.php"] = "ตารางการเดินรถ";
-$pages["../admin/history.php"] = "ประวัติการเดินรถ";
-$pages["../admin/van.php"] = "รถตู้/ที่นั่ง";
-$pages["../admin/route.php"] = "เส้นทางการเดินรถ";
-$pages["../admin/employee.php"] = "พนักงาน";
-
-$activePage = "../admin/round.php";
-
-?>
-
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -78,7 +66,6 @@ $activePage = "../admin/round.php";
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
 
 <body class="hold-transition sidebar-mini sidebar-collapse" style="font-family: 'Kanit'">

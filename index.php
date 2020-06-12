@@ -19,8 +19,8 @@
             <div class="row mb-2">
                 <div class="container-fluid" id="vantable">
                     <h2>ตารางแสดงรายละเอียดของรอบการเดินรถ</h2>
-                    <p>ลองพิมพ์เพื่อค้นหาสิ่งที่ท่านต้องการ เช่น เส้นทาง เวลาในการเดินทาง เป็นต้น</p>
-
+                    <!-- <p>กรุณาเลือกวันที่ออกเดินทางที่ท่านต้องการ</p> -->
+                    <br />
                     <div class="containter-fluid">
                         <form autocomplete="off" method="post" id="SearchRound">
                             <div class="form-group">
@@ -66,7 +66,7 @@
                                     <div class="col-sm-8 col-md-8">
                                         <div class="float-right" style="bottom: 0;">
                                             <button id="searchBtn" type="submit" name="submit" class="btn bg-yellow" style="width: 125px;">ค้นหา</button>
-                                            <span style="margin: 5px";></span>
+                                            <span style="margin: 5px" ;></span>
                                             <button id="clearBtn" class="btn bg-yellow" style="width: 125px;">ล้างข้อมูล</button>
                                         </div>
                                     </div>
@@ -85,68 +85,65 @@
                     </div>
 
                     <br>
-                    <div id="searchTable">
-                        <table class="table table-bordered table-striped">
-                            <thead style="text-align: center;">
-                                <tr>
-                                    <th>เส้นทาง</th>
-                                    <th>เวลาออก</th>
-                                    <th>เวลาถึง</th>
-                                    <th>ราคา</th>
-                                    <th>ทะเบียนรถ</th>
-                                    <th>พนักงานขับรถ</th>
-                                    <th> </th>
-                                </tr>
-                            </thead>
-                            <tbody id="myTable">
-                                <?php
-                                $conn = mysqli_connect('localhost', 'root', '', 'vango') or die("Error Connect to Database");
-                                if ($conn->connect_error) {
-                                    die("Connection failed:" . $conn->connect_error);
-                                }
+                    <table class="table table-bordered table-striped">
+                        <thead style="text-align: center;">
+                            <tr>
+                                <th>เส้นทาง</th>
+                                <th>เวลาออก</th>
+                                <th>เวลาถึง</th>
+                                <th>ราคา</th>
+                                <th>ทะเบียนรถ</th>
+                                <th>พนักงานขับรถ</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody id="searchTable">
+                            <?php
+                            $conn = mysqli_connect('localhost', 'root', '', 'vango') or die("Error Connect to Database");
+                            if ($conn->connect_error) {
+                                die("Connection failed:" . $conn->connect_error);
+                            }
 
-                                if (!empty($_POST)){
-                                    $routeID = null;
-                                    $sql = "";
-                                    if (isset($_POST['sRouteID'])){
-                                        $routeID = mysqli_real_escape_string($conn, $_POST["sRouteID"]);
-                                        $sql = "call sp_Booking_GetUserRound('$routeID')";
-                                    }
-                                    else {
-                                        $sql = "call sp_Booking_GetUserRound(null)";
-                                    }
-                                    $result = $conn->query($sql);
-    
-                                    if ($result != null) {
-                                        if ($result->num_rows > 0) {
-                                            while ($row = $result->fetch_assoc()) {
-                                                echo "<tr>" .
-                                                    "<td>" . $row["RouteName"] . "</td>" .
-                                                    "<td>" . $row["DepartingTime"] . "</td>" .
-                                                    "<td>" . $row["ArrivingTime"] . "</td>" .
-                                                    "<td>" . $row["Price"] . "</td>" .
-                                                    "<td>" . $row["VanNumber"] . "</td>" .
-                                                    "<td>" . $row["EmployeeName"] . "</td>" .
-                                                    "<td align=\"center\">
-                                                        <a name=\"Booking\" value=\"Booking\" href=\"user_booking.php?RoundID=" . $row["RoundID"] . "\" 
+                            if (!empty($_POST)) {
+                                $routeID = null;
+                                $sql = "";
+                                if (isset($_POST['sRouteID'])) {
+                                    $routeID = mysqli_real_escape_string($conn, $_POST["sRouteID"]);
+                                    $sql = "call sp_Booking_GetUserRound('$routeID')";
+                                } else {
+                                    $sql = "call sp_Booking_GetUserRound(null)";
+                                }
+                                $result = $conn->query($sql);
+
+                                if ($result != null) {
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "<tr>" .
+                                                "<td>" . $row["RouteName"] . "</td>" .
+                                                "<td>" . $row["DepartingTime"] . "</td>" .
+                                                "<td>" . $row["ArrivingTime"] . "</td>" .
+                                                "<td>" . $row["Price"] . "</td>" .
+                                                "<td>" . $row["VanNumber"] . "</td>" .
+                                                "<td>" . $row["EmployeeName"] . "</td>" .
+                                                "<td align=\"center\">
+                                                        <a name=\"Booking\" value=\"Booking\" href=\"user_booking.php?RoundDate=" . $_POST['sDate'] . "&RoundID=" . $row["RoundID"] . "\" 
                                                         class=\"booking_data\" title=\"Booking\" /> 
                                                         <i class=\"fas fa-cart-plus fa-2x\"></i></a>
                                                         </td>" .
-                                                    "</tr>";
-                                            }
-                                            echo "</table>";
+                                                "</tr>";
                                         }
-                                    } else {
-                                        echo "0 result.";
+                                        echo "</table>";
                                     }
+                                } else {
+                                    echo "0 result.";
                                 }
+                            }
 
-                                mysqli_close($conn);
-                                ?>
-                            </tbody>
-                        </table>
-                        <p>Note : .</p>
-                    </div>
+                            mysqli_close($conn);
+                            ?>
+                        </tbody>
+                    </table>
+                    <p>Note : กรุณาเลือกวันที่ออกเดินทางที่ท่านต้องการ ก่อนทำการค้นหารอบการเดินรถ</p>
                 </div>
             </div><!-- /.container-fluid -->
         </div>
@@ -161,7 +158,7 @@
 
         <?php
 
-        if (!empty($_SESSION)){
+        if (!empty($_SESSION)) {
             if ($_SESSION['Role'] == 'A') {
                 echo "window.location.href = \"admin/round.php\";";
             } else if ($_SESSION['Role'] != 'U') {
@@ -171,11 +168,11 @@
 
         // if click Search button
         if (!empty($_POST)) {
-            if (isset($_POST['sDate'])){
-                echo "$('#sDate').val(\"". $_POST['sDate'] ."\");";
+            if (isset($_POST['sDate'])) {
+                echo "$('#sDate').val(\"" . $_POST['sDate'] . "\");";
             }
-            if (isset($_POST['sRouteID'])){
-                echo "$('#sRouteID').val(\"". $_POST['sRouteID'] ."\");";
+            if (isset($_POST['sRouteID'])) {
+                echo "$('#sRouteID').val(\"" . $_POST['sRouteID'] . "\");";
             }
         }
 
@@ -183,11 +180,10 @@
     });
 
     $("#searchBtn").on("click", function() {
-        $( "#searchTable" ).load( "index.php #searchTable" );
-        if ($('#sDate').val() == "" || $('#sDate').val() == null){
+        $("#searchTable").load("index.php #searchTable");
+        if ($('#sDate').val() == "" || $('#sDate').val() == null) {
             $('#searchTable').hide();
-        }
-        else {
+        } else {
             $('#searchTable').show();
         }
     });

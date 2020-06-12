@@ -75,17 +75,27 @@
                         </strong>
                     </h1>
                 </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                        <li class="breadcrumb-item">Booking</li>
+                    </ol>
+                </div>
             </div><!-- /.row -->
             <div class="row mb-2">
                 <div class="container-fluid" id="vantable">
-                    <h5 style="margin:1%;">วันที่ออกเดินทาง : <span style="color:#c28f02"></span></h5>
+                    <h5 style="margin:1%;">วันที่ออกเดินทาง : <span id="sRoundDate" style="color:#c28f02"></span></h5>
                     <?php
                     $conn = mysqli_connect('localhost', 'root', '', 'vango') or die("Error Connect to Database");
                     if ($conn->connect_error) {
                         die("Connection failed:" . $conn->connect_error);
                     }
                     $price;
-                    $sql = "call sp_Booking_GetHeader('" . $_GET["RoundID"] . "')";
+                    
+                    $roundID = $_GET["RoundID"];
+                    $roundDate = strtotime($_GET['RoundDate']);
+
+                    $sql = "call sp_Booking_GetHeader('$roundID', $roundDate)";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
@@ -107,9 +117,14 @@
                     if ($conn->connect_error) {
                         die("Connection failed:" . $conn->connect_error);
                     }
-                    $sql = "call sp_Booking_GetSeatDetail('".$_GET["RoundID"]."')";
+
+                    $roundID = $_GET["RoundID"];
+                    $roundDate = strtotime($_GET['RoundDate']);
+                                        
+                    $sql = "call sp_Booking_GetSeatDetail('$roundID', $roundDate)";
                     $result = $conn->query($sql);
-                    echo "<form autocomplete=\"off\" method=\"post\" id=\"AddBookVanForm\" action=\"user_payment.php?RoundID=".$_GET["RoundID"]."\">";
+                    // echo "<form autocomplete=\"off\" method=\"post\" id=\"AddBookVanForm\" action=\"user_payment.php?RoundDate=" . $_GET["RoundDate"] . "&RoundID=".$_GET["RoundID"]."\">";
+                    echo "<form autocomplete=\"off\" method=\"post\" id=\"AddBookVanForm\" action=\"user_BookingForm.php?RoundDate=" . $_GET["RoundDate"] . "&RoundID=".$_GET["RoundID"]."\">";
                     echo "<div class=\"container\">";
                     echo "<div class=\"row\">";
                     echo "<div class=\"cards\">";
@@ -120,7 +135,7 @@
                             echo "<div class=\"card\" name=\"Seat\" id=\"DIV".$row["SeatID"]."\">" .
                                 // "<input type=\"hidden\" name=\"RoundID\" id=\"R".$row["RoundID"]."\" value=\"".$row["RoundID"]."\" />".
                                 // "<input name=\"Seat".$row["SeatID"]."\" id=\"".$row["SeatID"]."\" value=\"".$row["SeatID"]."\" type=\"hidden\" /><br>" .
-                                "<input style=\"display:none\" name=\"Seat".$row["SeatID"]."\" id=\"".$row["SeatID"]."\" value=\"".$row["SeatID"]."\" type=\"checkbox\" /><br>" .
+                                "<input style=\"display:none\" name=\"".$row["SeatID"]."\" id=\"".$row["SeatID"]."\" value=\"".$row["SeatID"]."\" type=\"checkbox\" /><br>" .
                                 "<p class=\"text-center\">".$row["SeatName"]."</p>".
                                 "</div>".
                                 "</div>";
@@ -154,67 +169,25 @@
     <!-- /.content-header -->
 </div>
 
- <!-- Login Modal Form -->
- <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <form method="post" id="loginForm" autocomplete="off">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="loginModalLabel"><strong>ลงชื่อเข้าใช้งาน</strong></h4>
-                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <div class="form-group clearfix">
-                                    <div class="row mb-2">
-                                        <div class="col-sm-4 col-md-4 icheck-primary d-inline">
-                                            <input type="radio" id="radioPrimary1" name="Role" value="U" checked>
-                                            <label for="radioPrimary1">
-                                                User
-                                            </label>
-                                        </div>
-                                        <div class="col-sm-4 col-md-4 icheck-primary d-inline">
-                                            <input type="radio" id="radioPrimary2" name="Role" value="A">
-                                            <label for="radioPrimary2">
-                                                Admin
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="UserID">เบอร์โทรศัพท์</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                        </div>
-                                        <input type="text" class="form-control" id="UserID" name="UserID" pattern="[0-9]{10}" placeholder="0987654321" maxlength="30" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Password">รหัสผ่าน</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                        </div>
-                                        <input type="password" class="form-control" id="Password" name="Password" placeholder="รหัสผ่าน" maxlength="30" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" name="login" id="login" Value="login" class="btn btn-primary">เข้าสู่ระบบ</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
+<?php include '_footer.php' ?>
 
 <script>
     var sum = 1;
     
     $(document).ready(function() {
+        <?php 
+            if (!isset($_SESSION['UserID'])){
+                echo "window.location.href = \"_error404.php\";";
+            }
+            else if ($_SESSION['Role'] != 'U'){
+                echo "window.location.href = \"_error404.php\";";
+            }
+
+        ?>
+
+        // show date
+        var roundDate = <?php echo strtotime($_GET['RoundDate']) ?>;
+        document.getElementById('sRoundDate').innerHTML = new Date(roundDate * 1000).toDateString();
         // Card Multi Select
         var SeatCount = 0;
         var Price = <?php echo $price ?>;
@@ -242,26 +215,6 @@
                 document.getElementById('Total').innerHTML = SeatCount*Price;
             }
         });
-    });
-</script>
-
-
-<?php include '_footer.php' ?>
-
-<script>
-    $(document).ready(() => {
-
-        <?php 
-            if (!isset($_SESSION['UserID'])){
-                echo "window.location.href = \"_error404.php\";";
-            }
-            else if ($_SESSION['Role'] != 'U'){
-                echo "window.location.href = \"_error404.php\";";
-            }
-
-        ?>
-        
-
     });
 </script>
 
