@@ -73,15 +73,6 @@
                                 </div>
                             </div>
                         </form>
-                        <!-- <div class="row" style="margin: 10px;">
-                            <div class="col-sm-8 col-md-8">
-                                <div class="float-right" style="bottom: 0;">
-                                    <button id="searchBtn" name="submit" class="btn bg-yellow" style="width: 125px;">ค้นหา</button>
-                                    <span style="margin: 5px" ;></span>
-                                    <button id="clearBtn" class="btn bg-yellow" style="width: 125px;">ล้างข้อมูล</button>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
 
                     <br>
@@ -160,7 +151,7 @@
 
         if (!empty($_SESSION)) {
             if ($_SESSION['Role'] == 'A') {
-                echo "window.location.href = \"admin/round.php\";";
+                echo "window.location.href = \"admin/confirm.php\";";
             } else if ($_SESSION['Role'] != 'U') {
                 echo "window.location.href = \"_error404.php\";";
             }

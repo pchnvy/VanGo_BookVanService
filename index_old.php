@@ -95,7 +95,7 @@
         <?php
 
         if ($_SESSION['Role'] == 'A') {
-            echo "window.location.href = \"admin/round.php\";";
+            echo "window.location.href = \"admin/confirm.php\";";
         } else if ($_SESSION['Role'] != 'U') {
             echo "window.location.href = \"_error404.php\";";
         }

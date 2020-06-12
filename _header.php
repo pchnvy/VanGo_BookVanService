@@ -154,14 +154,6 @@
                                 ";
                         }
                         ?>
-                        <li class="nav-item">
-                            <a href="upload.php" class="nav-link">
-                                <i class="nav-icon far fa-calendar-alt"></i>
-                                <p>
-                                    อัพโหลดภาพ
-                                </p>
-                            </a>
-                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -485,7 +477,7 @@
                                 if ($('#radioPrimary1').is(":checked")) {
                                     window.location.href = "index.php";
                                 } else {
-                                    window.location.href = "admin/round.php";
+                                    window.location.href = "admin/confirm.php";
                                 }
                             }, 3000);
                         } else {

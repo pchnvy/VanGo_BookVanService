@@ -8,22 +8,30 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>อัพโหลดรูปภาพ</h1>
+                    <h1 class="m-0 text-dark">
+                        <strong>
+                            <i class="nav-icon fas fa-file-upload"></i>
+                            <span>อัพโหลดรูปภาพ</span>
+                        </strong>
+                    </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <?php
-                            $bookingPage = "user_booking.php?RoundDate=" . $_GET['RoundDate'] . "&RoundID=" . $_GET['RoundID'];
-                        ?>
-                        <li class="breadcrumb-item"><a href="<?php echo $bookingPage ?>">Booking</a></li>
+                        <li class="breadcrumb-item"><a href="user_history.php">History</a></li>
                         <li class="breadcrumb-item active">Upload</li>
                     </ol>
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="container-fluid">
-                    <form action="upload_file.php" method="post" enctype="multipart/form-data" name="upfile" id="upfile">
+                    <?php
+                    $uploadForm = "upload_file.php?RoundDate=" . $_GET['RoundDate'] . "&RoundID=" . $_GET['RoundID'];
+                    ?>
+                    <form action="<?php echo $uploadForm ?>" method="post" enctype="multipart/form-data" name="upfile" id="upfile">
+                        <h5 style="margin:1%;">วันที่ออกเดินทาง : <span id="sRoundDate" style="color:#c28f02"></span></h5>
+
+
+
                         <p>&nbsp;</p>
                         <table width="700" style="margin-right:auto;" cellpadding="0" cellspacing="0">
                             <tr>
@@ -78,6 +86,10 @@
         }
 
         ?>
+
+        // show date
+        var roundDate = <?php echo strtotime($_GET['RoundDate']) ?>;
+        document.getElementById('sRoundDate').innerHTML = new Date(roundDate * 1000).toDateString();
 
     });
 </script>

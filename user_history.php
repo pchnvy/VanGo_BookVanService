@@ -55,18 +55,39 @@
                                     if ($round == $row["RoundDate"]) {
                                         echo    "<div>";
                                         if ($row["RoundStatus"] == 0) {
+                                            echo "<i class=\"fas fa-pause bg-red\"></i>";
+                                        }
+                                        else if ($row["RoundStatus"] == 1) {
+                                            echo "<i class=\"fas fa-file-upload bg-black\"></i>";
+                                        }
+                                        else if ($row["RoundStatus"] == 2) {
                                             echo "<i class=\"fas fa-qrcode bg-grey\"></i>";
-                                        } else if ($row["RoundStatus"] == 1) {
+                                        }
+                                        else if ($row["RoundStatus"] == 3) {
                                             echo "<i class=\"fas fa-road bg-blue\"></i>";
-                                        } else if ($row["RoundStatus"] == 2) {
+                                        }
+                                        else if ($row["RoundStatus"] == 4) {
                                             echo "<i class=\"fas fa-calendar-check bg-green\"></i>";
                                         }
     
-                                        echo   "<div class=\"timeline-item\">
+                                        if ($row["RoundStatus"] == 1) {
+                                            echo   "<div class=\"timeline-item\">
                                                     <h3 class=\"timeline-header\">รอบรถ <a href=\"#\">" . $row["RoundID"] . "</a>
-                                                    " . $row["RoundStatusName"] . "</h3>
+                                                    " . $row["RoundStatusName"] . 
+                                                    " (
+                                                    <a href=\"upload.php?RoundDate=" . $row["RoundDate"] . "&RoundID=" . $row["RoundID"] . "\" 
+                                                    style=\"\"><u>คลิกที่นี่เพื่อแนบหลักฐาน</u>
+                                                    </a>
+                                                    )
+                                                    </h3>";
+                                        }
+                                        else {
+                                            echo   "<div class=\"timeline-item\">
+                                                    <h3 class=\"timeline-header\">รอบรถ <a href=\"#\">" . $row["RoundID"] . "</a>
+                                                    " . $row["RoundStatusName"] . "</h3>";
+                                        }
         
-                                                        <div class=\"timeline-body\">
+                                                    echo    "<div class=\"timeline-body\">
                                                             <h4>[" . $row["DepartingTime"] . " - " . $row["ArrivingTime"] . "] " . $row["RouteName"] . "</h4>
                                                             จำนวนที่นั่ง: " . $row["TotalSeat"] . " ที่นั่ง (" . $row["SeatName"] . ")<br />
                                                             ราคา: " . $row["TotalPrice"] . " บาท<br />

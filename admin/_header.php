@@ -187,7 +187,7 @@ session_start();
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar elevation-4 sidebar-dark-warning">
       <!-- Brand Logo -->
-      <a href="../admin/round.php" class="brand-link navbar-warning">
+      <a href="../admin/confirm.php" class="brand-link navbar-warning">
         <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-bold">Van GO!</span>
       </a>
@@ -216,11 +216,21 @@ session_start();
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
+              <a href="../admin/confirm.php" class="nav-link">
+                <i class="nav-icon fas fa-check-double"></i>
+                <p>
+                  ตรวจสอบ
+                  <br/>
+                  การชำระเงิน
+                  <span class="right badge badge-danger">สำคัญ</span>
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="../admin/round.php" class="nav-link">
                 <i class="nav-icon far fa-calendar-alt"></i>
                 <p>
                   ตารางการเดินรถ
-                  <span class="right badge badge-danger">สำคัญ</span>
                 </p>
               </a>
             </li>
