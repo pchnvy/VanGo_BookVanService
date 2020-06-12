@@ -96,7 +96,7 @@
                             }
 
                             if (!empty($_POST)) {
-                                echo "<alert>" . $_POST["sRouteID"] . "</alert>";
+                                // echo "<script>alert(". strtotime($_POST["sDate"]).")</script>";
                                 $routeID = null;
                                 $sql = "";
                                 if (isset($_POST['sRouteID'])) {
@@ -171,12 +171,23 @@
         ?>
     });
 
+    $('#sDate').on("change", function() {
+        $('#searchTable').hide();
+
+        var pickDate = new Date($('#sDate').val());
+        pickDate.setHours(0,0,0,0);
+        var nowDate = new Date();
+        nowDate.setHours(0,0,0,0)
+        if (pickDate < nowDate) {
+            $('#sDate').val("");
+            showerror("ไม่สามารถเลือกวันที่ที่น้อยกว่าปัจจุบันได้");
+        }
+    });
+
     $("#searchBtn").on("click", function() {
         $("#searchTable").load("index.php #searchTable");
+
         if ($('#sDate').val() == "" || $('#sDate').val() == null) {
-            $('#searchTable').hide();
-        } 
-        else if ( new Date($('#sDate').val()) < new Date() ) {
             $('#searchTable').hide();
         } 
         else {
