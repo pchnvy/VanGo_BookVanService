@@ -36,10 +36,6 @@
                                 <th>เวลาถึง</th>                                
                                 <th>ทะเบียนรถ</th>
                                 <th>พนักงานขับรถ</th>
-                                <th>สร้างเมื่อ</th>
-                                <th>สร้างโดย</th>
-                                <th>แก้ไขเมื่อ</th>
-                                <th>แก้ไขโดย</th>
                                 <th> </th>
                                 <th> </th>
                             </tr>
@@ -62,10 +58,6 @@
                                             "<td>" . $row["ArrivingTime"] . "</td>" .
                                             "<td>" . $row["VanNumber"] . "</td>" .
                                             "<td>" . $row["EmployeeName"] . "</td>" .
-                                            "<td>" . $row["CreateDate"] . "</td>" .
-                                            "<td>" . $row["CreateBy"] . "</td>" .
-                                            "<td>" . $row["UpdateDate"] . "</td>" .
-                                            "<td>" . $row["UpdateBy"] . "</td>" .
                                             "<td align=\"center\">
                                             <a name=\"Edit\" value=\"Edit\" id=" . $row["RoundID"] . " href=\"#\" 
                                             class=\"edit_data\" title=\"Edit\" /> 

@@ -37,10 +37,6 @@
                                 <th>ระยะเวลา</th>
                                 <th>ราคา</th>
                                 <th>รายละเอียดการเดินทาง</th>
-                                <th>สร้างเมื่อ</th>
-                                <th>สร้างโดย</th>
-                                <th>แก้ไขเมื่อ</th>
-                                <th>แก้ไขโดย</th>
                                 <th> </th>
                                 <th> </th>
                             </tr>
@@ -62,13 +58,9 @@
                                             "<td>" . $row["Name"] . "</td>" .
                                             "<td>" . $row["Begin"] . "</td>" .
                                             "<td>" . $row["Destination"] . "</td>" .
-                                            "<td>" . $row["Usagetime"] . " ชั่วโมง</td>" .
+                                            "<td>" . $row["Usagetime"] . " นาที</td>" .
                                             "<td>" . $row["Price"] . " บาท</td>" .
                                             "<td>" . $row["Description"] . "</td>" .
-                                            "<td>" . $row["CreateDate"] . "</td>" .
-                                            "<td>" . $row["CreateBy"] . "</td>" .
-                                            "<td>" . $row["UpdateDate"] . "</td>" .
-                                            "<td>" . $row["UpdateBy"] . "</td>" .
                                             "<td align=\"center\">
                                             <a name=\"Edit\" value=\"Edit\" id=" . $row["RouteID"] . " href=\"#\" 
                                             class=\"edit_data\" title=\"Edit\" /> 
@@ -130,9 +122,9 @@
                                     <!-- <input type="text" class="form-control" name="inputFuel" id="inputFuel" placeholder="eg. E20 GASOLINE95" required> -->
                                     <select class="form-control" name="iBegin" id="iBegin" required>
                                         <option>บางแสน</option>
-                                        <option>กรุงเทพฯ</option>
-                                        <option>พัทยา</option>
-                                        <option>ศรีราชา</option>
+                                        <option>เอกมัย</option>
+                                        <option>พระราม2</option>
+                                        <option>รังสิต</option>
                                         </option>
                                     </select>
                                 </div>
@@ -143,10 +135,10 @@
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                                     <!-- <input type="text" class="form-control" name="inputFuel" id="inputFuel" placeholder="eg. E20 GASOLINE95" required> -->
                                     <select class="form-control" name="iDestination" id="iDestination" required>
+                                        <option>รังสิต</option>
+                                        <option>พระราม2</option>
+                                        <option>เอกมัย</option>
                                         <option>บางแสน</option>
-                                        <option>กรุงเทพฯ</option>
-                                        <option>พัทยา</option>
-                                        <option>ศรีราชา</option>
                                         </option>
                                     </select>
                                 </div>
@@ -157,21 +149,21 @@
                         <label for="iUsagetime">เวลาที่ใช้ในการเดินทาง</label>
                         <div class="input-group pb-modalreglog-input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="number" class="form-control" name="iUsagetime" id="iUsagetime" placeholder="หน่วยเป็นนาทีเช่น 60 นาที , 120 ,90" required>
+                            <input type="number" class="form-control" name="iUsagetime" id="iUsagetime" placeholder="หน่วยเป็นนาที" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="iPrice">ราคา</label>
                         <div class="input-group pb-modalreglog-input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="number" class="form-control" name="iPrice" id="iPrice" placeholder="เช่น 140.00,240.00" required>
+                            <input type="number" class="form-control" name="iPrice" id="iPrice" placeholder="140" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="iDescription">รายละเอียดการเดินทาง</label>
                         <div class="input-group pb-modalreglog-input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="text" class="form-control" name="iDescription" id="iDescription" placeholder="เช่น จุดจอดรถระหว่างทาง" required>
+                            <input type="text" class="form-control" name="iDescription" id="iDescription" placeholder="จุดจอดรถระหว่างทาง" required>
                         </div>
                     </div>
                 </div>
@@ -245,21 +237,21 @@
                         <label for="uUsagetime">เวลาที่ใช้ในการเดินทาง</label>
                         <div class="input-group pb-modalreglog-input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="number" class="form-control" name="uUsagetime" id="uUsagetime" placeholder="หน่วยเป็นนาทีเช่น 60 นาที , 120 ,90" required>
+                            <input type="number" class="form-control" name="uUsagetime" id="uUsagetime" placeholder="หน่วยเป็นนาที" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="uPrice">ราคา</label>
                         <div class="input-group pb-modalreglog-input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="number" class="form-control" name="uPrice" id="uPrice" placeholder="เช่น 140.00,240.00" required>
+                            <input type="number" class="form-control" name="uPrice" id="uPrice" placeholder="140" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="uDescription">รายละเอียดการเดินทาง</label>
                         <div class="input-group pb-modalreglog-input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="text" class="form-control" name="uDescription" id="uDescription" placeholder="เช่น จุดจอดรถระหว่างทาง" required>
+                            <input type="text" class="form-control" name="uDescription" id="uDescription" placeholder="จุดจอดรถระหว่างทาง" required>
                         </div>
                     </div>
                 </div>
