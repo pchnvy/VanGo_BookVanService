@@ -68,6 +68,59 @@
                     </form>
                 </div>
             </div>
+            <h2>ช่องทางการชำระเงิน</h2>
+            <div class="col-6">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-2">
+                            <img src="img/Bank1.png" alt="SCB" width="100%" height="90%">
+                        </div>
+                        <div class="col">
+                            <h4>ธนาคารไทยพาณิชย์</h4>
+                            <p>ชื่อบัญชี : บริษัท แวนโก จำกัด</p>
+                            <p>เลขที่บัญชี : 547-245273-6</p>
+                            <p>พร้อมเพย์ : 0623870311</p>
+                            <p>สาขา : แหลมทองบางแสน</p>
+                        </div>
+                    </div>
+                    <div class="row" style="background-color:#d1d1d1">
+                        <div class="col-2">
+                            <img src="img/Bank2.png" alt="SCB" width="100%" height="90%">
+                        </div>
+                        <div class="col">
+                            <h4>ธนาคารกรุงเทพ</h4>
+                            <p>ชื่อบัญชี : บริษัท แวนโก จำกัด</p>
+                            <p>เลขที่บัญชี : 316-4-68552-5</p>
+                            <p>พร้อมเพย์ : 0623870312</p>
+                            <p>สาขา : แหลมทองบางแสน</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <img src="img/Bank3.png" alt="SCB" width="100%" height="90%">
+                        </div>
+                        <div class="col">
+                            <h4>ธนาคารกรุงไทย</h4>
+                            <p>ชื่อบัญชี : บริษัท แวนโก จำกัด</p>
+                            <p>เลขที่บัญชี : 412-3-01370-8</p>
+                            <p>พร้อมเพย์ : 0623870313</p>
+                            <p>สาขา : แหลมทองบางแสน</p>
+                        </div>
+                    </div>
+                    <div class="row" style="background-color:#d1d1d1">
+                        <div class="col-2">
+                            <img src="img/Bank4.png" alt="SCB" width="100%" height="90%">
+                        </div>
+                        <div class="col">
+                            <h4>ธนาคารกสิกรไทย</h4>
+                            <p>ชื่อบัญชี : บริษัท แวนโก จำกัด</p>
+                            <p>เลขที่บัญชี : 120-2-82880-5</p>
+                            <p>พร้อมเพย์ : 0623870314</p>
+                            <p>สาขา : แหลมทองบางแสน</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
