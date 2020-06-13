@@ -96,7 +96,6 @@
                             }
 
                             if (!empty($_POST)) {
-                                // echo "<script>alert(". strtotime($_POST["sDate"]).")</script>";
                                 $routeID = null;
                                 $sql = "";
                                 if (isset($_POST['sRouteID'])) {

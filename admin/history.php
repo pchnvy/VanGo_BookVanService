@@ -37,7 +37,7 @@
                         if ($conn->connect_error) {
                             die("Connection failed:" . $conn->connect_error);
                         }
-                        $sql = "call sp_HistoryAdmin";
+                        $sql = "call sp_HistoryAdmin(null)";
                         $result = $conn->query($sql);
 
                         $round = "";

@@ -34,6 +34,7 @@
                                 <th>เส้นทาง</th>
                                 <th>ราคาทั้งหมด</th>
                                 <th>ชื่อผู้จอง</th>
+                                <th>เบอร์ติดต่อ</th>
                                 <th>สถานะ</th>
                                 <th>หลักฐานการชำระเงิน</th>
                                 <th>ยืนยันหลักฐาน</th>
@@ -58,6 +59,7 @@
                                             "<td>" . $row["RouteName"] . "</td>" .
                                             "<td>" . $row["TotalPrice"] . " </td>" .
                                             "<td>" . $row["BookingByName"] . "</td>" .
+                                            "<td>" . $row["BookingPhone"] . "</td>" .
                                             "<td>" . $row["StatusName"] . "</td>";
 
                                         // show preview Bill's picture
