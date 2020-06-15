@@ -58,7 +58,7 @@
                                             "<td>" . $row["Name"] . "</td>" .
                                             "<td>" . $row["Begin"] . "</td>" .
                                             "<td>" . $row["Destination"] . "</td>" .
-                                            "<td>" . $row["Usagetime"] . " นาที</td>" .
+                                            "<td>" . $row["Usagetime"] . " ชั่วโมง</td>" .
                                             "<td>" . $row["Price"] . " บาท</td>" .
                                             "<td>" . $row["Description"] . "</td>" .
                                             "<td align=\"center\">
