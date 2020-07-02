@@ -352,7 +352,7 @@
                     }
                     setTimeout(() => {
                         location.reload();
-                    }, 3000);
+                    }, 1000);
                 }
             });
         });

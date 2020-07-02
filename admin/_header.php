@@ -491,7 +491,7 @@ session_start();
                 } else {
                   window.location.href = "round.php";
                 }
-              }, 3000);
+              }, 1000);
             } else {
               showerror("Username หรือ Password ไม่ถูกต้อง");
             }
