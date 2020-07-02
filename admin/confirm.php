@@ -35,6 +35,7 @@
                                 <th>ราคาทั้งหมด</th>
                                 <th>ชื่อผู้จอง</th>
                                 <th>เบอร์ติดต่อ</th>
+                                <!-- <th>เวลา</th> -->
                                 <th>เวลาที่จอง</th>
                                 <th>สถานะ</th>
                                 <th>หลักฐานการชำระเงิน</th>
@@ -60,9 +61,17 @@
                                             "<td>" . $row["RouteName"] . "</td>" .
                                             "<td>" . $row["TotalPrice"] . " </td>" .
                                             "<td>" . $row["BookingByName"] . "</td>" .
-                                            "<td>" . $row["BookingPhone"] . "</td>" .
-                                            "<td>" . $row["BookingDate"] . "</td>" .
-                                            "<td>" . $row["StatusName"] . "</td>";
+                                            "<td>" . $row["BookingPhone"] . "</td>";
+                                            // "<td>" . $row["hours"] . "</td>";                                            
+                                            if($row["hours"]>=2 && $row["FlagConfirm"] != 1)
+                                            {
+                                                echo "<td style='color:red'>" . $row["BookingDate"] . "</td>";
+                                            }
+                                            else
+                                            {
+                                                echo "<td style='color:green'>" . $row["BookingDate"] . "</td>";
+                                            }
+                                            echo "<td>" . $row["StatusName"] . "</td>";
 
                                         // show preview Bill's picture
                                         if (($row["FlagUpload"] == 1 && $row["FlagConfirm"] == 1) || ($row["FlagUpload"] == 1 && $row["FlagConfirm"] != 1)){

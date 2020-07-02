@@ -129,7 +129,17 @@
                         <label for="password">จำนวนที่นั่ง</label>
                         <div class="input-group pb-modalreglog-input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="number" class="form-control" name="inputSeat" id="inputSeat" placeholder="เช่น 14,20,30" required>
+                            <!-- <input type="number" class="form-control" name="inputSeat" id="inputSeat" placeholder="เช่น 14,20,30" required> -->
+                            <select class="form-control" name="inputSeat" id="inputSeat" required>
+                                <option>8</option>
+                                <option>10</option>
+                                <option>13</option>
+                                <option>14</option>
+                                <option>20</option>
+                                <option>30</option>
+                            </select>
+
+
                         </div>
                     </div>
                 </div>
